@@ -1,0 +1,139 @@
+---
+title: "SOC3070 Análisis de Datos Categóricos"
+author: "Trabajo 1"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r, message=FALSE, warnings=FALSE}
+# Escribir install.packages("tinytex") en la consola para instalar "tinytex"
+# Escribir install.packages("tidyverse") en la consola para instalar "tinytex"
+# Escribir install.packages("modelr") en la consola para instalar "tinytex"
+library("tinytex")
+library("tidyverse")
+library("modelr")
+library("httr")
+library("ggsci")
+```
+
+## Información
+
+- Ponderación: 20% de la nota final del curso.
+
+- Bonus: Responder la pregunta _bonus_ NO es un requisito necesario para obtener puntaje completo. Responder incorrectamente la pregunta _bonus_ no afectará negativamente la nota obtenida, pero responderla correctamente mejorará la nota obtenida en un máximo de 0.5 puntos (o en la cantidad necesaria para obtener nota máxima si la nota original fuera superior a 6.5)
+
+
+## Introducción
+
+En esta tarea usarán el modelo lineal de probabilidad (LPM) y regresión logística para re-analizar los datos utilizados en el artículo _"It’s not just how the game is played, it’s whether you win or lose"_ (2019). Este estudio utiliza un experimento online para identificar el efecto causal de las desigualdades de oportunidades y de resultados sobre creencias acerca de las causas de la desigualdad y percepciones de justicia. Para mayor contexto pueden revisar el artículo en el link indicado en el repositorio. 
+
+Específicamente, deberán trabajar con un modelo de regresión perteneciente a la sección "Supplementary Materials". Tanto el artículo como el material suplementario se encuentran disponibles en el repositorio. En ambos documentos encontrarán destacadas las partes relevantes para desarrollar esta tarea. 
+
+## Datos
+
+Usa el código abajo para cargar la base de datos en `R`:
+
+````{r, message=FALSE, warnings=FALSE}
+
+path <- "https://raw.githubusercontent.com/mebucca/cda_soc3070/master/homework/t_1/data_paper.csv"
+data_paper <- read_csv(url(path))
+
+data_paper %>% glimpse()
+
+````
+
+
+## Descripción de variables relevantes
+
+
+- `wg` indica si el jugador ganó (`wg`=1) o perdió el juego (`wg`=0).  
+
+- `pid` indica si el jugador es "player 1" (`pid`=0) o "player 2" (`pid`=1).  
+
+- `hs` corresponde a "hand strength". La variable utilizada acá es equivalente a la usada en el artículo pero multiplicada por 100 para facilitar la interpretación de resultados. Valores cercanos a cero indican que el jugador tenía carta débiles y valores cercanos a 100 indican que el jugador tenía cartas fuertes.
+
+- `wt` indica si el jugador ganó (`wt`=1) o perdió la sesión de entrenamiento (`wt`=0).  
+
+
+## Ejercicios
+
+1. Usa un LPM para estimar el modelo implícito en la Figura S3 de la sección "Supplementary Materials" del artículo. Puedes encontrar mayores detalles sobre la especificación del modelo en la ecuación 4 y en la Tabla S3, columna 1. Escribe la escuación de regresión y presenta un `summary()` de los resultados.
+
+
+1.1 Interpreta el coeficiente asociado a `wt`.
+
+
+1.2 De acuerdo al modelo estimado en 1.,  ¿cuál es el efecto marginal de "hand strength" sobre la probabilidad esperada de ganar el juego?
+
+
+1.3 En base al modelo usado en 1., calcula las probabilidades esperadas de que un "player 1" que ganó el entrenamiento gane el juego si su "hand strength" es 50 y 60, respectivamente. Expresa formalmente las ecuaciones correspondiente a estas predicciones.
+
+
+1.4. Agrega una interacción entre `hs` y `wt` al modelo estimado en 1. Escribe la ecuación de regresión y presenta un `summary()` de los resultados. Interpreta el efecto de "hand strength" estimado en este modelo.
+
+
+
+1.5 En base a los resultados del modelo en 1.4. calcula las probabilidades esperadas de que un "player 1" que ganó el entrenamiento gane el juego si su "hand strength" es 60. Expresa formalmente la ecuación correspondiente a esta predicción. 
+
+
+
+2. Usa una regresión logística para estimar el modelo implícito en la Figura S3 de la sección "Supplementary Materials" del artículo. Puedes encontrar mayores detalles sobre la especificación del modelo en la ecuación 4 y en la Tabla S3, columna 1. Escribe la escuación de regresión y presenta un `summary()` de los resultados.
+
+
+2.1 Interpreta el coeficiente asociado a `wt`.
+
+
+
+2.2 Transforma e interpreta el coeficiente de interés de 2.1. en términos de odds-ratios. Presenta el desarrollo formal.
+
+
+
+2.3 De acuerdo al modelo estimado en 2, calcula las probabilidades esperadas de que un "player 1" que ganó el entrenamiento gane el juego si su "hand strength" es 50 y 60, respectivamente. Expresa formalmente las ecuaciones correspondiente a estas predicciones. Compara este resultado con el obtenido en 1.3.
+
+
+
+2.4. De acuerdo al modelo estimado en 2., ¿cual es el efecto marginal de "hand strength" sobre la probabilidad esperada de ganar el juego? Calcula esta cantidad para un "Player 1" que ganó el entrenamiento si su "hand strength" es 50 y si su "hand strength" es 60. Expresa formalmente las ecuaciones correspondientes a estas cantidades. Compara esta respuesta con la respuesta dada en 1.2.
+
+
+
+## Bonus: 
+
+El siguiente gráfico describe las probabilidad predichas por el LMP estimado en 1. y la regresión logística estimada en 2. de que un "player 1" que ganó la sesión de entrenamiento gane el juego, para diferentes valores de "hand strength".
+
+
+````{r, echo=FALSE, fig.width=8, fig.height=6}
+lpm_1 <- lm(wg ~ factor(pid) + hs + factor(wt) , data=data_paper)
+logit_1 <- glm(wg ~ factor(pid) + hs + wt, family = binomial(link=logit), data=data_paper)
+
+# crea un nuevo set de datos sobre los cuales crear predicciones
+newx <- data_paper %>% data_grid(pid=0,hs=seq(35,65,by=1),wt=1, .model=lpm_1)
+
+# crea valores predichos para el nuevo set de datos
+xb_lpm = predict(lpm_1 , newdata = newx)
+xb_logit = predict(logit_1, newdata = newx)
+prob_lpm = xb_lpm
+prob_logit = 1/(1 + exp(-xb_logit))
+
+newy <- newx %>% mutate(prob_lpm = prob_lpm, prob_logit = prob_logit) 
+
+# crea gráfico 
+newy %>% ggplot(aes(x=hs, y=prob_lpm, colour="LPM")) +
+  geom_line(size=1.5) +
+  geom_line(aes(x=hs, y=prob_logit, colour="Logística"), size=1.5) +
+  labs(y="P(wg | pid=0, hs, wt=1)", x="hand strength", colour="modelo") +
+  scale_color_aaas() + theme_bw()
+````
+
+
+3.1 Inspecciona visualmente la figura y determina la "hand strength" aproximada en la cual encontramos el mayor _efecto_ de "hand strength" sobre la probabilidad de que un "player 1" que ganó el entrenamiento gane el juego. 
+
+
+3.2 ¿Cuál es el mayor efecto posible de "hand strength"? 
+
+
+
+3.3 Verdadero o falso: "el efecto no lineal de `hs` en el modelo de regresión logística (linea azul) se debe a que la especificación del modelo permite tal no-linealidad (por ejemplo, usando un término cuadrático o cúbico)". Justifica tu respuesta. 
+
+

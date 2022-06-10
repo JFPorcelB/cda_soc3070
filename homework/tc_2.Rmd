@@ -1,0 +1,33 @@
+---
+title: "SOC3070 Análisis de Datos Categóricos"
+author: "Tarea corta 2"
+output:
+  pdf_document: default
+urlcolor: blue
+linkcolor: red
+
+---
+
+```{r, echo=FALSE}
+# Escribir install.packages("tinytex") en la consola para instalar "tinytex"
+# Carga "tinytex" para compilar PDF
+library("tinytex")
+```
+
+Ponderación: 6% de la nota final del curso.
+
+
+En esta pregunta aplicarán propiedades de probabilidades condicionales y el teorema de Bayes para calcular alguna cantidades de interés en tiempos de pandemia. 
+
+### Problema
+
+Preocupado por la presencia de síntomas anómalos decides tomarte un test pcr para determinar si tienes Covid-19 o no. Luego de un día de espera el test $pcr$ arroja que eres Covid positivo. Este resultado es preocupante dado que un paper que leiste en [The Lancet](https://www.thelancet.com) indica que:
+
+- La "sensibilidad" del test es de 90\% (probabilidad de que una persona con la enfermedad obtenga un test positivo). 
+- La tasa de falsos positivos del test es de 5\% (probabilidad que una persona sin la enfermedad obtenga un test positivo).
+- La prevalencia de la enfermedad es de un 7\% (probabilidad de que una persona presente la enfermedad).
+
+### Pregunta
+
+Conociéndo toda esta información ¿Cuál es la probabilidad de que realmente tengas Covid-19?
+

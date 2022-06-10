@@ -1,0 +1,62 @@
+---
+title: "SOC3070 Análisis de Datos Categóricos"
+author: "Tarea corta 1, respuestas"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r, echo=FALSE}
+# Escribir install.packages("tinytex") en la consola para instalar "tinytex"
+# Carga "tinytex" para compilar PDF
+library("tinytex")
+```
+
+Ponderación: 6% de la nota final del curso.
+
+<br>
+
+*Notar*:
+
+-   $e$ corresponde al exponente natural
+-   $\ln$ es el logarítmo natural
+
+<br>
+
+1)  $e^{0} = 1$
+
+2)  $\ln(1) = 0$
+
+3)  $\ln(e^{2\alpha \beta}) = 2\alpha\beta$
+
+4)  $e^{\ln(f(x))} = f(x)$
+
+5)  $p^{x} \times p^{0} \times p^{y} \times p^{y} \times p^{-x} = p^{2y}$
+
+6)  $\frac{(1-p)^{x}}{(1-p)^{x-2}} = (1-p)^{2}$
+
+7)  Si $\ln(x^{p}) = 1$ entonces $x=$
+
+\begin{align}
+\ln(x^{p}) = 1 \\
+p \times \ln(x) = 1\\
+\ln(x) = 1/p \\
+x=e^{1/p}
+\end{align}
+
+
+8)  Si $\ln\Big( \frac{y}{c}\Big) = \alpha + \beta x$ entonces $y=$
+
+
+\begin{align}
+\ln\Big( \frac{y}{c}\Big) = \alpha + \beta x \\
+\frac{y}{c} = e^{\alpha + \beta x} \\
+y &= e^{\alpha + \beta x} \times c
+\end{align}
+
+9)  Si  $x_{1}=x_{2}=\dots = x_{P}$ entonces $\sum_{i=1}^{P} \ln (x_{i}) = \ln (x_{i}^P)$
+
+
+
+
