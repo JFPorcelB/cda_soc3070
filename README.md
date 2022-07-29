@@ -11,62 +11,6 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 ![calculus](files/calculus_easy.jpg)
 
-
-### Clases
-
-- Presentación del curso:  
-- Fundamentos de teoría de la Probabilidad
-  - Basics:  
-  - Probabilidad condicional:  
-- Variables Aleatorias y Distribuciones Discretas:  
-- Valor Esperado y Varianza, Estimación via Maximum Likelihood (MLE):  
-- Tablas de Contingencia 
-  - Estructura probabilística:  
-  - Medidas de independencia y asociación:  
-- Modelo Lineal de Probabilidad:  
-- Modelos Lineales Generalizados:   
-- Modelos de Regresión Logística
-  - Estructura teórica y estimación via MLE:   
-  - Interpretación de efectos:   
-  - Inferencia (Monte Carlo y Bootstrap):   
-  - Ajuste y Predicción:   
-- Modelos de Regresión Logística Multinomial:  
-- Modelos de Regresión Logística Ordenada:  
-- Modelos de Regresión Poisson:  
-- Consideraciones finales:  
-
-### Ayudantías
-
-- Ayudantía 1:
-- Ayudantía 2: 
-- Ayudantía 3: 
-- Ayudantía 4: 
-- Ayudantía 5: 
-- Ayudantía 6: 
-- Ayudantía 7: 
-- Ayudantía 8: 
-
----
-
-## Evaluaciones
-
-#### Tareas cortas
-
-- Tarea 1: 
-- Tarea 2: 
-- Tarea 3: 
-- Tarea 4: 
-- Tarea 5: 
-
-#### Trabajos
-
-- Trabajo 1: 
-- Trabajo 2: 
-
-#### Trabajo Final
-
-- Trabajo Final: 
-
 ---
 
 ## Calendario Clases
@@ -107,6 +51,30 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 | Miércoles 24 | 11   | Regresión logística multinomial y ordenada en R |
 | Miércoles 8  | 12   | "Elevator speech" Trabajo final                 |
 | Miércoles 15 | 12   |                                                 | 
+
+---
+
+## Evaluaciones
+
+#### Tareas cortas
+
+- Tarea 1: 
+- Tarea 2: 
+- Tarea 3: 
+- Tarea 4: 
+- Tarea 5: 
+
+#### Trabajos
+
+- Trabajo 1: 
+- Trabajo 2: 
+
+#### Trabajo Final
+
+- Trabajo Final: 
+
+---
+
 
 ## Recursos computacion
 
