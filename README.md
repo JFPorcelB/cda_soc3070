@@ -17,7 +17,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 
 | Dia          | Mes  | Contenido                                             | Entregas            |  
 | ---:         | ---: | :---------------------------------------------------- | :-------------      |  
-| Lunes 16     | 8    | Basics teoría de la Probabilidad                      |                     | 
+| Lunes 16     | 8    | Fundamentos teoría de la Probabilidad                 |                     | 
 | Lunes 23     | 8    | Probabilidad Condicional y Teorema Bayes              | Tarea corta 1 (6%)  | 
 | Lunes 30     | 8    | Variables Aleatorias y Distribuciones Discretas       | Tarea corta 2 (6%)  | 
 | Lunes 6      | 9    | E(X), Var(X) y MLE                                    |                     | 
