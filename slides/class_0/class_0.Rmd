@@ -56,7 +56,7 @@ class: inverse, center, middle
 <br>
 
 .pull-left[
-.bold[Roberto Velázquez]
+.bold[Felipe Olivares]
 
 - Historiador y Sociólogo UC
 
