@@ -60,15 +60,15 @@ class: inverse, center, middle
 
 - Historiador y Sociólogo UC
 
-- MA in Latin American History, Columbia University
+- Licenciado en Historia UC
 
-- MSc in Social Theory - London School of Economics
+- Magíster en Sociología UC
 
-- Estudiante PhD, Sociología UC
+- Coordinador Observatorio de Conflictos COES
 
-- Investigación: economía política y moral, formación del Estado e interacciones transnacionales, campos de producción cultural y redes de socialización del arte
+- Investigación: Control de la protesta social, agencia policial, Conflictos sociales y políticos, Movimientos sociales y teoría social 
 
-- Métodos: Social network analysis, topic modeling, regression models.
+- Métodos: Modelos estadísticos multinivel, multinomial, logístico y lineal. 
 
 ]
 .figure-right[
