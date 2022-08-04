@@ -17,7 +17,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 
 | Dia          | Mes  | Contenido                                             | Presentaciones | Entregas            | 
 | ---:         | ---: | :---------------------------------------------------- | :------------- | :-------------      | 
-| Lunes 8      | 8    | Basics teoría de la Probabilidad                      |                |                     |
+| Lunes 8      | 8    | Basics teoría de la Probabilidad                      |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_0/class_0#1)               |                     |
 | Lunes 22     | 8    | Probabilidad Condicional y Teorema Bayes              |                | Tarea corta 1 (6%)  |
 | Lunes 29     | 8    | Variables Aleatorias y Distribuciones Discretas       |                | Tarea corta 2 (6%)  |
 | Lunes 5      | 9    | E(X), Var(X) y MLE                                    |                |                     |
@@ -39,7 +39,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 
 | Dia          | Mes  | Contenido                                       | Presentaciones |
 | ---:         | ---: | :----------                                     | :------------- | 
-| Miércoles 18 | 8    | R Basics                                        |                |
+| Miércoles 18 | 8    | R Basics                                        |    [`[Slides]`]()            |
 | Miércoles 25 | 8    | Lenguaje R                                      |                |
 | Miércoles 8  | 9    | Funciones y distribuciones en R                 |                |
 | Miércoles 22 | 9    | Loops en R, medidas asociación                  |                |
