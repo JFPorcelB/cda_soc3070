@@ -17,40 +17,37 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 
 | Dia          | Mes  | Contenido                                             | Presentaciones | Entregas            | 
 | ---:         | ---: | :---------------------------------------------------- | :------------- | :-------------      | 
-| Lunes 8      | 8    | Basics teoría de la Probabilidad                      |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_0/class_0#1)               |                     |
+| Lunes 8      | 8    | Basics teoría de la Probabilidad                      |                |                     |
 | Lunes 22     | 8    | Probabilidad Condicional y Teorema Bayes              |                | Tarea corta 1 (6%)  |
-| Lunes 29     | 8    | Variables Aleatorias y Distribuciones Discretas       |                | Tarea corta 2 (6%)  |
-| Lunes 5      | 9    | E(X), Var(X) y MLE                                    |                |                     |
-| Lunes 12     | 9    | Tablas de contingencia: estructura probabilística     |                | Tarea corta 3 (6%)  |
-| Lunes 26     | 9    | Tablas de contingencia: independencia y asociación    |                |                     |
-| Lunes 3      | 10   | Modelo Lineal de Probabilidad (LPM)                   |                | Tarea corta 4 (6%)  |
-|              |      | Modelos Lineales Generalizados                        |                |                     |
-| Lunes 17     | 10   | Regresión Logística: estructura teórica y MLE         |                |                     |
-| Lunes 24     | 10   | Regresión Logística: interpretación de efectos        |                |                     |
-| Lunes 7      | 11   | Regresión Logística: inferencia                       |                |                     |
-| Lunes 14     | 11   | Regresión Logística: ajuste y predicción              |                |                     |
-| Lunes 21     | 11   | Regresión Logística Multinomial                       |                |                     |
-| Lunes        |      | Regresión Logística Ordenada                          |                | Tarea corta 5 (6%)  |
-| Lunes        |      | Regresión Poisson                                     |                | Trabajo 2 (20%)     |
-| Lunes        |      | Consideraciones Finales                               |                |                     |
+| Lunes 29     | 8    | Variables Aleatorias, Distribuciones Discretas y MLE  |                | Tarea corta 2 (6%)  |
+| Lunes 5      | 9    | Tablas de contingencia                                |                | Tarea corta 3 (6%)  |                  
+| Lunes 12     | 9    | Modelo Lineal de Probabilidad (LPM)                   |                | Tarea corta 4 (6%)  |
+| Lunes 26     | 9    | Regresión Logística: estructura teórica y MLE         |                |                     |
+| Lunes 3      | 10   | Regresión Logística: interpretación de efectos        |                |                     |
+| Lunes 17     | 10   | Regresión Logística: inferencia                       |                |  Trabajo 1 (20%)    |
+| Lunes 24     | 10   | Regresión Logística: ajuste y predicción              |                |  Tarea corta 5 (6%) |
+| Lunes 7      | 11   | Regresión Logística Multinomial                       |                |                     |
+|              |      | Regresión Logística Ordenada                          |                |                     |
+| Lunes 14     | 11   | Regresión Poisson                                     |                |                     |
+| Lunes 21     | 11   | Consideraciones Finales                               |                |  Trabajo 2 (20%)    |
+| Domingo 4    | 12   |                                                       |                | Trabajo Final (30%) |
+
 
 
 ## Calendario Ayudantías
 
 | Dia          | Mes  | Contenido                                       | Presentaciones |
 | ---:         | ---: | :----------                                     | :------------- | 
-| Miércoles 10 | 8    | R Basics                                        |    [`[Slides]`]()            |
+| Miércoles 10 | 8    | R Basics                                        |                |
 | Miércoles 17 | 8    | Lenguaje R                                      |                |
-|              | 9    | Funciones y distribuciones en R                 |                |
-|              | 9    | Loops en R, medidas asociación                  |                |
-|              | 10   | LPM y formulas regresión en R                   |                |
-|              | 10   |                                                 |                |
-|              | 10   | Regresión logística en R                        |                |
-|              | 11   |                                                 |                |
-|              | 11   | Bootstrap en R                                  |                |
-|              | 11   | Regresión logística multinomial y ordenada en R |                |
-|              | 12   | "Elevator speech" Trabajo final                 |                |
-|              | 12   |                                                 |                | 
+| Miércoles 31 | 8    | Funciones y distribuciones en R                 |                |
+| Miércoles 7  | 9    | Loops en R, medidas asociación                  |                |
+| Miércoles 14 | 9    | LPM y formulas regresión en R                   |                |
+| Miércoles 5  | 10   | Regresión logística en R                        |                |
+| Miércoles 19 | 10   | Bootstrap en R                                  |                |
+| Miércoles 9  | 11   | Regresión logística multinomial                 |                |
+| Miércoles 16 | 11   | Regresión Poisson                               |                |
+| Miércoles 30 | 11   | "Elevator speech" Trabajo final                 |                |
 
 ---
 
