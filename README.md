@@ -24,12 +24,12 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 | Lunes 12     | 9    | Tablas de contingencia: estructura probabilística     |                | Tarea corta 3 (6%)  |
 | Lunes 26     | 9    | Tablas de contingencia: independencia y asociación    |                |                     |
 | Lunes 3      | 10   | Modelo Lineal de Probabilidad (LPM)                   |                | Tarea corta 4 (6%)  |
-| Lunes 17     | 10   | Modelos Lineales Generalizados                        |                |                     |
-| Lunes 24     | 10   | Regresión Logística: estructura teórica y MLE         |                |                     |
-| Lunes 7      | 11   | Regresión Logística: interpretación de efectos        |                |                     |
-| Lunes 14     | 11   | Regresión Logística: inferencia                       |                |                     |
-| Lunes 21     | 11   | Regresión Logística: ajuste y predicción              |                |                     |
-| Lunes        |      | Regresión Logística Multinomial                       |                |                     |
+|              |      | Modelos Lineales Generalizados                        |                |                     |
+| Lunes 17     | 10   | Regresión Logística: estructura teórica y MLE         |                |                     |
+| Lunes 24     | 10   | Regresión Logística: interpretación de efectos        |                |                     |
+| Lunes 7      | 11   | Regresión Logística: inferencia                       |                |                     |
+| Lunes 14     | 11   | Regresión Logística: ajuste y predicción              |                |                     |
+| Lunes 21     | 11   | Regresión Logística Multinomial                       |                |                     |
 | Lunes        |      | Regresión Logística Ordenada                          |                | Tarea corta 5 (6%)  |
 | Lunes        |      | Regresión Poisson                                     |                | Trabajo 2 (20%)     |
 | Lunes        |      | Consideraciones Finales                               |                |                     |
