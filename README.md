@@ -39,18 +39,18 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 
 | Dia          | Mes  | Contenido                                       | Presentaciones |
 | ---:         | ---: | :----------                                     | :------------- | 
-| Miércoles 18 | 8    | R Basics                                        |    [`[Slides]`]()            |
-| Miércoles 25 | 8    | Lenguaje R                                      |                |
-| Miércoles 8  | 9    | Funciones y distribuciones en R                 |                |
-| Miércoles 22 | 9    | Loops en R, medidas asociación                  |                |
-| Miércoles 6  | 10   | LPM y formulas regresión en R                   |                |
-| Miércoles 13 | 10   |                                                 |                |
-| Miércoles 27 | 10   | Regresión logística en R                        |                |
-| Miércoles 3  | 11   |                                                 |                |
-| Miércoles 10 | 11   | Bootstrap en R                                  |                |
-| Miércoles 24 | 11   | Regresión logística multinomial y ordenada en R |                |
-| Miércoles 8  | 12   | "Elevator speech" Trabajo final                 |                |
-| Miércoles 15 | 12   |                                                 |                | 
+| Miércoles 10 | 8    | R Basics                                        |    [`[Slides]`]()            |
+| Miércoles 17 | 8    | Lenguaje R                                      |                |
+|              | 9    | Funciones y distribuciones en R                 |                |
+|              | 9    | Loops en R, medidas asociación                  |                |
+|              | 10   | LPM y formulas regresión en R                   |                |
+|              | 10   |                                                 |                |
+|              | 10   | Regresión logística en R                        |                |
+|              | 11   |                                                 |                |
+|              | 11   | Bootstrap en R                                  |                |
+|              | 11   | Regresión logística multinomial y ordenada en R |                |
+|              | 12   | "Elevator speech" Trabajo final                 |                |
+|              | 12   |                                                 |                | 
 
 ---
 
