@@ -19,7 +19,8 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 
 | Dia          | Mes  | Contenido                                             | Presentaciones | Entregas            | 
 | ---:         | ---: | :---------------------------------------------------- | :------------- | :-------------      | 
-| Lunes 8      | 8    | Basics teoría de la Probabilidad                      |                |                     |
+| Lunes 8      | 8    | Presentación del curso                                | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_0/class_0#1) [`[Código]`](slides/class_0/class_0.Rmd)                 |                     |
+| Lunes 8      | 8    | Basics teoría de la Probabilidad                      | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_1/class_1#1) [`[Código]`](slides/class_1/class_1.Rmd)                |                     |
 | Lunes 22     | 8    | Probabilidad Condicional y Teorema Bayes              |                | Tarea corta 1 (6%)  |
 | Lunes 29     | 8    | Variables Aleatorias, Distribuciones Discretas y MLE  |                | Tarea corta 2 (6%)  |
 | Lunes 5      | 9    | Tablas de contingencia                                |                | Tarea corta 3 (6%)  |                  
