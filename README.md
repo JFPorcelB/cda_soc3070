@@ -58,7 +58,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 
 #### Tareas cortas
 
-- Tarea 1: [`[TC1]`](homework/tc_1.pdf) 
+- Tarea 1: [`[TC1]`](homework/tc_1.pdf) [`[TC1.Rmd]`](homework/tc_1.Rmd)
 - Tarea 2: 
 - Tarea 3: 
 - Tarea 4: 
