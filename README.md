@@ -42,7 +42,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 
 | Dia          | Mes  | Contenido                                       | Presentaciones |
 | ---:         | ---: | :----------                                     | :------------- | 
-| Miércoles 10 | 8    | R Basics                                        | [`[Presentación]`](ta/ta_1/ta_1.pdf) [`[Código]`](ta/ta_1/ta_1.Rmd)               |
+| Miércoles 10 | 8    | R Basics                                        | [`[Presentación1]`](ta/ta_1/ta_1.pdf) [`[Código1]`](ta/ta_1/ta_1.Rmd) [`[Presentación1.1]`](ta/ta_1/ta_1_2.pdf) [`[Código1.1]`](ta/ta_1/ta_1_2.Rmd)                |
 | Miércoles 17 | 8    | Lenguaje R                                      |                |
 | Miércoles 31 | 8    | Funciones y distribuciones en R                 |                |
 | Miércoles 7  | 9    | Loops en R, medidas asociación                  |                |
