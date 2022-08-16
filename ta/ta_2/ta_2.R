@@ -39,7 +39,7 @@ load(url("https://dataverse.harvard.edu/api/access/datafile/4880232"))
 #cargar directo desde el computador con librería 
 #install.packages("readxl") # para el caso de archivos "csv" utilizar librería "readr"
 library (readxl)
-data1 <- read_excel("20200701 BASE ACCIONES 2009-2019 v.02.xlsx")
+data1 <- read_excel("base_OCS.xlsx")
 
 
 
