@@ -22,7 +22,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 | Lunes 8      | 8    | Presentación del curso                                | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_0/class_0#1) [`[Código]`](slides/class_0/class_0.Rmd)                 |                     |
 | Lunes 8      | 8    | Basics teoría de la Probabilidad                      | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_1/class_1#1) [`[Código]`](slides/class_1/class_1.Rmd)                |                     |
 | Martes 16     | 8    |             |                | Tarea corta 1 (6%)  |
-| Lunes 22     | 8    | Probabilidad Condicional y Teorema Bayes              |                | |
+| Lunes 22     | 8    | Probabilidad Condicional y Teorema Bayes              |   [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_2/class_2#1) [`[Código]`](slides/class_2/class_2.Rmd)             | |
 | Lunes 29     | 8    | Variables Aleatorias, Distribuciones Discretas y MLE  |                | Tarea corta 2 (6%)  |
 | Lunes 5      | 9    | Tablas de contingencia                                |                | Tarea corta 3 (6%)  |                  
 | Lunes 12     | 9    | Modelo Lineal de Probabilidad (LPM)                   |                | Tarea corta 4 (6%)  |
@@ -40,18 +40,18 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 
 ## Calendario Ayudantías
 
-| Dia          | Mes  | Contenido                                       | Presentaciones |
-| ---:         | ---: | :----------                                     | :------------- | 
-| Miércoles 10 | 8    | R Basics                                        | [`[Presentación1]`](ta/ta_1/ta_1.pdf) [`[Código1]`](ta/ta_1/ta_1.Rmd) [`[Presentación1.1]`](ta/ta_1/ta_1_2.pdf) [`[Código1.1]`](ta/ta_1/ta_1_2.Rmd)                |
-| Miércoles 17 | 8    | Lenguaje R                                      |                |
-| Miércoles 31 | 8    | Funciones y distribuciones en R                 |                |
-| Miércoles 7  | 9    | Loops en R, medidas asociación                  |                |
-| Miércoles 14 | 9    | LPM y formulas regresión en R                   |                |
-| Miércoles 5  | 10   | Regresión logística en R                        |                |
-| Miércoles 19 | 10   | Bootstrap en R                                  |                |
-| Miércoles 9  | 11   | Regresión logística multinomial                 |                |
-| Miércoles 16 | 11   | Regresión Poisson                               |                |
-| Miércoles 30 | 11   | "Elevator speech" Trabajo final                 |                |
+| Dia          | Mes  | Contenido                                       | Presentaciones | Enlace           | 
+| ---:         | ---: | :----------                                     | :------------- |   :------------- |
+| Miércoles 10 | 8    | R Basics                                        | [`[Presentación1]`](ta/ta_1/ta_1.pdf) [`[Código1]`](ta/ta_1/ta_1.Rmd) [`[Presentación1.1]`](ta/ta_1/ta_1_2.pdf) [`[Código1.1]`](ta/ta_1/ta_1_2.Rmd)                |                | 
+| Miércoles 17 | 8    | Lenguaje R                                      | [`[R script]`](ta/ta_2/ta_2.R)  [`[Base de datos]`](ta/ta_2/base_OCS.xlsx)         |   [`[Zoom]`](https://us02web.zoom.us/j/81771419396?pwd=cWZKR2dDVHZvZlpTb2VIUDdsL3hoUT09) [`[Descarga video]`](https://us02web.zoom.us/rec/share/H8_yxlFuCoxvU2tm7KiOCxhQgrq12vRJzW_r_3H9YFqxO85qn2qRruvrRnlnmEo3.wF-xnfJm2n3RQcGc)             |
+| Miércoles 31 | 8    | Funciones y distribuciones en R                 |                | |
+| Miércoles 7  | 9    | Loops en R, medidas asociación                  |                | |
+| Miércoles 14 | 9    | LPM y formulas regresión en R                   |                | |
+| Miércoles 5  | 10   | Regresión logística en R                        |                | |
+| Miércoles 19 | 10   | Bootstrap en R                                  |                | |
+| Miércoles 9  | 11   | Regresión logística multinomial                 |                | |
+| Miércoles 16 | 11   | Regresión Poisson                               |                | |
+| Miércoles 30 | 11   | "Elevator speech" Trabajo final                 |                | |
 
 ---
 
