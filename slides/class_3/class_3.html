@@ -4,6 +4,7 @@
     <title>Análisis de Datos Categóricos (SOC3070)</title>
     <meta charset="utf-8" />
     <meta name="author" content="  Mauricio Bucca  Profesor Asistente, Sociología UC" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
     <link rel="stylesheet" href="gentle-r.css" type="text/css" />
@@ -12,10 +13,18 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Análisis de Datos Categóricos (SOC3070)
+]
+.subtitle[
 ## Clase #3
+]
+.author[
 ### <br> Mauricio Bucca<br> Profesor Asistente, Sociología UC
+]
+.date[
 ### <a href="https://github.com/mebucca">github.com/mebucca</a>
+]
 
 ---
 
@@ -246,8 +255,9 @@ print(monedas)
 ```
 
 ```
-##   [1] 0 0 0 0 1 1 1 1 0 0 1 1 0 1 1 1 1 1 1 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 1 0 0 1 1 0 1 0 0 1 1 1 1 1 1 0 0 1 1 0 1 0 1 1 1
-##  [61] 0 1 0 0 0 1 0 1 1 0 1 1 1 1 1 1 0 1 1 1 0 1 1 1 1 1 0 1 0 1 0 0 1 1 0 1 0 0 1 1
+##   [1] 0 0 0 0 1 1 1 1 0 0 1 1 0 1 1 1 1 1 1 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 1 0
+##  [38] 0 1 1 0 1 0 0 1 1 1 1 1 1 0 0 1 1 0 1 0 1 1 1 0 1 0 0 0 1 0 1 1 0 1 1 1 1
+##  [75] 1 1 0 1 1 1 0 1 1 1 1 1 0 1 0 1 0 0 1 1 0 1 0 0 1 1
 ```
 
 ---
@@ -526,34 +536,233 @@ $$ \frac{2!}{0!2!}  p^{0} (1-p)^{2} + \frac{2!}{1!1!}  p^{1} (1-p)^{1} + \frac{2
 
 $$ (1-p)^{2} + 2p(1-p) + p^{2}  = 1 - 2p + p^{2} + 2p - 2p^{2} + p^{2} = 1$$
 ---
-### Distribuciones de probabilidad 
+class: inverse, center, middle
 
-Cada distribución de probabilida tiene cuatro funciones asociadas cuyo .bold[prefijo] indica el *tipo de función* y el .bold[sufijo] indica la *distribución*. 
+#Estimación
+##Maximum Likelihood Estimation (MLE)
+
+---
+
+##Estimación 
+
+.bold[Modelos de probabilidad]: ¿Cuál es la probabilidad de observar los *datos* dado los *parámetros* que conocemos?
+
+Ej. ¿Cuán probable es que obtengamos 9 "Caras" (1) si lanzamos una moneda "justa" ( `\(p=0.5\)` ) 10 veces? 
+
+
+```r
+dbinom(x=9,size=10,prob=0.5)
+```
+
+```
+## [1] 0.009765625
+```
+
+---
+##Estimación 
+
+.bold[Modelos estadísticos]:  ¿Cuáles son los valores más .bold[plausibles][1].footnote[[1] Notar que no dice "más probables"!] de los *parámetros* dado los *datos* que observamos? 
+
+
+Ej. Supongamos que alguien lanza 100 veces la misma moneda y registra los resultados en una base de datos. Los datos se ven así:  
+
+.pull-left[
+![](class_3_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+]
+
+--
+
+.pull-right[
+
+- Lo que vemos en la izquierda son .bold[datos]
+
+- Datos: realización de `\(n\)` variables aleatorias 
+
+- Normalmente *no conocemos* la distribución de las variables
+
+- Datos nos dan una pista sobre cuál podría ser esa distribución
+
+- .bold[Estadística]: aprender de los datos para .bold[*estimar*] los parámetros que los generan
+
+]
+
+---
+##Estimación via Maximum Likelihood (MLE) 
+
+Previamente lanzamos la misma moneda 100 veces y obtuvimos "Cara" (1) 82 veces.
+--
+ ¿Qué valor de `\(p\)` es más plausible ("likely") que genere estos datos?
+
+MLE es justamente la formalización de esta pregunta. Pasos:
+
+--
+
+1) Decidir sobre la distribución subyacente que genera los datos. En este caso, podemos asumir que: 
+
+  * Cada lanzamiento `\(X_{1}, X_{2}, \dots X_{100} \sim \text{Bernoulli}(p)\)`, donde X's son `\(iid\)` 
+
+--
+
+2)  Escribir una función que cuantifique la plausibilidad de diferentes valores del parámetro. Dicha función se denomina .bold[likelihood function]: 
+
+&lt;br&gt;
+  * `\(\mathcal{L}(p \mid \text{ Datos}) = \mathbb{P}(\text{ Datos : \{1,0,1,1,....0,1\}} | \text{ } p)\)`
 
 &lt;br&gt;
 --
 
-Ejemplo con distribución normal:
+  * `\(\mathcal{L}(p \mid \text{ Datos}) = \mathbb{P}(x_{1})\mathbb{P}(x_{2}) \dots \mathbb{P}(x_{100}) = p^{82}(1-p)^{18}\)`
+
+
+---
+##Estimación via Maximum Likelihood (MLE) 
+
+Podemos inspeccionar visualmente la "likelihood" de diferentes valores `\(p\)`.
+
+![](class_3_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+Intuitivamente: habiendo obtenido 82 caras, `\(p=0.82\)` es el valor más plausible de `\(p\)`
+
+
+---
+
+##Estimación via Maximum Likelihood (MLE) 
+
+3) Encontrar matemáticamente el valor de `\(p\)` que maximiza `\(\mathcal{L}(p \mid \text{ Datos})\)`.
+
+
+- `\(\mathcal{L}(p \mid \text{ Datos}) = \mathbb{P}(x_{1})\mathbb{P}(x_{2}) \dots \mathbb{P}(x_{n}) =\prod_{i=1}^{n} f(x_{i}) =  p^{k}(1-p)^{n-k} \quad \text{   donde  } k= \sum x_{i}\)`
+
+--
+
+- Para facilitar el cálculo tomamos logaritmo natural en ambos lados (.bold[log-likelihood])
+
+  - `\(\ell\ell(p) = \ln \mathcal{L}(p \mid \text{ Datos})  = k \ln(p) + (n - k) \ln(1-p)\)` 
+
+--
+-  Calcular la primera* derivada de `\(\ell\ell(p)\)` con respecto a `\(p\)`: pendiente de la curva en cada valor de `\(p\)`.
+
+  - `\(\ell\ell^{\text{ '}}(p) = \frac{k}{p} -  \frac{n-k}{1-p}\)`
+
+--
+
+- Encontrar el máximo de la función `\(\ell\ell(p)\)`: valor de `\(p\)` en el cual la curva no cambia, es decir cuando `\(\ell\ell^{\text{ '}}(p)=0\)` 
+
+  - `\(\frac{k}{p} -  \frac{n-k}{1-p} = 0\)`
+  
+--
+
+- Después de resolver por `\(p\)` obtenemos:
+  
+   `$$p = \frac{k}{n} = \frac{\sum x_{i}}{n}$$`
+
+
+---
+##Estimación via Maximum Likelihood (MLE) 
+
+&lt;br&gt;
+
+- El estimador ML de `\(p\)` es ....
+
+
+- `\(\hat{p} = \frac{\sum x_{i}}{n}\)`
+
+
+- Es decir, el porcentaje de 1's en la muestra!
+
+--
+
+- Intuitivo y elegante
+
+
+---
+
+.bold["Optimización" numérica en R]
+
+
+```r
+# log-likelihood function
+ll &lt;- function(p,n,k) {
+  ell = k * log(p) + (n - k)*log(1-p)
+  return(ll = ell)
+}
+
+
+# Evaluate the log-likelihood function for some arbitrary values
+ll(p=0.1,n=100,k=82); ll(p=0.7,n=100,k=82)
+```
+
+```
+## [1] -190.7085
+```
+
+```
+## [1] -50.91886
+```
+--
+
+
+```r
+# Evaluate the log-likelihood function for many possible values of p
+
+parameter_space &lt;- tibble(p=seq(0,1,by=0.01)) %&gt;% 
+  rowwise() %&gt;% mutate(loglik = ll(p,n=100,k=82)) 
+
+# Find the value of p that yield the largest value for the log-likelihood function
+
+parameter_space %&gt;% as.matrix() -&gt; m
+m[which.max(m[,2]),]
+```
+
+```
+##         p    loglik 
+##   0.82000 -47.13935
+```
+
+---
+.bold["Optimización" numérica en R]
+
+.center[
+![](class_3_files/figure-html/loglik_density-1.png)&lt;!-- --&gt;
+]
+
+---
+##Estimación via Maximum Likelihood (MLE) 
+
+.bold[Generalización]
+
+&lt;br&gt;
+
+
+`$$\hat{\boldsymbol{\beta}}_{MLE} = \underset{\beta}{\arg\max\ } \mathcal{L}(\boldsymbol{\beta} \mid \boldsymbol{X})$$`
+`\(\hat{\boldsymbol{\beta}}\)` es el MLE de `\(\boldsymbol{\beta}\)` si es el(los) valor(es) que maximiza(n) la "likelihood function", condicional en los datos observados.
 
 &lt;br&gt;
 --
 
-- .bold[d]`norm`: función de densidad 
+- Recordar que   `\(\mathcal{L}(\boldsymbol{\beta} \mid \boldsymbol{X}) = \mathbb{P}(\boldsymbol{X} \mid \boldsymbol{\beta})\)`.
+  
+--
+
+- Requiere especificar de antemano la distribución conjunta de las observaciones (dif. de OLS, por ejemplo).
 
 --
 
-- .bold[p]`norm`: función de densidad acumulu
+- ML es probablemente el approach de estimación más popular. 
 
 --
 
-- .bold[q]`norm`: función de quantiles
+- Intuitivo, pero, por lo general, no tan simple como el ejemplo que vimos hoy.
 
 --
 
-- .bold[r]`norm`: muestro aleatorio desde un distribución dada.
---
-  Nos concentraremos en esta función.
+- Normalmente la maximización se realiza numéricamente (ej. método Newton–Raphson)
 
+---
+class: fullscreen,left, top, text-white
+background-image: url(valdorcia.jpeg)
+
+##Estimación via Maximum Likelihood (MLE) 
 
 
 ---
@@ -567,6 +776,10 @@ class: inverse, center, middle
 Mauricio Bucca &lt;br&gt;
 https://mebucca.github.io/ &lt;br&gt;
 github.com/mebucca
+
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -616,6 +829,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

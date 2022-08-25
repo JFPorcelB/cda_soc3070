@@ -457,6 +457,8 @@ Veamos cómo se ve la distribución completa para diferentes valores de $p$, y $
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6, fig.width=10}
 library("cowplot")
+library("viridis")
+
 theme_set(theme_cowplot())
 
 plot <- ggplot(data = data.frame(y = 0), mapping = aes(Y = y), )
@@ -526,34 +528,247 @@ $$ \frac{2!}{0!2!}  p^{0} (1-p)^{2} + \frac{2!}{1!1!}  p^{1} (1-p)^{1} + \frac{2
 
 $$ (1-p)^{2} + 2p(1-p) + p^{2}  = 1 - 2p + p^{2} + 2p - 2p^{2} + p^{2} = 1$$
 ---
-### Distribuciones de probabilidad 
+class: inverse, center, middle
 
-Cada distribución de probabilida tiene cuatro funciones asociadas cuyo .bold[prefijo] indica el *tipo de función* y el .bold[sufijo] indica la *distribución*. 
+#Estimación
+##Maximum Likelihood Estimation (MLE)
+
+---
+
+##Estimación 
+
+.bold[Modelos de probabilidad]: ¿Cuál es la probabilidad de observar los *datos* dado los *parámetros* que conocemos?
+
+Ej. ¿Cuán probable es que obtengamos 9 "Caras" (1) si lanzamos una moneda "justa" ( $p=0.5$ ) 10 veces? 
+
+```{r}
+dbinom(x=9,size=10,prob=0.5)
+```
+
+---
+##Estimación 
+
+.bold[Modelos estadísticos]:  ¿Cuáles son los valores más .bold[plausibles][1].footnote[[1] Notar que no dice "más probables"!] de los *parámetros* dado los *datos* que observamos? 
+
+
+Ej. Supongamos que alguien lanza 100 veces la misma moneda y registra los resultados en una base de datos. Los datos se ven así:  
+
+.pull-left[
+```{r, echo=FALSE, fig.height=5, fig.width=6, message=FALSE, warning=FALSE}
+library("tidyverse")
+set.seed(481)
+data_coins <- data.frame(X = rbinom(n=100, size=1, prob=0.8))
+
+data_coins %>% ggplot(aes(x=factor(X), fill="")) + 
+    geom_bar() +
+    geom_text(aes(label=..count..), stat='count', vjust=-0.2) +
+    scale_fill_viridis_d() + 
+    guides(fill=FALSE, color=FALSE) + labs(x="") +
+    theme(axis.text.y = element_text(size = 22), axis.text.x = element_text(size = 22),
+    axis.title.y = element_text(size = 24), axis.title.x = element_text(size = 24), 
+    legend.text = element_text(size = 18), legend.position="bottom") 
+```
+]
+
+--
+
+.pull-right[
+
+- Lo que vemos en la izquierda son .bold[datos]
+
+- Datos: realización de $n$ variables aleatorias 
+
+- Normalmente *no conocemos* la distribución de las variables
+
+- Datos nos dan una pista sobre cuál podría ser esa distribución
+
+- .bold[Estadística]: aprender de los datos para .bold[*estimar*] los parámetros que los generan
+
+]
+
+---
+##Estimación via Maximum Likelihood (MLE) 
+
+Previamente lanzamos la misma moneda 100 veces y obtuvimos "Cara" (1) 82 veces.
+--
+ ¿Qué valor de $p$ es más plausible ("likely") que genere estos datos?
+
+MLE es justamente la formalización de esta pregunta. Pasos:
+
+--
+
+1) Decidir sobre la distribución subyacente que genera los datos. En este caso, podemos asumir que: 
+
+  * Cada lanzamiento $X_{1}, X_{2}, \dots X_{100} \sim \text{Bernoulli}(p)$, donde X's son $iid$ 
+
+--
+
+2)  Escribir una función que cuantifique la plausibilidad de diferentes valores del parámetro. Dicha función se denomina .bold[likelihood function]: 
+
+<br>
+  * $\mathcal{L}(p \mid \text{ Datos}) = \mathbb{P}(\text{ Datos : \{1,0,1,1,....0,1\}} | \text{ } p)$
 
 <br>
 --
 
-Ejemplo con distribución normal:
+  * $\mathcal{L}(p \mid \text{ Datos}) = \mathbb{P}(x_{1})\mathbb{P}(x_{2}) \dots \mathbb{P}(x_{100}) = p^{82}(1-p)^{18}$
+
+
+---
+##Estimación via Maximum Likelihood (MLE) 
+
+Podemos inspeccionar visualmente la "likelihood" de diferentes valores $p$.
+
+```{r, echo=FALSE, fig.height=5, fig.width=9, message=FALSE, warning=FALSE}
+plot <- ggplot(data = data.frame(p = 0), mapping = aes(x = p, color=""))
+binom_distrib <- function(p,n,k) (p^(k))*((1-p)^(n-k))
+
+plot + stat_function(fun = binom_distrib, args = list(n= 100, k= 82), size=1.5) + 
+  xlim(0,1) + labs(title="Likelihood of p", x="p", y=expression(paste(p^{82}, (1-p)^{18})) ) +
+    scale_color_viridis_d() + 
+    guides(fill=FALSE, color=FALSE) +
+    theme(axis.text.y = element_text(size = 10), axis.text.x = element_text(size = 16),
+    axis.title.y = element_text(size = 24), axis.title.x = element_text(size = 24), 
+    legend.text = element_text(size = 12), legend.position="bottom") 
+```
+
+Intuitivamente: habiendo obtenido 82 caras, $p=0.82$ es el valor más plausible de $p$
+
+
+---
+
+##Estimación via Maximum Likelihood (MLE) 
+
+3) Encontrar matemáticamente el valor de $p$ que maximiza $\mathcal{L}(p \mid \text{ Datos})$.
+
+
+- $\mathcal{L}(p \mid \text{ Datos}) = \mathbb{P}(x_{1})\mathbb{P}(x_{2}) \dots \mathbb{P}(x_{n}) =\prod_{i=1}^{n} f(x_{i}) =  p^{k}(1-p)^{n-k} \quad \text{   donde  } k= \sum x_{i}$
+
+--
+
+- Para facilitar el cálculo tomamos logaritmo natural en ambos lados (.bold[log-likelihood])
+
+  - $\ell\ell(p) = \ln \mathcal{L}(p \mid \text{ Datos})  = k \ln(p) + (n - k) \ln(1-p)$ 
+
+--
+-  Calcular la primera* derivada de $\ell\ell(p)$ con respecto a $p$: pendiente de la curva en cada valor de $p$.
+
+  - $\ell\ell^{\text{ '}}(p) = \frac{k}{p} -  \frac{n-k}{1-p}$
+
+--
+
+- Encontrar el máximo de la función $\ell\ell(p)$: valor de $p$ en el cual la curva no cambia, es decir cuando $\ell\ell^{\text{ '}}(p)=0$ 
+
+  - $\frac{k}{p} -  \frac{n-k}{1-p} = 0$
+  
+--
+
+- Después de resolver por $p$ obtenemos:
+  
+   $$p = \frac{k}{n} = \frac{\sum x_{i}}{n}$$
+
+
+---
+##Estimación via Maximum Likelihood (MLE) 
+
+<br>
+
+- El estimador ML de $p$ es ....
+
+
+- $\hat{p} = \frac{\sum x_{i}}{n}$
+
+
+- Es decir, el porcentaje de 1's en la muestra!
+
+--
+
+- Intuitivo y elegante
+
+
+---
+
+.bold["Optimización" numérica en R]
+
+```{r, include=TRUE, echo=TRUE, warning=FALSE, message=FALSE}
+
+# log-likelihood function
+ll <- function(p,n,k) {
+  ell = k * log(p) + (n - k)*log(1-p)
+  return(ll = ell)
+}
+
+
+# Evaluate the log-likelihood function for some arbitrary values
+ll(p=0.1,n=100,k=82); ll(p=0.7,n=100,k=82)
+```
+--
+
+```{r, include=TRUE, echo=TRUE, warning=FALSE, message=FALSE}
+
+# Evaluate the log-likelihood function for many possible values of p
+
+parameter_space <- tibble(p=seq(0,1,by=0.01)) %>% 
+  rowwise() %>% mutate(loglik = ll(p,n=100,k=82)) 
+
+# Find the value of p that yield the largest value for the log-likelihood function
+
+parameter_space %>% as.matrix() -> m
+m[which.max(m[,2]),]
+```
+
+---
+.bold["Optimización" numérica en R]
+
+.center[
+```{r loglik_density,  include=TRUE, echo=FALSE, warning=FALSE, message=FALSE, fig.height=10, fig.width=12}
+parameter_space %>% as.data.frame() %>% ggplot(aes(x=p, y=loglik, colour=loglik)) + 
+geom_line(size=1.5) + geom_point(aes(x=m[which.max(m[,2]),1], m[which.max(m[,2]),2]), size=2.5) +
+scale_color_viridis() + guides(fill=FALSE, color=FALSE) + labs(title="Log-likelihood function",x="p", y="82*log(p) + (100 - 82)*log(1-p)") +
+annotate(geom="text", x=0.82, y=-35, label='bold("0.82")', color="black", parse=TRUE, size=8) +
+theme(axis.text.y = element_text(size = 22), axis.text.x = element_text(size = 22),
+axis.title.y = element_text(size = 24), axis.title.x = element_text(size = 24), title=element_text(size = 24),
+legend.text = element_text(size = 18), legend.position="bottom") 
+```
+]
+
+---
+##Estimación via Maximum Likelihood (MLE) 
+
+.bold[Generalización]
+
+<br>
+
+
+$$\hat{\boldsymbol{\beta}}_{MLE} = \underset{\beta}{\arg\max\ } \mathcal{L}(\boldsymbol{\beta} \mid \boldsymbol{X})$$
+$\hat{\boldsymbol{\beta}}$ es el MLE de $\boldsymbol{\beta}$ si es el(los) valor(es) que maximiza(n) la "likelihood function", condicional en los datos observados.
 
 <br>
 --
 
-- .bold[d]`norm`: función de densidad 
+- Recordar que   $\mathcal{L}(\boldsymbol{\beta} \mid \boldsymbol{X}) = \mathbb{P}(\boldsymbol{X} \mid \boldsymbol{\beta})$.
+  
+--
+
+- Requiere especificar de antemano la distribución conjunta de las observaciones (dif. de OLS, por ejemplo).
 
 --
 
-- .bold[p]`norm`: función de densidad acumulu
+- ML es probablemente el approach de estimación más popular. 
 
 --
 
-- .bold[q]`norm`: función de quantiles
+- Intuitivo, pero, por lo general, no tan simple como el ejemplo que vimos hoy.
 
 --
 
-- .bold[r]`norm`: muestro aleatorio desde un distribución dada.
---
-  Nos concentraremos en esta función.
+- Normalmente la maximización se realiza numéricamente (ej. método Newton–Raphson)
 
+---
+class: fullscreen,left, top, text-white
+background-image: url(valdorcia.jpeg)
+
+##Estimación via Maximum Likelihood (MLE) 
 
 
 ---
