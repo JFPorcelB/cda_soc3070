@@ -23,7 +23,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 | Lunes 8      | 8    | Basics teoría de la Probabilidad                      | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_1/class_1#1) [`[Código]`](slides/class_1/class_1.Rmd)                |                     |
 | Martes 16     | 8    |             |                | Tarea corta 1 (6%)  |
 | Lunes 22     | 8    | Probabilidad Condicional y Teorema Bayes              |   [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_2/class_2#1) [`[Código]`](slides/class_2/class_2.Rmd)             | |
-| Lunes 29     | 8    | Variables Aleatorias, Distribuciones Discretas y MLE  |                | Tarea corta 2 (6%)  |
+| Lunes 29     | 8    | Variables Aleatorias, Distribuciones Discretas y MLE  |    [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_3/class_3#1) [`[Código]`](slides/class_3/class_3.Rmd)    [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_4/class_4#1)        | Tarea corta 2 (6%)  |
 | Lunes 5      | 9    | Tablas de contingencia                                |                | Tarea corta 3 (6%)  |                  
 | Lunes 12     | 9    | Modelo Lineal de Probabilidad (LPM)                   |                | Tarea corta 4 (6%)  |
 | Lunes 26     | 9    | Regresión Logística: estructura teórica y MLE         |                |                     |
@@ -59,7 +59,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 
 #### Tareas cortas
 
-- Tarea 1: [`[TC1]`](homework/tc_1.pdf) [`[TC1.Rmd]`](homework/tc_1.Rmd)
+- Tarea 1: [`[TC1]`](homework/tc_1.pdf) [`[TC1.Rmd]`](homework/tc_1.Rmd) [`[Soluciones TC1]`](homework/tc_1_answers.pdf) [`[Soluciones TC1.Rmd]`](homework/tc_1_answers.Rmd)
 - Tarea 2: [`[TC2]`](homework/tc_2.pdf) [`[TC2.Rmd]`](homework/tc_2.Rmd)
 - Tarea 3: 
 - Tarea 4: 
