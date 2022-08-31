@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 2. Distribuciones binomial
 
-3. Simulación de Monte Carlox
+3. Simulación de Monte Carlos
 
 4. Gráficos en R
 
