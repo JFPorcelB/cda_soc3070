@@ -3,9 +3,8 @@ title: "SOC3070 Análisis de Datos Categóricos"
 author: "Tarea corta 2, respuestas"
 output:
   pdf_document: default
-urlcolor: blue
-linkcolor: red
-
+  html_document:
+    df_print: paged
 ---
 
 ```{r, echo=FALSE}
@@ -13,42 +12,59 @@ linkcolor: red
 # Carga "tinytex" para compilar PDF
 library("tinytex")
 ```
+Ponderación: 6% de la nota final del curso. 
 
-Ponderación: 6% de la nota final del curso.
+En esta pregunta aplicarán propiedades de probabilidades condicionales para calcular alguna cantidades de interés para el test de hipótesis. Supon que te encuentras en la siguiente situación:
 
+- Tienes una hipótesis de interés (o Hipótesis alternativa, $H_{1}$), y una  hipótesis nula ($H_{0}$)
 
-En esta pregunta aplicarán propiedades de probabilidades condicionales y el teorema de Bayes para calcular alguna cantidades de interés en tiempos de pandemia. 
+- No tienes conocimiento previo sobre la plausibilidad de tu hipótesis de interés, de modo que le asignas un 50% de probabilidad de ser cierta: $\mathbb{P}(H_{1}  \text{ verdadera})=0.5$. Esto implica que también la hipótesis nula tiene la misma probabilidad de ser cierta: $\mathbb{P}(H_{0} \text{ verdadera})= 0.5$
 
-### Problema
+- Como es estándar, usas un test estadístico que tienen un "Statistical Power" de 80%, definido como:
 
-Preocupado por la presencia de síntomas anómalos decides tomarte un test pcr para determinar si tienes Covid-19 o no. Luego de un día de espera el test $pcr$ arroja que eres Covid positivo. Este resultado es preocupante dado que un paper que leiste en [The Lancet](https://www.thelancet.com) indica que:
+$\text{power} = \mathbb{P}(\text{rechazar } H_{0} \mid H_{1}  \text{ verdadera}) = 0.8$
 
-- La "sensibilidad" del test es de 90\% (probabilidad de que una persona con la enfermedad obtenga un test positivo). 
-- La tasa de falsos positivos del test es de 5\% (probabilidad que una persona sin la enfermedad obtenga un test positivo).
-- La prevalencia de la enfermedad es de un 7\% (probabilidad de que una persona presente la enfermedad).
+(virtud de aceptar un resultado verdadero)
+
+- Como es estándar, trabajas con un nivel de significación estadística del 5% ($\alpha=0.05$), definido como:
+
+$\alpha = \mathbb{P}(\text{rechazar } H_{0} \mid H_{1}  \text{ falsa}) = 0.05$
+
+(error de aceptar un resultado falso)
 
 ### Pregunta
 
-Conociéndo toda esta información ¿Cuál es la probabilidad de que realmente tengas Covid-19?
+Supón que tu análisis sugiere que puedes rechazar $H_{0}$. Ahora, debes calcular las siguientes cantidades de interés:
 
-### Respuesta:
+1) La probabilidad de obtener un __"positivo verdadero"__, definida como:
 
-La cantidad de interés es la siguiente probabilidad condicional:
-
-$$\mathbb{P}(\text{Covid} \mid  \text{pcr positivo})$$
-Usando el Teorema de Bayes obtenemos que:
-
-$$\mathbb{P}(\text{Covid} \mid  \text{pcr positivo}) = \frac{\mathbb{P}(\text{pcr positivo} \mid \text{Covid})\mathbb{P}(\text{Covid})}{\mathbb{P}(\text{pcr positivo})}$$
-Usando la ley de probabilidad total podemos re-expresar el denominador en el lado derecho de la ecuación de la siguiente forma:
-
-
-$$\mathbb{P}(\text{Covid} \mid  \text{pcr positivo}) = \frac{\mathbb{P}(\text{pcr positivo} \mid \text{Covid})\mathbb{P}(\text{Covid})}{\mathbb{P}(\text{pcr positivo} \mid \text{Covid})\mathbb{P}(\text{Covid}) + \mathbb{P}(\text{pcr positivo} \mid \neg \text{Covid})\mathbb{P}(\neg\text{Covid})}$$
-
-Reemplazando las expresiones arriba con las cifras reportadas por [The Lancet](https://www.thelancet.com) obtenemos que:
+\begin{align*}
+\mathbb{P}(H_{1} \text{ verdadera} \mid \text{rechazar } H_{0}) &= \frac{\mathbb{P}(\text{rechazar } H_{0}  \mid H_{1} \text{ verdadera})\mathbb{P}(H_{1} \text{ verdadera})}{\mathbb{P}(\text{rechazar } H_{0})} \\ \\
+&= \frac{\mathbb{P}(\text{rechazar } H_{0}  \mid H_{1} \text{ verdadera})\mathbb{P}(H_{1} \text{ verdadera})}{\mathbb{P}(\text{rechaza } H_{0} \mid H_{1}  \text{ verdadera})\mathbb{P}(H_{1}  \text{ verdadera}) +   
+    \mathbb{P}(\text{rechaza } H_{0} \mid H_{1}  \text{ falsa})\mathbb{P}(H_{1}  \text{ falsa})} \\ \\
+&= \frac{\text{power} \times 0.5}{\text{power} \times 0.5 + \alpha \times 0.5} = \frac{\text{power}}{\text{power} + \alpha} \\ \\
+&= \frac{0.8}{0.8 + 0.05} = 0.94
+\end{align*}
 
 
-$$\mathbb{P}(\text{Covid positivo} \mid  \text{pcr positivo}) = \frac{0.9 \times 0.07}{0.9 \times 0.07 + 0.05 \times 0.93} = 0.575 $$
-Es decir, la probabilidad de que una persona con un test pcr positivo efectivamente tenga Covid-19 es de aproximádamente 58\%.
+2) La probabilidad de obtener un __"falso positivo"__, definida como:
 
+\begin{align*}
+\mathbb{P}(H_{1} \text{ falsa} \mid \text{rechazar } H_{0}) &= \frac{ \mathbb{P}(\text{rechazar } H_{0} \mid H_{1} \text{ falsa})\mathbb{P}(H_{1} \text{ falsa})}{\mathbb{P}(\text{rechazar } H_{0})} \\ \\
+&= \frac{ \mathbb{P}(\text{rechazar } H_{0} \mid H_{1} \text{ falsa})\mathbb{P}(H_{1} \text{ falsa})}
+{\mathbb{P}(\text{rechaza } H_{0} \mid H_{1}  \text{ verdadera})\mathbb{P}(H_{1}  \text{ verdadera}) +   
+    \mathbb{P}(\text{rechaza } H_{0} \mid H_{1}  \text{ falsa})\mathbb{P}(H_{1}  \text{ falsa})}  \\ \\
+&= \frac{\alpha \times 0.5}{\text{power} \times 0.5 + \alpha \times 0.5} = \frac{\alpha}{\text{power} + \alpha} \\ \\    
+&= \frac{0.05}{0.8 + 0.05} = 0.06
+\end{align*}
+
+
+#### Pista 
+Usando la ley de "probabilidad total" sabemos que:
+\begin{align*}
+\mathbb{P}(\text{rechazar } H_{0}) &= \mathbb{P}(\text{rechazar } H_{0},  H_{1}  \text{ verdadera}) + \mathbb{P}(\text{rechazar } H_{0},  H_{1}  \text{ falsa}) \\ 
+&= \mathbb{P}(\text{rechaza } H_{0} \mid H_{1}  \text{ verdadera})\mathbb{P}(H_{1}  \text{ verdadera}) +   
+    \mathbb{P}(\text{rechaza } H_{0} \mid H_{1}  \text{ falsa})\mathbb{P}(H_{1}  \text{ falsa})
+\end{align*}
 
 
