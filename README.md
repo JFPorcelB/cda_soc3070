@@ -45,7 +45,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 | Miércoles 10 | 8    | R Basics                                        | [`[Presentación1]`](ta/ta_1/ta_1.pdf) [`[Código1]`](ta/ta_1/ta_1.Rmd) [`[Presentación1.1]`](ta/ta_1/ta_1_2.pdf) [`[Código1.1]`](ta/ta_1/ta_1_2.Rmd)                |                | 
 | Miércoles 17 | 8    | Lenguaje R                                      | [`[R script]`](ta/ta_2/ta_2.R)  [`[Base de datos]`](ta/ta_2/base_OCS.xlsx)         |   [`[Zoom]`](https://us02web.zoom.us/j/81771419396?pwd=cWZKR2dDVHZvZlpTb2VIUDdsL3hoUT09) [`[Descarga video]`](https://us02web.zoom.us/rec/share/H8_yxlFuCoxvU2tm7KiOCxhQgrq12vRJzW_r_3H9YFqxO85qn2qRruvrRnlnmEo3.wF-xnfJm2n3RQcGc)             |
 | Miércoles 31 | 8    | Funciones y distribuciones en R                 | [`[Presentación]`](ta/ta_3/ta_3.pdf) [`[Código]`](ta/ta_3/ta_3.Rmd) [`[Base de datos]`](ta/ta_3/data_OCS.Rdata)              | [`[Zoom]`](https://us02web.zoom.us/j/82723687266?pwd=WU5pcmNqOGk0VTdYdStScHAvQmVUdz09) [`[Descarga video]`](https://us02web.zoom.us/rec/share/9OGfMKCpnbOInT_gtHSH_p39GsoNE1deUukhuuAu-7PowKcPZ7b9S7tKMzCulV4X.CT1mE9GX7qPwrQ6Z)   | 
-| Miércoles 7  | 9    | Loops en R, medidas asociación                  |                | |
+| Miércoles 7  | 9    | Loops en R, medidas asociación                  |     [`[Base de datos]`](ta/ta_4/base_OCS.xlsx)           | |
 | Miércoles 14 | 9    | LPM y formulas regresión en R                   |                | |
 | Miércoles 5  | 10   | Regresión logística en R                        |                | |
 | Miércoles 19 | 10   | Bootstrap en R                                  |                | |
