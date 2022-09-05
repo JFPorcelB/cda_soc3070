@@ -24,7 +24,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 | Martes 16     | 8    |             |                | Tarea corta 1 (6%)  |
 | Lunes 22     | 8    | Probabilidad Condicional y Teorema Bayes              |   [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_2/class_2#1) [`[Código]`](slides/class_2/class_2.Rmd)             | |
 | Lunes 29     | 8    | Variables Aleatorias, Distribuciones Discretas y MLE  |    [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_3/class_3#1) [`[Código]`](slides/class_3/class_3.Rmd)    [`[Bonus]`](https://mebucca.github.io/cda_soc3070/slides/class_4/class_4#1)        | Tarea corta 2 (6%)  |
-| Lunes 5      | 9    | Tablas de contingencia                                |                | Tarea corta 3 (6%)  |                  
+| Lunes 5      | 9    | Tablas de contingencia                                |[`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_5/class_5#1) [`[Código]`](slides/class_5/class_5.Rmd)                | Tarea corta 3 (6%)  |                  
 | Lunes 12     | 9    | Modelo Lineal de Probabilidad (LPM)                   |                | Tarea corta 4 (6%)  |
 | Lunes 26     | 9    | Regresión Logística: estructura teórica y MLE         |                |                     |
 | Lunes 3      | 10   | Regresión Logística: interpretación de efectos        |                |                     |
