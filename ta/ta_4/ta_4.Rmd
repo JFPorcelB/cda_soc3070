@@ -1,6 +1,6 @@
 ---
 title: "Análisis de Datos Categóricos"
-author: "Ayudantía 3 "
+author: "Ayudantía 4 "
 date: Felipe Olivares
 output: 
   beamer_presentation:
