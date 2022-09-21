@@ -61,7 +61,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 
 - Tarea 1: [`[TC1]`](homework/tc_1.pdf) [`[TC1.Rmd]`](homework/tc_1.Rmd) [`[Soluciones TC1]`](homework/tc_1_answers.pdf) [`[Soluciones TC1.Rmd]`](homework/tc_1_answers.Rmd)
 - Tarea 2: [`[TC2]`](homework/tc_2.pdf) [`[TC2.Rmd]`](homework/tc_2.Rmd) [`[Soluciones TC2]`](homework/tc_2_answers.pdf) [`[Soluciones TC2.Rmd]`](homework/tc_2_answers.Rmd)
-- Tarea 3: [`[TC3]`](homework/tc_3.pdf) [`[TC3.Rmd]`](homework/tc_3.Rmd) [`[Soluciones TC3]`](homework/tc_3_answers.pdf) [`[Soluciones TC3.Rmd]`]
+- Tarea 3: [`[TC3]`](homework/tc_3.pdf) [`[TC3.Rmd]`](homework/tc_3.Rmd) [`[Soluciones TC3]`](homework/tc_3_answers.pdf) [`[Soluciones TC3.Rmd]`](homework/tc_3_answers.Rmd)
 - Tarea 4: [`[TC4]`](homework/tc_4.pdf) [`[TC4.Rmd]`](homework/tc_4.Rmd)
 - Tarea 5: 
 
