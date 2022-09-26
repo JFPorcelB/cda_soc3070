@@ -26,7 +26,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 | Lunes 29     | 8    | Variables Aleatorias, Distribuciones Discretas y MLE  |    [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_3/class_3#1) [`[Código]`](slides/class_3/class_3.Rmd)    [`[Bonus]`](https://mebucca.github.io/cda_soc3070/slides/class_4/class_4#1)        | Tarea corta 2 (6%)  |
 | Lunes 5      | 9    | Tablas de contingencia                                |[`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_5/class_5#1) [`[Código]`](slides/class_5/class_5.Rmd)                | Tarea corta 3 (6%)  |                  
 | Lunes 12     | 9    | Modelo Lineal de Probabilidad (LPM)                   | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_7/class_7#1) [`[Código]`](slides/class_7/class_7.Rmd)                 | Tarea corta 4 (6%)  |
-| Lunes 26     | 9    | Regresión Logística: estructura teórica y MLE         |                |                     |
+| Lunes 26     | 9    | Regresión Logística: estructura teórica y MLE         | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_9/class_9#1) [`[Código]`](slides/class_9/class_9.Rmd)               |                     |
 | Lunes 3      | 10   | Regresión Logística: interpretación de efectos        |                |                     |
 | Lunes 17     | 10   | Regresión Logística: inferencia                       |                |  Trabajo 1 (20%)    |
 | Lunes 24     | 10   | Regresión Logística: ajuste y predicción              |                |  Tarea corta 5 (6%) |
@@ -61,7 +61,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 
 - Tarea 1: [`[TC1]`](homework/tc_1.pdf) [`[TC1.Rmd]`](homework/tc_1.Rmd) [`[Soluciones TC1]`](homework/tc_1_answers.pdf) [`[Soluciones TC1.Rmd]`](homework/tc_1_answers.Rmd)
 - Tarea 2: [`[TC2]`](homework/tc_2.pdf) [`[TC2.Rmd]`](homework/tc_2.Rmd) [`[Soluciones TC2]`](homework/tc_2_answers.pdf) [`[Soluciones TC2.Rmd]`](homework/tc_2_answers.Rmd)
-- Tarea 3: [`[TC3]`](homework/tc_3.pdf) [`[TC3.Rmd]`](homework/tc_3.Rmd)
+- Tarea 3: [`[TC3]`](homework/tc_3.pdf) [`[TC3.Rmd]`](homework/tc_3.Rmd) [`[Soluciones TC3]`](homework/tc_3_answers.pdf) [`[Soluciones TC3.Rmd]`](homework/tc_3_answers.Rmd)
 - Tarea 4: [`[TC4]`](homework/tc_4.pdf) [`[TC4.Rmd]`](homework/tc_4.Rmd)
 - Tarea 5: 
 
