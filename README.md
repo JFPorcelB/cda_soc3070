@@ -26,7 +26,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 | Lunes 29     | 8    | Variables Aleatorias, Distribuciones Discretas y MLE  |    [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_3/class_3#1) [`[Código]`](slides/class_3/class_3.Rmd)    [`[Bonus]`](https://mebucca.github.io/cda_soc3070/slides/class_4/class_4#1)        | Tarea corta 2 (6%)  |
 | Lunes 5      | 9    | Tablas de contingencia                                |[`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_5/class_5#1) [`[Código]`](slides/class_5/class_5.Rmd)                | Tarea corta 3 (6%)  |                  
 | Lunes 12     | 9    | Modelo Lineal de Probabilidad (LPM)                   | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_7/class_7#1) [`[Código]`](slides/class_7/class_7.Rmd)                 | Tarea corta 4 (6%)  |
-| Lunes 26     | 9    | Regresión Logística: estructura teórica y MLE         | `[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_9/class_9#1) [`[Código]`](slides/class_9/class_9.Rmd)               |                     |
+| Lunes 26     | 9    | Regresión Logística: estructura teórica y MLE         | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_9/class_9#1) [`[Código]`](slides/class_9/class_9.Rmd)               |                     |
 | Lunes 3      | 10   | Regresión Logística: interpretación de efectos        |                |                     |
 | Lunes 17     | 10   | Regresión Logística: inferencia                       |                |  Trabajo 1 (20%)    |
 | Lunes 24     | 10   | Regresión Logística: ajuste y predicción              |                |  Tarea corta 5 (6%) |
