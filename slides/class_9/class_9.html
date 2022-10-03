@@ -4,6 +4,7 @@
     <title>Análisis de Datos Categóricos (SOC3070)</title>
     <meta charset="utf-8" />
     <meta name="author" content="  Mauricio Bucca  Profesor Asistente, Sociología UC" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
     <link rel="stylesheet" href="gentle-r.css" type="text/css" />
@@ -12,14 +13,165 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Análisis de Datos Categóricos (SOC3070)
+]
+.subtitle[
 ## Clase #9
+]
+.author[
 ### <br> Mauricio Bucca<br> Profesor Asistente, Sociología UC
+]
+.date[
 ### <a href="https://github.com/mebucca">github.com/mebucca</a>
+]
 
 ---
 
+class: inverse, center, middle
 
+#Modelos Lineales Generalizados (GLM)
+
+---
+## Más allá del modelo de regresión lineal (LM) 
+
+LM es un marco muy útil y productivo, pero hay situaciones en las que no proporciona una descripción adecuada de los datos. En particular:
+
+&lt;br&gt;
+
+--
+
+- Cuando `\(Y\)` no se distribuye normalmente
+
+--
+
+- Cuando el rango de `\(Y\)` está restringido (por ejemplo, binario, recuento)
+
+--
+
+- Cuando la variación de `\(Y\)` no es independiente de la media de `\(Y\)`.
+
+&lt;br&gt;
+--
+
+GLM ofrece un marco mucho más general y flexible que incorpora y amplía el LM para abordar estas cuestiones.
+
+---
+## Estructura de los modelos lineales generalizados
+
+Un modelo lineal generalizado tiene cuatro componentes:
+
+.pull-left[
+
+- Un _componente aleatorio_
+
+- Un _componente sistemático_ 
+
+- Una _función de enlace_ (link).
+
+]
+
+---
+### Componente aleatorio
+
+`$$\newcommand{\vect}[1]{\boldsymbol{#1}}$$`
+
+- El componente aleatorio de un GLM identifica la .bold[distribución de probabilidad de la variable dependiente].
+
+--
+
+- Mientras que la LM asume que la variable dependiente sigue una distribución normal, GLM abarca un conjunto más amplio de distribuciones, .bold[tanto continuas como discretas], siempre y cuando pertenezcan a la clase más general de la [_familia exponencial de distribuciones_](https://en.wikipedia.org/wiki/Exponential_family).  
+
+
+![Some distributions of the exponential family and their relationship](expo_fam.png)
+
+
+---
+## Componente Sistemático
+
+El componente sistemático de un GLM especifica las variables explicativas, es decir, las `\(x\)`'s en el lado derecho de la ecuación
+
+&lt;br&gt;
+
+`$$\eta_{i} = \beta_{0} + \beta_{1} x_{i1} + \dots + \beta_{k} x_{ik}$$`
+&lt;br&gt;
+--
+
+ - En terminología GLM `\(\eta\)` se denomina _predictor lineal_.
+ 
+ - `\(\eta\)` es lineal "en parámetros": no vamos a encontrar términos del tipo `\(\beta_{0}*\beta_{1}\)` o `\(\beta_{1}^{\beta_{0}}\)`.
+ 
+
+---
+## Función de enlace (link)
+
+En el LM estándar, la media condicional del resultado `\(\mu_{i}\)` está linealmente relacionada con los predictores del modelo.
+
+`$$\underbrace{\mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k} )}_{\mu_{i}} = \underbrace{\beta_{0} + \beta_{1} x_{i1} + \dots + \beta_{k} x_{ik}}_{\eta_{i}}$$`
+
+--
+
+- GLM permiten una relación más general y flexible entre estos dos términos. 
+
+--
+
+- En un GLM el componente sistemático `\(\eta_{i}\)` debe estar relacionado linealmente (en parámetros) con una función `\(g(\cdot)\)` de `\(\mu_{i}\)`. Dicha función se denomina *función de enlace*. Formalmente,
+
+`$$g(\mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k})) =  g(\mu_{i}) = \eta_{i}$$`
+--
+
+Ejemplo, si `\(g(\cdot) = \ln(\cdot)\)`, entonces
+
+
+`$$\ln \mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k}) =  \ln \mu_{i} = \eta_{i}$$`
+
+&lt;br&gt;
+--
+
+- La _función de enlace_ cumple un objetivo importante: mantener `\(\mu_{i}\)` dentro de su rango natural. 
+
+  - Ejemplo: si `\(y_{i}\)` es estrictamente positivo (ingreso), `\(\eta_{i} \in (-\infty, \infty+)\)` pero `\(\mu_{i} = e^{\eta_{i}} \in  (0, \infty+)\)`
+
+
+---
+## Función de enlace (link)
+
+Más allá de este ejemplo, hay una variedad de posibles funciones de enlace:
+
+
+![Some commonly used link functions](link_fn.png)
+- `\(g(\cdot)\)` debe ser "smooth" y monotónica
+
+
+---
+## Definiendo un GLM
+
+La estructura básica de un GLM se especifica mediante la elección de dos componentes: (1) la distribución de la variable dependiente (componente sistemático) y (2) la función de enlace. 
+
+&lt;br&gt;
+`\begin{align}
+  GLM:
+	\begin{cases}
+	&amp;y_{i} \sim f(\mu_{i},\sigma_{i}) \\ \\
+	&amp; g(\mu_{i}) = \eta_{i}
+	\end{cases}
+\end{align}`
+
+&lt;br&gt;
+--
+
+Cualquier combinación de estos componentes definirá un GLM diferente. Algunas de estas combinaciones son especialmente relevantes:
+
+
+| Distribution         | Canonical Link: `\(\eta = g(\mu)\)` | Link name             | Model name           |
+| -----------------    | ------------------              | --------------------- | -------------------- |
+| Normal (Gaussian)    | `\(\eta = \mu\)`                    | identity              | Standard regression  |
+| Poisson              | `\(\eta = \log(\mu)\)`              | logarithm             | Poisson regression   |
+| Bernoulli / Binomial | `\(\eta = \log(\mu/(1-\mu))\)`      | logit                 | Logistic regression  |
+| Gamma                | `\(\eta = (1/\mu)\)`                | reciprocal            | Gamma regression     |
+
+
+---
 class: inverse, center, middle
 
 #Regresión Logística
@@ -27,7 +179,7 @@ class: inverse, center, middle
 ---
 ## Estructura de un modelo de regresión logística
 
-Podemos pensar en un modeo de regresión logística de la siguiente forma:
+Podemos pensar en un modelo de regresión logística de la siguiente forma:
 
 &lt;br&gt;
 --
@@ -111,7 +263,7 @@ El modelo de regresión logística aborda este problema de la siguiente manera:
 
 --
 
-- `\(\beta_{1} \dots \beta_{k}\)` son los respectivos "efectos" de los predictores sobre `\(p_{i}\)`
+- `\(\beta_{1} \dots \beta_{k}\)` son los respectivos "efectos" de los predictores sobre `\(\eta_{i}\)`
 
 --
 
@@ -236,25 +388,25 @@ Para ejemplificar el uso de regresión logística continuaremos trabajando con l
 
 
 ```
-## # A tibble: 15 x 10
-##    sex     age    ym child religious education  rate nbaffairs everaffair
-##    &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;     &lt;int&gt;     &lt;dbl&gt; &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;     
-##  1 male     57    15 yes           4        20     4         0 Never     
-##  2 fema…    57    15 yes           4        16     4         0 Never     
-##  3 fema…    57    15 yes           2        18     2         0 Never     
-##  4 male     57    15 yes           4         9     2         0 Never     
-##  5 male     57    15 yes           4        20     5         0 Never     
-##  6 male     57    15 yes           2        20     4         0 Never     
-##  7 male     57    15 yes           4         9     4         0 Never     
-##  8 male     57    15 yes           4        17     5         0 Never     
-##  9 male     57    15 yes           5        18     2         0 Never     
-## 10 fema…    57    15 yes           3        18     2         0 Never     
-## 11 male     57    15 no            4         9     1         0 Never     
-## 12 fema…    57    15 no            4        20     5         0 Never     
-## 13 fema…    57    15 yes           1        18     4         2 At least …
-## 14 male     57    15 yes           1        17     4         2 At least …
-## 15 male     57    15 yes           5        20     5         7 At least …
-## # … with 1 more variable: everaffair_d &lt;dbl&gt;
+## # A tibble: 15 × 10
+##    sex      age    ym child religious education  rate nbaffairs everaf…¹ evera…²
+##    &lt;fct&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;     &lt;int&gt;     &lt;dbl&gt; &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
+##  1 male      57    15 yes           4        20     4         0 Never          0
+##  2 female    57    15 yes           4        16     4         0 Never          0
+##  3 female    57    15 yes           2        18     2         0 Never          0
+##  4 male      57    15 yes           4         9     2         0 Never          0
+##  5 male      57    15 yes           4        20     5         0 Never          0
+##  6 male      57    15 yes           2        20     4         0 Never          0
+##  7 male      57    15 yes           4         9     4         0 Never          0
+##  8 male      57    15 yes           4        17     5         0 Never          0
+##  9 male      57    15 yes           5        18     2         0 Never          0
+## 10 female    57    15 yes           3        18     2         0 Never          0
+## 11 male      57    15 no            4         9     1         0 Never          0
+## 12 female    57    15 no            4        20     5         0 Never          0
+## 13 female    57    15 yes           1        18     4         2 At leas…       1
+## 14 male      57    15 yes           1        17     4         2 At leas…       1
+## 15 male      57    15 yes           5        20     5         7 At leas…       1
+## # … with abbreviated variable names ¹​everaffair, ²​everaffair_d
 ```
 
 
@@ -298,12 +450,24 @@ logit_affairs_rate &lt;- glm(everaffair_d ~ rate, family=binomial(link="logit"),
 ## Regresión Logística en la práctica 
 
 .pull-left[
+
+```
+## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =
+## "none")` instead.
+```
+
 ![](class_9_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 ]
 
 --
 
 .pull-right[
+
+```
+## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =
+## "none")` instead.
+```
+
 ![](class_9_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 ]
 
@@ -512,6 +676,10 @@ class: inverse, center, middle
 Mauricio Bucca &lt;br&gt;
 https://mebucca.github.io/ &lt;br&gt;
 github.com/mebucca
+
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -561,6 +729,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
