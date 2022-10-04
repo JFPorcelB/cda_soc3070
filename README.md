@@ -47,7 +47,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 | Miércoles 31 | 8    | Funciones y distribuciones en R                 | [`[Presentación]`](ta/ta_3/ta_3.pdf) [`[Código]`](ta/ta_3/ta_3.Rmd) [`[Base de datos]`](ta/ta_3/data_OCS.Rdata)              | [`[Zoom]`](https://us02web.zoom.us/j/82723687266?pwd=WU5pcmNqOGk0VTdYdStScHAvQmVUdz09) [`[Descarga video]`](https://us02web.zoom.us/rec/share/9OGfMKCpnbOInT_gtHSH_p39GsoNE1deUukhuuAu-7PowKcPZ7b9S7tKMzCulV4X.CT1mE9GX7qPwrQ6Z)   | 
 | Miércoles 7  | 9    | Loops en R, medidas asociación                  |  [`[Presentación]`](ta/ta_4/ta_4.pdf) [`[Código]`](ta/ta_4/ta_4.Rmd)        | [`[Zoom]`](https://us02web.zoom.us/j/82000036979?pwd=cFNJeWIwSFE2bnpyMjE0KzRMQnBqdz09) [`[Descarga video]`](https://us02web.zoom.us/rec/share/dJC9k6BECq6Q-YnNvRm2sqcyyPFudaiQYA-c5qrN-yOgu7VqgUrqedbuV-UD_wqf.s4GCq267BHEjDMwf)  |
 | Miércoles 14 | 9    | LPM y formulas regresión en R                   |  [`[Presentación]`](ta/ta_5/ta_5.pdf) [`[Código]`](ta/ta_5/ta_5.Rmd)             | 
-| Miércoles 5  | 10   | Regresión logística en R                        | [`[Base de datos]`](ta/ta_6/data_OCS_2.RData)                | |
+| Miércoles 5  | 10   | Regresión logística en R                        | [`[Presentación]`](ta/ta_6/ta_6.pdf) [`[Código]`](ta/ta_6/ta_6.Rmd)  [`[Base de datos]`](ta/ta_6/data_OCS_2.RData)                | [`[Zoom]`](https://us02web.zoom.us/j/81187890211?pwd=bkswRmUrUk1mU1YzbTVNcWNTUkJlZz09) |
 | Miércoles 19 | 10   | Bootstrap en R                                  |                | |
 | Miércoles 9  | 11   | Regresión logística multinomial                 |                | |
 | Miércoles 16 | 11   | Regresión Poisson                               |                | |
