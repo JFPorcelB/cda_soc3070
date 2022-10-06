@@ -67,7 +67,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 
 #### Trabajos
 
-- Trabajo 1: [`[T1]`](homework/t_1/t_1.html)
+- Trabajo 1: [`[T1]`](https://mebucca.github.io/cda_soc3070/homework/t_1/t_1#1) 
 - Trabajo 2: 
 
 #### Trabajo Final
