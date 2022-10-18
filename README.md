@@ -28,7 +28,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 | Lunes 12     | 9    | Modelo Lineal de Probabilidad (LPM)                   | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_7/class_7#1) [`[Código]`](slides/class_7/class_7.Rmd)                 | Tarea corta 4 (6%)  |
 | Lunes 26     | 9    | Regresión Logística: estructura teórica y MLE         | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_9/class_9#1) [`[Código]`](slides/class_9/class_9.Rmd)               |                     |
 | Lunes 3      | 10   | Regresión Logística: interpretación de efectos        | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_10/class_10#1) [`[Código]`](slides/class_10/class_10.Rmd)               |                     |
-| Lunes 17     | 10   | Regresión Logística: inferencia                       |                |  Trabajo 1 (20%)    |
+| Lunes 17     | 10   | Regresión Logística: inferencia                       | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_11/class_11#1) [`[Código]`](slides/class_11/class_11.Rmd)               |  Trabajo 1 (20%)    |
 | Lunes 24     | 10   | Regresión Logística: ajuste y predicción              |                |  Tarea corta 5 (6%) |
 | Lunes 7      | 11   | Regresión Logística Multinomial                       |                |                     |
 |              |      | Regresión Logística Ordenada                          |                |                     |
@@ -47,11 +47,12 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 | Miércoles 31 | 8    | Funciones y distribuciones en R                 | [`[Presentación]`](ta/ta_3/ta_3.pdf) [`[Código]`](ta/ta_3/ta_3.Rmd) [`[Base de datos]`](ta/ta_3/data_OCS.Rdata)              | [`[Zoom]`](https://us02web.zoom.us/j/82723687266?pwd=WU5pcmNqOGk0VTdYdStScHAvQmVUdz09) [`[Descarga video]`](https://us02web.zoom.us/rec/share/9OGfMKCpnbOInT_gtHSH_p39GsoNE1deUukhuuAu-7PowKcPZ7b9S7tKMzCulV4X.CT1mE9GX7qPwrQ6Z)   | 
 | Miércoles 7  | 9    | Loops en R, medidas asociación                  |  [`[Presentación]`](ta/ta_4/ta_4.pdf) [`[Código]`](ta/ta_4/ta_4.Rmd)        | [`[Zoom]`](https://us02web.zoom.us/j/82000036979?pwd=cFNJeWIwSFE2bnpyMjE0KzRMQnBqdz09) [`[Descarga video]`](https://us02web.zoom.us/rec/share/dJC9k6BECq6Q-YnNvRm2sqcyyPFudaiQYA-c5qrN-yOgu7VqgUrqedbuV-UD_wqf.s4GCq267BHEjDMwf)  |
 | Miércoles 14 | 9    | LPM y formulas regresión en R                   |  [`[Presentación]`](ta/ta_5/ta_5.pdf) [`[Código]`](ta/ta_5/ta_5.Rmd)             | 
-| Miércoles 5  | 10   | Regresión logística en R                        | [`[Presentación]`](ta/ta_6/ta_6.pdf) [`[Código]`](ta/ta_6/ta_6.Rmd)  [`[Base de datos]`](ta/ta_6/data_OCS_2.RData)                | [`[Zoom]`](https://us02web.zoom.us/j/81187890211?pwd=bkswRmUrUk1mU1YzbTVNcWNTUkJlZz09) |
-| Miércoles 19 | 10   | Bootstrap en R                                  |                | |
+| Miércoles 5  | 10   | Regresión logística en R                        | [`[Presentación]`](ta/ta_6/ta_6.pdf) [`[Código]`](ta/ta_6/ta_6.Rmd)  [`[Base de datos]`](ta/ta_6/data_OCS_2.RData)                | [`[Zoom]`](https://us02web.zoom.us/j/81187890211?pwd=bkswRmUrUk1mU1YzbTVNcWNTUkJlZz09) [`[Descarga video]`](https://us02web.zoom.us/rec/share/T8hNew7SG5mT1XX3BgJxdQUcebsmBGbs7l01REqukS2H6zEx42A218EYeYM8OvHy.krqgUrra2wtEXoXa)|
+| Miércoles 19 | 10   | Bootstrap en R                                  | [`[Presentación]`](ta/ta_7/ta_7.pdf) [`[Código]`](ta/ta_7/ta_7.Rmd)               | [`[Zoom]`](https://us02web.zoom.us/j/83035144157?pwd=T2V0d2d2YmxYbDduVTlSQ1F1Q2M1dz09)|
 | Miércoles 9  | 11   | Regresión logística multinomial                 |                | |
 | Miércoles 16 | 11   | Regresión Poisson                               |                | |
 | Miércoles 30 | 11   | "Elevator speech" Trabajo final                 |                | |
+
 
 ---
 
@@ -67,7 +68,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 
 #### Trabajos
 
-- Trabajo 1: 
+- Trabajo 1: [`[T1]`](https://mebucca.github.io/cda_soc3070/homework/t_1/t_1#1) 
 - Trabajo 2: 
 
 #### Trabajo Final
