@@ -29,7 +29,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 | Lunes 26     | 9    | Regresión Logística: estructura teórica y MLE         | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_9/class_9#1) [`[Código]`](slides/class_9/class_9.Rmd)               |                     |
 | Lunes 3      | 10   | Regresión Logística: interpretación de efectos        | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_10/class_10#1) [`[Código]`](slides/class_10/class_10.Rmd)               |                     |
 | Lunes 17     | 10   | Regresión Logística: inferencia                       | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_11/class_11#1) [`[Código]`](slides/class_11/class_11.Rmd)               |  Trabajo 1 (20%)    |
-| Lunes 24     | 10   | Regresión Logística: ajuste y predicción              |                |  Tarea corta 5 (6%) |
+| Lunes 24     | 10   | Regresión Logística: ajuste y predicción              | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_12/class_12#1) [`[Código]`](slides/class_12/class_12.Rmd)               |  Tarea corta 5 (6%) |
 | Lunes 7      | 11   | Regresión Logística Multinomial                       |                |                     |
 |              |      | Regresión Logística Ordenada                          |                |                     |
 | Lunes 14     | 11   | Regresión Poisson                                     |                |                     |
@@ -64,7 +64,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 - Tarea 2: [`[TC2]`](homework/tc_2.pdf) [`[TC2.Rmd]`](homework/tc_2.Rmd) [`[Soluciones TC2]`](homework/tc_2_answers.pdf) [`[Soluciones TC2.Rmd]`](homework/tc_2_answers.Rmd)
 - Tarea 3: [`[TC3]`](homework/tc_3.pdf) [`[TC3.Rmd]`](homework/tc_3.Rmd) [`[Soluciones TC3]`](homework/tc_3_answers.pdf) [`[Soluciones TC3.Rmd]`](homework/tc_3_answers.Rmd)
 - Tarea 4: [`[TC4]`](homework/tc_4.pdf) [`[TC4.Rmd]`](homework/tc_4.Rmd)
-- Tarea 5: 
+- Tarea 5: [`[TC5]`](homework/tc_5.pdf) 
 
 #### Trabajos
 
