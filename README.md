@@ -49,7 +49,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 | Miércoles 14 | 9    | LPM y formulas regresión en R                   |  [`[Presentación]`](ta/ta_5/ta_5.pdf) [`[Código]`](ta/ta_5/ta_5.Rmd)             | 
 | Miércoles 5  | 10   | Regresión logística en R                        | [`[Presentación]`](ta/ta_6/ta_6.pdf) [`[Código]`](ta/ta_6/ta_6.Rmd)  [`[Base de datos]`](ta/ta_6/data_OCS_2.RData)                | [`[Zoom]`](https://us02web.zoom.us/j/81187890211?pwd=bkswRmUrUk1mU1YzbTVNcWNTUkJlZz09) [`[Descarga video]`](https://us02web.zoom.us/rec/share/T8hNew7SG5mT1XX3BgJxdQUcebsmBGbs7l01REqukS2H6zEx42A218EYeYM8OvHy.krqgUrra2wtEXoXa)|
 | Miércoles 19 | 10   | Bootstrap en R                                  | [`[Presentación]`](ta/ta_7/ta_7.pdf) [`[Código]`](ta/ta_7/ta_7.Rmd)               | [`[Zoom]`](https://us02web.zoom.us/j/83035144157?pwd=T2V0d2d2YmxYbDduVTlSQ1F1Q2M1dz09) [`[Descarga video]`](https://us02web.zoom.us/rec/share/Dj3NcZp8NV2U5-huLYtFncr38tF8k6SrFLBrrzcb_T4f-ql1V2Mo96fNuFmWxxJP.iwy9vvY0s4b2f03K)|
-| Miércoles 9  | 11   | Regresión logística multinomial                 |                | |
+| Miércoles 9  | 11   | Regresión logística multinomial                 | [`[Presentación]`](ta/ta_8/ta_8.pdf) [`[Código]`](ta/ta_8/ta_8.Rmd)  [`[Base de datos]`](ta/ta_8/data_OCS3.RData)          |  [`[Zoom]`](https://us02web.zoom.us/j/86481086541?pwd=c0tQWGFkRzEwN0NIWFpBanNOOTRCdz09) |
 | Miércoles 16 | 11   | Regresión Poisson                               |                | |
 | Miércoles 30 | 11   | "Elevator speech" Trabajo final                 |                | |
 
