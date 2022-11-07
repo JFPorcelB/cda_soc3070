@@ -30,8 +30,8 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 | Lunes 3      | 10   | Regresión Logística: interpretación de efectos        | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_10/class_10#1) [`[Código]`](slides/class_10/class_10.Rmd)               |                     |
 | Lunes 17     | 10   | Regresión Logística: inferencia                       | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_11/class_11#1) [`[Código]`](slides/class_11/class_11.Rmd)               |  Trabajo 1 (20%)    |
 | Lunes 24     | 10   | Regresión Logística: ajuste y predicción              | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_12/class_12#1) [`[Código]`](slides/class_12/class_12.Rmd)               |  Tarea corta 5 (6%) |
-| Lunes 7      | 11   | Regresión Logística Multinomial                       |                |                     |
-|              |      | Regresión Logística Ordenada                          |                |                     |
+| Lunes 7      | 11   | Regresión Logística Multinomial                       | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_12/class_13#1) [`[Código]`](slides/class_13/class_13.Rmd)               |                     |
+|              |      | Regresión Logística Ordenada                          | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_14/class_14#1) [`[Código]`](slides/class_14/class_14.Rmd)               |                     |
 | Lunes 14     | 11   | Regresión Poisson                                     |                |                     |
 | Lunes 21     | 11   | Consideraciones Finales                               |                |  Trabajo 2 (20%)    |
 | Domingo 4    | 12   |                                                       |                | Trabajo Final (30%) |
