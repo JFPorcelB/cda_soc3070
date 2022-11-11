@@ -66,8 +66,6 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 - Tarea 4: [`[TC4]`](homework/tc_4.pdf) [`[TC4.Rmd]`](homework/tc_4.Rmd)[`[Soluciones TC4]`](homework/tc_4_answers.pdf) [`[Soluciones TC4.Rmd]`](homework/tc_4_answers.Rmd)
 - Tarea 5: [`[TC5]`](homework/tc_5.pdf) [`[Soluciones TC5]`](homework/tc_5_answers.pdf) [`[Soluciones TC5.Rmd]`](homework/tc_5_answers.Rmd)
 
-tc_5_answers
-
 #### Trabajos
 
 - Trabajo 1: [`[T1]`](https://mebucca.github.io/cda_soc3070/homework/t_1/t_1#1) [`[Soluciones T1]`](https://mebucca.github.io/cda_soc3070/homework/t_1/t_1_answers#1) [`[Soluciones T1.Rmd]`](homework/t_1/t_1_answers.Rmd)
