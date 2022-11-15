@@ -69,11 +69,12 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 #### Trabajos
 
 - Trabajo 1: [`[T1]`](https://mebucca.github.io/cda_soc3070/homework/t_1/t_1#1) [`[Soluciones T1]`](https://mebucca.github.io/cda_soc3070/homework/t_1/t_1_answers#1) [`[Soluciones T1.Rmd]`](homework/t_1/t_1_answers.Rmd)
-- Trabajo 2: 
+- Trabajo 2: [`[T2]`](https://mebucca.github.io/cda_soc3070/homework/t_2/t_2#1) [`[Paper]`](homework/t_1/paper.pdf) [`[Supplementary Materials]`](homework/t_1/sm.pdf) [`[Database]`](homework/t_2/data_t_2.csv)
 
 #### Trabajo Final
 
-- Trabajo Final: 
+- Trabajo Final: [`[TF]`](https://mebucca.github.io/cda_soc3070/homework/tf/tf#1) [`[Paper 2018]`](homework/tf/Silberzahn-etal-2018.pdf) [`[Paper 2021]`](homework/tf/Auspurg-Bruderl-2021.pdf) [`[Database]`](homework/tf/redcard_data.csv)
+    - Ejemplo ayudantía "elevator speech": [`[presentación]`](https://mebucca.github.io/cda_soc3070/homework/tf/elevator_speech#1) 
 
 ---
 
