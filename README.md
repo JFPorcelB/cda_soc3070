@@ -8,10 +8,9 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 - Repaso de pre-cálculo, especialmente funciones logarítmicas y exponenciales: [`[texto]`](files/pre_calculo.pdf).
 - Introducción a derivadas: [`[texto]`](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
-- El concepto de integral: 
+- El concepto de integral, "Calculus Made Easy", 1910: [`[calculus]`](files/calculus_easy.jpg)
 
-Cálculo en 2 páginas. "Calculus Made Easy", 1910:
-![calculus](files/calculus_easy.jpg)
+![class](files/class.png)
 
 ---
 
@@ -50,7 +49,7 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 | Miércoles 5  | 10   | Regresión logística en R                        | [`[Presentación]`](ta/ta_6/ta_6.pdf) [`[Código]`](ta/ta_6/ta_6.Rmd)  [`[Base de datos]`](ta/ta_6/data_OCS_2.RData)                | [`[Zoom]`](https://us02web.zoom.us/j/81187890211?pwd=bkswRmUrUk1mU1YzbTVNcWNTUkJlZz09) [`[Descarga video]`](https://us02web.zoom.us/rec/share/T8hNew7SG5mT1XX3BgJxdQUcebsmBGbs7l01REqukS2H6zEx42A218EYeYM8OvHy.krqgUrra2wtEXoXa)|
 | Miércoles 19 | 10   | Bootstrap en R                                  | [`[Presentación]`](ta/ta_7/ta_7.pdf) [`[Código]`](ta/ta_7/ta_7.Rmd)               | [`[Zoom]`](https://us02web.zoom.us/j/83035144157?pwd=T2V0d2d2YmxYbDduVTlSQ1F1Q2M1dz09) [`[Descarga video]`](https://us02web.zoom.us/rec/share/Dj3NcZp8NV2U5-huLYtFncr38tF8k6SrFLBrrzcb_T4f-ql1V2Mo96fNuFmWxxJP.iwy9vvY0s4b2f03K)|
 | Miércoles 9  | 11   | Regresión logística multinomial                 | [`[Presentación]`](ta/ta_8/ta_8.pdf) [`[Código]`](ta/ta_8/ta_8.Rmd)  [`[Base de datos]`](ta/ta_8/data_OCS_3.Rdata)    |  [`[Zoom]`](https://us02web.zoom.us/j/86481086541?pwd=c0tQWGFkRzEwN0NIWFpBanNOOTRCdz09) |
-| Miércoles 16 | 11   | Regresión Poisson                               |  [`[Base de datos]`](ta/ta_9/NES_2004.Rdata)              | |
+| Miércoles 16 | 11   | Regresión Poisson                               |  [`[Base de datos]`](ta/ta_9/NES_2004.RData)              | |
 | Miércoles 30 | 11   | "Elevator speech" Trabajo final                 |                | |
 
 
@@ -69,11 +68,12 @@ Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 #### Trabajos
 
 - Trabajo 1: [`[T1]`](https://mebucca.github.io/cda_soc3070/homework/t_1/t_1#1) [`[Soluciones T1]`](https://mebucca.github.io/cda_soc3070/homework/t_1/t_1_answers#1) [`[Soluciones T1.Rmd]`](homework/t_1/t_1_answers.Rmd)
-- Trabajo 2: 
+- Trabajo 2: [`[T2]`](https://mebucca.github.io/cda_soc3070/homework/t_2/t_2#1) [`[Paper]`](homework/t_1/paper.pdf) [`[Supplementary Materials]`](homework/t_1/sm.pdf) [`[Database]`](homework/t_2/data_t_2.csv)
 
 #### Trabajo Final
 
-- Trabajo Final: 
+- Trabajo Final: [`[TF]`](https://mebucca.github.io/cda_soc3070/homework/tf/tf#1) [`[Paper 2018]`](homework/tf/Silberzahn-etal-2018.pdf) [`[Paper 2021]`](homework/tf/Auspurg-Bruderl-2021.pdf) [`[Database]`](homework/tf/redcard_data.csv)
+    - Ejemplo ayudantía "elevator speech": [`[presentación]`](https://mebucca.github.io/cda_soc3070/homework/tf/elevator_speech#1) 
 
 ---
 
