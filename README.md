@@ -13,6 +13,8 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 Cálculo en 2 páginas. "Calculus Made Easy", 1910:
 ![calculus](files/calculus_easy.jpg)
 
+![class](files/class.png)
+
 ---
 
 ## Calendario Clases
