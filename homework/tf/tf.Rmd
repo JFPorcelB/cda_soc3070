@@ -9,7 +9,7 @@ output:
 
 
 
-Ponderación: 30% de la nota final del curso. Entrega: hasta el día 15 de Diciembre a las 23:59 p.m.
+Ponderación: 30% de la nota final del curso. Entrega: hasta el día 11 de Diciembre a las 23:59 p.m.
 
 BONUS: Responder la pregunta _bonus_ NO es un requisito necesario para obtener puntaje completo. Responder incorrectamente la pregunta _bonus_ no afectará negativamente la nota obtenida, pero responderla correctamente mejorará la nota obtenida en un máximo de 0.5 puntos (o en la cantidad necesaria para obtener nota máxima si la nota original fuera superior a 6.5)
 
