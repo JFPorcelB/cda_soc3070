@@ -50,7 +50,8 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | Miércoles 19 | 10   | Bootstrap en R                                  | [`[Presentación]`](ta/ta_7/ta_7.pdf) [`[Código]`](ta/ta_7/ta_7.Rmd)               | [`[Zoom]`](https://us02web.zoom.us/j/83035144157?pwd=T2V0d2d2YmxYbDduVTlSQ1F1Q2M1dz09) [`[Descarga video]`](https://us02web.zoom.us/rec/share/Dj3NcZp8NV2U5-huLYtFncr38tF8k6SrFLBrrzcb_T4f-ql1V2Mo96fNuFmWxxJP.iwy9vvY0s4b2f03K)|
 | Miércoles 9  | 11   | Regresión logística multinomial                 | [`[Presentación]`](ta/ta_8/ta_8.pdf) [`[Código]`](ta/ta_8/ta_8.Rmd)  [`[Base de datos]`](ta/ta_8/data_OCS_3.Rdata)    |  [`[Zoom]`](https://us02web.zoom.us/j/86481086541?pwd=c0tQWGFkRzEwN0NIWFpBanNOOTRCdz09) |
 | Miércoles 16 | 11   | Regresión Poisson                               | [`[Presentación]`](ta/ta_9/ta_9.pdf) [`[Código]`](ta/ta_9/ta_9.Rmd)  [`[Base de datos]`](ta/ta_9/nonmel.Rdata)              | [`[Zoom]`](https://us02web.zoom.us/j/86471530210)|
-| Miércoles 30 | 11   | "Elevator speech" Trabajo final                 |                | |
+| Miércoles 30 | 11   | "Elevator speech" Trabajo final                 |      [`[Ejemplo "Elevator speech"]`](https://mebucca.github.io/cda_soc3070/homework/tf/elevator_speech#1) 
+          | |
 
 
 ---
