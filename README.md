@@ -51,7 +51,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | Miércoles 9  | 11   | Regresión logística multinomial                 | [`[Presentación]`](ta/ta_8/ta_8.pdf) [`[Código]`](ta/ta_8/ta_8.Rmd)  [`[Base de datos]`](ta/ta_8/data_OCS_3.Rdata)    |  [`[Zoom]`](https://us02web.zoom.us/j/86481086541?pwd=c0tQWGFkRzEwN0NIWFpBanNOOTRCdz09) |
 | Miércoles 16 | 11   | Regresión Poisson                               | [`[Presentación]`](ta/ta_9/ta_9.pdf) [`[Código]`](ta/ta_9/ta_9.Rmd)  [`[Base de datos]`](ta/ta_9/nonmel.Rdata)              | [`[Zoom]`](https://us02web.zoom.us/j/86471530210)|
 | Miércoles 30 | 11   | "Elevator speech" Trabajo final                 |      [`[Ejemplo "Elevator speech"]`](https://mebucca.github.io/cda_soc3070/homework/tf/elevator_speech#1) 
-          | |
+          | [`[Zoom]`](https://us02web.zoom.us/j/86071029391?pwd=dVFGN1VPMTNSSmYyQXhFUEN2MHdmZz09)|
 
 
 ---
