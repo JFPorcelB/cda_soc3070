@@ -68,7 +68,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 #### Trabajos
 
 - Trabajo 1: [`[T1]`](https://mebucca.github.io/cda_soc3070/homework/t_1/t_1#1) [`[Soluciones T1]`](https://mebucca.github.io/cda_soc3070/homework/t_1/t_1_answers#1) [`[Soluciones T1.Rmd]`](homework/t_1/t_1_answers.Rmd)
-- Trabajo 2: [`[T2]`](https://mebucca.github.io/cda_soc3070/homework/t_2/t_2#1) [`[Paper]`](homework/t_1/paper.pdf) [`[Supplementary Materials]`](homework/t_1/sm.pdf) [`[Database]`](homework/t_2/data_t_2.csv)
+- Trabajo 2: [`[T2]`](https://mebucca.github.io/cda_soc3070/homework/t_2/t_2#1) [`[Paper]`](homework/t_1/paper.pdf) [`[Supplementary Materials]`](homework/t_1/sm.pdf) [`[Database]`](homework/t_2/data_t_2.csv) [`[Soluciones T2]`](homework/t_2/t_2_answers.pdf) [`[Soluciones T2.Rmd]`](homework/t_2/t_2_answers.Rmd)
 
 #### Trabajo Final
 
