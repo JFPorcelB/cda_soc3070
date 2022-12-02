@@ -32,7 +32,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | Lunes 7      | 11   | Regresión Logística Multinomial                       | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_13/class_13#1) [`[Código]`](slides/class_13/class_13.Rmd)               |                     |
 |              |      | Regresión Logística Ordenada                          | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_14/class_14#1) [`[Código]`](slides/class_14/class_14.Rmd)               |                     |
 | Lunes 14     | 11   | Regresión Poisson                                     | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_15/class_15#1) [`[Código]`](slides/class_15/class_15.Rmd)               |                     |
-| Lunes 21     | 11   | Consideraciones Finales                               |                |  Trabajo 2 (20%)    |
+| Lunes 21     | 11   | Consideraciones Finales                               | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_16/class_16#1) [`[Código]`](slides/class_16/class_16.Rmd)               |  Trabajo 2 (20%)    |
 | Domingo 4    | 12   |                                                       |                | Trabajo Final (30%) |
 
 
@@ -49,8 +49,8 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | Miércoles 5  | 10   | Regresión logística en R                        | [`[Presentación]`](ta/ta_6/ta_6.pdf) [`[Código]`](ta/ta_6/ta_6.Rmd)  [`[Base de datos]`](ta/ta_6/data_OCS_2.RData)                | [`[Zoom]`](https://us02web.zoom.us/j/81187890211?pwd=bkswRmUrUk1mU1YzbTVNcWNTUkJlZz09) [`[Descarga video]`](https://us02web.zoom.us/rec/share/T8hNew7SG5mT1XX3BgJxdQUcebsmBGbs7l01REqukS2H6zEx42A218EYeYM8OvHy.krqgUrra2wtEXoXa)|
 | Miércoles 19 | 10   | Bootstrap en R                                  | [`[Presentación]`](ta/ta_7/ta_7.pdf) [`[Código]`](ta/ta_7/ta_7.Rmd)               | [`[Zoom]`](https://us02web.zoom.us/j/83035144157?pwd=T2V0d2d2YmxYbDduVTlSQ1F1Q2M1dz09) [`[Descarga video]`](https://us02web.zoom.us/rec/share/Dj3NcZp8NV2U5-huLYtFncr38tF8k6SrFLBrrzcb_T4f-ql1V2Mo96fNuFmWxxJP.iwy9vvY0s4b2f03K)|
 | Miércoles 9  | 11   | Regresión logística multinomial                 | [`[Presentación]`](ta/ta_8/ta_8.pdf) [`[Código]`](ta/ta_8/ta_8.Rmd)  [`[Base de datos]`](ta/ta_8/data_OCS_3.Rdata)    |  [`[Zoom]`](https://us02web.zoom.us/j/86481086541?pwd=c0tQWGFkRzEwN0NIWFpBanNOOTRCdz09) |
-| Miércoles 16 | 11   | Regresión Poisson                               |  [`[Base de datos]`](ta/ta_9/NES_2004.RData)              | |
-| Miércoles 30 | 11   | "Elevator speech" Trabajo final                 |                | |
+| Miércoles 16 | 11   | Regresión Poisson                               | [`[Presentación]`](ta/ta_9/ta_9.pdf) [`[Código]`](ta/ta_9/ta_9.Rmd)  [`[Base de datos]`](ta/ta_9/nonmel.Rdata)              | [`[Zoom]`](https://us02web.zoom.us/j/86471530210)|
+| Miércoles 30 | 11   | "Elevator speech" Trabajo final                 |      [`[Ejemplo "Elevator speech"]`](https://mebucca.github.io/cda_soc3070/homework/tf/elevator_speech#1)   | [`[Zoom]`](https://us02web.zoom.us/j/86071029391?pwd=dVFGN1VPMTNSSmYyQXhFUEN2MHdmZz09)|
 
 
 ---
