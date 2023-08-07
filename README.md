@@ -16,25 +16,22 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 ## Calendario Clases
 
-| Dia          | Mes  | Contenido                                             | Presentaciones | Entregas            | 
-| ---:         | ---: | :---------------------------------------------------- | :------------- | :-------------      | 
-| Lunes 8      | 8    | Presentación del curso                                | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_0/class_0#1) [`[Código]`](slides/class_0/class_0.Rmd)                 |                     |
-| Lunes 8      | 8    | Basics teoría de la Probabilidad                      | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_1/class_1#1) [`[Código]`](slides/class_1/class_1.Rmd)                |                     |
-| Martes 16     | 8    |             |                | Tarea corta 1 (6%)  |
-| Lunes 22     | 8    | Probabilidad Condicional y Teorema Bayes              |   [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_2/class_2#1) [`[Código]`](slides/class_2/class_2.Rmd)             | |
-| Lunes 29     | 8    | Variables Aleatorias, Distribuciones Discretas y MLE  |    [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_3/class_3#1) [`[Código]`](slides/class_3/class_3.Rmd)    [`[Bonus]`](https://mebucca.github.io/cda_soc3070/slides/class_4/class_4#1)        | Tarea corta 2 (6%)  |
-| Lunes 5      | 9    | Tablas de contingencia                                |[`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_5/class_5#1) [`[Código]`](slides/class_5/class_5.Rmd)                | Tarea corta 3 (6%)  |                  
-| Lunes 12     | 9    | Modelo Lineal de Probabilidad (LPM)                   | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_7/class_7#1) [`[Código]`](slides/class_7/class_7.Rmd)                 | Tarea corta 4 (6%)  |
-| Lunes 26     | 9    | Regresión Logística: estructura teórica y MLE         | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_9/class_9#1) [`[Código]`](slides/class_9/class_9.Rmd)               |                     |
-| Lunes 3      | 10   | Regresión Logística: interpretación de efectos        | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_10/class_10#1) [`[Código]`](slides/class_10/class_10.Rmd)               |                     |
-| Lunes 17     | 10   | Regresión Logística: inferencia                       | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_11/class_11#1) [`[Código]`](slides/class_11/class_11.Rmd)               |  Trabajo 1 (20%)    |
-| Lunes 24     | 10   | Regresión Logística: ajuste y predicción              | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_12/class_12#1) [`[Código]`](slides/class_12/class_12.Rmd)               |  Tarea corta 5 (6%) |
-| Lunes 7      | 11   | Regresión Logística Multinomial                       | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_13/class_13#1) [`[Código]`](slides/class_13/class_13.Rmd)               |                     |
-|              |      | Regresión Logística Ordenada                          | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_14/class_14#1) [`[Código]`](slides/class_14/class_14.Rmd)               |                     |
-| Lunes 14     | 11   | Regresión Poisson                                     | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_15/class_15#1) [`[Código]`](slides/class_15/class_15.Rmd)               |                     |
-| Lunes 21     | 11   | Consideraciones Finales                               | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_16/class_16#1) [`[Código]`](slides/class_16/class_16.Rmd)               |  Trabajo 2 (20%)    |
-| Domingo 4    | 12   |                                                       |                | Trabajo Final (30%) |
-
+| Día | Mes        | Contenido                                        | Presentación                                                                                                                      |
+|-----|------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 7   | Agosto    | Presentación del curso                           | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_0/class_0#1) [`[Código]`](slides/class_0/class_0.Rmd)        |
+| 7   | Agosto    | Basics teoría de la Probabilidad                 | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_1/class_1#1) [`[Código]`](slides/class_1/class_1.Rmd)        |
+| 21  | Agosto    | Probabilidad Condicional y Teorema Bayes         |                                                                                                                                   |
+| 28  | Agosto    | Variables Aleatorias, Distribuciones Discretas y MLE |                                                                                                                                   |
+| 4   | Septiembre | Tablas de contingencia                          |                                                                                                                                   |
+| 11  | Septiembre | Modelo Lineal de Probabilidad (LPM)             |                                                                                                                                   |
+| 25  | Septiembre | Regresión Logística: estructura teórica y MLE   |                                                                                                                                   |
+| 16  | Octubre   | Regresión Logística: interpretación de efectos  |                                                                                                                                   |
+| 23  | Octubre   | Regresión Logística: inferencia                 |                                                                                                                                   |
+| 30  | Octubre   | Regresión Logística: ajuste y predicción        |                                                                                                                                   |
+| 6   | Noviembre | Regresión Logística Multinomial                 |                                                                                                                                   |
+| 13  | Noviembre | Regresión Logística Ordenada                    |                                                                                                                                   |
+| 20  | Noviembre | Regresión Poisson                               |                                                                                                                                   |
+| 27  | Noviembre | Consideraciones Finales                         |                                                                                                                                   |
 
 
 ## Calendario Ayudantías
