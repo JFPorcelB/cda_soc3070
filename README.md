@@ -59,23 +59,6 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 #### Tareas cortas
 
-- Tarea 1: [`[TC1]`](homework/tc_1.pdf) [`[TC1.Rmd]`](homework/tc_1.Rmd) [`[Soluciones TC1]`](homework/tc_1_answers.pdf) [`[Soluciones TC1.Rmd]`](homework/tc_1_answers.Rmd)
-- Tarea 2: [`[TC2]`](homework/tc_2.pdf) [`[TC2.Rmd]`](homework/tc_2.Rmd) [`[Soluciones TC2]`](homework/tc_2_answers.pdf) [`[Soluciones TC2.Rmd]`](homework/tc_2_answers.Rmd)
-- Tarea 3: [`[TC3]`](homework/tc_3.pdf) [`[TC3.Rmd]`](homework/tc_3.Rmd) [`[Soluciones TC3]`](homework/tc_3_answers.pdf) [`[Soluciones TC3.Rmd]`](homework/tc_3_answers.Rmd)
-- Tarea 4: [`[TC4]`](homework/tc_4.pdf) [`[TC4.Rmd]`](homework/tc_4.Rmd)[`[Soluciones TC4]`](homework/tc_4_answers.pdf) [`[Soluciones TC4.Rmd]`](homework/tc_4_answers.Rmd)
-- Tarea 5: [`[TC5]`](homework/tc_5.pdf) [`[Soluciones TC5]`](homework/tc_5_answers.pdf) [`[Soluciones TC5.Rmd]`](homework/tc_5_answers.Rmd)
-
-#### Trabajos
-
-- Trabajo 1: [`[T1]`](https://mebucca.github.io/cda_soc3070/homework/t_1/t_1#1) [`[Soluciones T1]`](https://mebucca.github.io/cda_soc3070/homework/t_1/t_1_answers#1) [`[Soluciones T1.Rmd]`](homework/t_1/t_1_answers.Rmd)
-- Trabajo 2: [`[T2]`](https://mebucca.github.io/cda_soc3070/homework/t_2/t_2#1) [`[Paper]`](homework/t_1/paper.pdf) [`[Supplementary Materials]`](homework/t_1/sm.pdf) [`[Database]`](homework/t_2/data_t_2.csv)
-
-#### Trabajo Final
-
-- Trabajo Final: [`[TF]`](https://mebucca.github.io/cda_soc3070/homework/tf/tf#1) [`[Paper 2018]`](homework/tf/Silberzahn-etal-2018.pdf) [`[Paper 2021]`](homework/tf/Auspurg-Bruderl-2021.pdf) [`[Database]`](homework/tf/redcard_data.csv)
-    - Ejemplo ayudantía "elevator speech": [`[presentación]`](https://mebucca.github.io/cda_soc3070/homework/tf/elevator_speech#1) 
-
----
 
 
 ## Recursos computacion
