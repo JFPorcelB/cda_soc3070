@@ -10,7 +10,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 - Introducción a derivadas: [`[texto]`](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
 - El concepto de integral, "Calculus Made Easy", 1910: [`[calculus]`](files/calculus_easy.jpg)
 
-![class](files/class.png)
+![class](files/class.jpeg)
 
 ---
 
