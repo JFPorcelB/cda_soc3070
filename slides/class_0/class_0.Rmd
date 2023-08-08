@@ -1,12 +1,12 @@
 ---
 title: "Análisis de Datos Categóricos (SOC3070)"
-subtitle: "Clase #0"
-author: "<br> Mauricio Bucca<br> Profesor Asistente, Sociología UC"
-date: "[github.com/mebucca](https://github.com/mebucca)"
+subtitle: "#0: Presentación del curso"
+author: "<br> Mauricio Bucca <br> [github.com/mebucca](https://github.com/mebucca) <br> mebucca@uc.cl"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: ["default","default-fonts","gentle-r.css"]
+    css: ["gentle-r.css","xaringan-themer.css"]
     df_print: default
     nature:
       ratio: 16:9
@@ -15,13 +15,23 @@ output:
       countIncrementalSlides: true
       slideNumberFormat: "%current%"
 editor_options: 
+  
   chunk_output_type: console
----
+---  
 class: inverse, center, middle
 
-.huge[
-**Presentación del curso**
-]
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(primary_color = "#CEAB07", secondary_color = "#0B775E",
+                 background_color = "#f8f7f3",
+                 header_font_google = google_font("Archivo"),
+                 text_font_google   = google_font("Inconsolata"), 
+                 link_color="#ABDDDE"
+
+)
+```
+
+#Presentación del curso
 
 ---
 
@@ -56,23 +66,19 @@ class: inverse, center, middle
 <br>
 
 .pull-left[
-.bold[Felipe Olivares]
+.bold[Roberto Cantillán]
 
-- Historiador y Sociólogo UC
+- Estudiante doctorado en Sociología PUC
 
-- Licenciado en Historia UC
+- Investigador Núcleo Milenio para el Estudio de Desajustes del Mercado Laboral (LM²C²)
 
-- Magíster en Sociología UC
+- Investigación: Desigualdades, sociología analítica, consolidación y homofilia, mercados laborales. 
 
-- Coordinador Observatorio de Conflictos COES
-
-- Investigación: Control de la protesta social, agencia policial, Conflictos sociales y políticos, Movimientos sociales y teoría social 
-
-- Métodos: Modelos estadísticos multinivel, multinomial, logístico y lineal. 
+- Métodos: Análisis de redes sociales, modelos multinivel, inferencia causal. 
 
 ]
 .figure-right[
-![ayudante](https://64.media.tumblr.com/2c764e7a70f2d8eec7a72cd5c44b1f00/tumblr_pe8yj3wJUb1tad247o2_r1_540.gif)
+![ayudante](roberto.jpeg)
 ]
 
 ---
@@ -111,6 +117,16 @@ $$\mu = \int xf(x)dx$$
 --
 
 $$ X \sim \mathcal{N}(\mu,\sigma)$$
+
+---
+## Enseñanza de métodos cuantitativos
+
+<br> <br>
+.center[![ayudante](https://64.media.tumblr.com/2c764e7a70f2d8eec7a72cd5c44b1f00/tumblr_pe8yj3wJUb1tad247o2_r1_540.gif)]
+
+--
+
+- Este curso nivela gaps de conocimiento. No hay cartas bajo la manga.
 
 ---
 ## Enseñanza de métodos cuantitativos
