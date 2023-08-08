@@ -2,15 +2,17 @@
 
 Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categóricos, dictado el segundo semestre 2023 a estudiantes de postgrado del Departamento de Sociología de la Universidad Católica de Chile. Para mayores detalles ver el [`[programa]`](files/syllabus_soc3070.pdf) y [`[calendario]`](#Calendario) del curso.
 
-## Contenidos
+
+## Class of 2023
+
+![class](files/class.jpeg)
+
 
 ### Nivelación Matemática
 
 - Repaso de pre-cálculo, especialmente funciones logarítmicas y exponenciales: [`[texto]`](files/pre_calculo.pdf).
 - Introducción a derivadas: [`[texto]`](https://www.mathsisfun.com/calculus/derivatives-introduction.html)
 - El concepto de integral, "Calculus Made Easy", 1910: [`[calculus]`](files/calculus_easy.jpg)
-
-![class](files/class.jpeg)
 
 ---
 
@@ -38,7 +40,9 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 [`[Por Definir]`]()
 
----
+## Horario de Consulta
+
+- Reuniones individuales de aproximadamente 15 minutos cada día Lunes entre 15:00 y 16:00pm. [`[Agendar]`](https://calendar.app.google/A9vxmbBz1LyDQPAK6)
 
 ## Evaluaciones
 
@@ -46,6 +50,8 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 - Tarea 1: [`[TC1]`](homework/tc_1.pdf) [`[TC1.Rmd]`](homework/tc_1.Rmd)
   
+
+
 
 ## Recursos computacion
 
