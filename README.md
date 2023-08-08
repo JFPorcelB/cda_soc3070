@@ -36,7 +36,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 ## Calendario Ayudantías
 
-[`[Por Definir]`]
+[`[Por Definir]`]()
 
 ---
 
