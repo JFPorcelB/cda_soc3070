@@ -48,6 +48,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
   
 
 
+
 <!-- Google Calendar Appointment Scheduling begin -->
 <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
 <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
@@ -65,6 +66,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 })();
 </script>
 <!-- end Google Calendar Appointment Scheduling -->
+
 
 ## Recursos computacion
 
