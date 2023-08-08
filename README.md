@@ -14,7 +14,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 ---
 
-## Calendario Clases
+## Calendario
 
 | Día | Mes        | Contenido                                        | Presentación                                                                                                                      |
 |-----|------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
@@ -56,7 +56,8 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 #### Tareas cortas
 
-
+- Tarea 1: [`[TC1]`](homework/tc_1.pdf) [`[TC1.Rmd]`](homework/tc_1.Rmd)
+  
 
 ## Recursos computacion
 
