@@ -34,7 +34,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | 27  | Noviembre | Consideraciones Finales                         |                                                                                                                                   |
 
 
-## Calendario Ayudantías
+## Ayudantías
 
 [`[Por Definir]`]()
 
