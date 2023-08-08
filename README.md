@@ -7,7 +7,6 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 ![class](files/class.jpeg)
 
-## Contenidos
 
 ### Nivelación Matemática
 
