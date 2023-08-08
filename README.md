@@ -47,6 +47,25 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 - Tarea 1: [`[TC1]`](homework/tc_1.pdf) [`[TC1.Rmd]`](homework/tc_1.Rmd)
   
 
+
+<!-- Google Calendar Appointment Scheduling begin -->
+<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+<script>
+(function() {
+  var target = document.currentScript;
+  window.addEventListener('load', function() {
+    calendar.schedulingButton.load({
+      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2_pRnxQzR-NY9ndwmcuqKMNK5-GD01XuVlyZ3TnkiYcMmLBS5laik-FCMf31JVGwXMYBcyRxlQ?gv=true',
+      color: '#AD1457',
+      label: "Agendar",
+      target,
+    });
+  });
+})();
+</script>
+<!-- end Google Calendar Appointment Scheduling -->
+
 ## Recursos computacion
 
 ### Para usuarios de `R`
