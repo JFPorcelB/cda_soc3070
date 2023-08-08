@@ -38,7 +38,9 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 [`[Por Definir]`]()
 
----
+## Horario de Consulta
+
+- Reuniones individuales de aproximadamente 15 minutos cada día Lunes entre 15:00 y 16:00pm. [`[Agendar]`](https://calendar.app.google/A9vxmbBz1LyDQPAK6)
 
 ## Evaluaciones
 
@@ -47,9 +49,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 - Tarea 1: [`[TC1]`](homework/tc_1.pdf) [`[TC1.Rmd]`](homework/tc_1.Rmd)
   
 
-<!-- Google Calendar Appointment Scheduling begin -->
-<iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2_pRnxQzR-NY9ndwmcuqKMNK5-GD01XuVlyZ3TnkiYcMmLBS5laik-FCMf31JVGwXMYBcyRxlQ?gv=true" style="border: 0" width="100%" height="600" frameborder="0"></iframe>
-<!-- end Google Calendar Appointment Scheduling -->
+
 
 ## Recursos computacion
 
