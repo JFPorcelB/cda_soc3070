@@ -48,11 +48,16 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 ## Evaluaciones
 
-#### Tareas cortas
-
-- Tarea 1: [`[TC1]`](homework/tc_1.pdf) [`[TC1.Rmd]`](homework/tc_1.Rmd)
-  
-
+|               |     Asignación      |     Entrega      |                 Material                  |
+|---------------|---------------------|------------------|-------------------------------------------|
+| Tarea corta 1 | 7 agosto            | 15 agosto        | [`[TC1]`](homework/tc_1.pdf) [`[TC1.Rmd]`](homework/tc_1.Rmd) |
+| Tarea corta 2 | 21 agosto           | 29 agosto        |                                           |
+| Tarea corta 3 | 28 agosto           | 5 septiembre     |                                           |
+| Tarea corta 4 | 4 septiembre        | 12 septiembre    |                                           |
+| Trabajo 1     | 16 octubre          | 31 octubre       |                                           |
+| Tarea corta 5 | 30 octubre          | 7 noviembre      |                                           |
+| Trabajo 2     | 13 noviembre        | 28 noviembre     |                                           |
+| Trabajo final | 20 noviembre        | 5 diciembre      |                                           |
 
 
 ## Recursos computacion
