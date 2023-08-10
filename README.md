@@ -18,7 +18,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 ## Calendario
 
-| Día | Mes        | Contenido                                        | Presentación                                                                                                                      |
+| Día | Mes        | Contenido                                        | Material                                                                                                                      |
 |-----|------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | 7   | Agosto    | Presentación del curso                           | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_0/class_0#1) [`[Código]`](slides/class_0/class_0.Rmd)        |
 | 7   | Agosto    | Basics teoría de la Probabilidad                 | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_1/class_1#1) [`[Código]`](slides/class_1/class_1.Rmd)        |
@@ -38,7 +38,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 ## Ayudantías
 
-| Día | Mes         | Contenido                                 | Materiales |
+| Día | Mes         | Contenido                                 | Material |
 |-----|-------------|-------------------------------------------|------------|
 | 16  | Agosto      | R                                         |            |
 | 30  | Agosto      | R                                         |            |
