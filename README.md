@@ -38,7 +38,19 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 ## Ayudantías
 
-[`[Por Definir]`]()
+| Día | Mes         | Contenido                                 |
+|-----|-------------|-------------------------------------------|
+| 16  | Agosto      | R                                         |
+| 30  | Agosto      | R                                         |
+| 6   | Septiembre  | R                                         |
+| 13  | Septiembre  | Regresión lineal, LPM                     |
+| 20  | Septiembre  | Regresión logística                       |
+| 27  | Septiembre  | Regresión logística                       |
+| 25  | Octubre     | Bootstrap y cross-validation              |
+| 8   | Noviembre   | Regresión logística multinomial           |
+| 22  | Noviembre   | Regresión logística ordenada y poisson    |
+| 29  | Noviembre   | Sobre trabajo final                       |
+
 
 
 
