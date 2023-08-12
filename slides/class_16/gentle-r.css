@@ -99,61 +99,12 @@ strong {
   color: #0099ff;
 }
 
-.img-left{
-  height: 500px;
-  width: 500px;
-  top: 20%;
-  left: 5%;
-  position: absolute;
-}
-
 
 .img-right{
   height: 300px;
   width: 300px;
-  top: 54%;
+  top: 34%;
   left: 65%;
-  position: absolute;
-}
-
-.img-right-top{
-  height: 300px;
-  width: 300px;
-  top: 28%;
-  left: 60%;
-  position: absolute;
-}
-
-.img-right-small{
-  height: 130px;
-  width: 130px;
-  top: 14%;
-  left: 65%;
-  position: absolute;
-}
-
-
-.img-right-bottom{
-  height: 200px;
-  width: 200px;
-  top: 69%;
-  left: 65%;
-  position: absolute;
-}
-
-.img-bottom-right{
-  height: 250px;
-  width: 250px;
-  top: 54%;
-  left: 65%;
-  position: absolute;
-}
-
-.img-right-bottom2{
-  height: 200px;
-  width: 200px;
-  top: 5%;
-  left: 75%;
   position: absolute;
 }
 
