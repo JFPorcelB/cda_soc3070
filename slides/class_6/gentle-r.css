@@ -87,16 +87,6 @@ strong {
   display: none;
 }
 
-
-.center_middle {
-  margin: 1;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
 .text-white {
   color: #FFF;
 }
@@ -113,18 +103,11 @@ strong {
 .img-right{
   height: 300px;
   width: 300px;
-  top: 40%;
+  top: 34%;
   left: 65%;
   position: absolute;
 }
 
-.img-right2{
-  height: 320px;
-  width: 320px;
-  top: 34%;
-  left: 95%;
-  position: absolute;
-}
 .img-right img {
   width: 100%;
 }
