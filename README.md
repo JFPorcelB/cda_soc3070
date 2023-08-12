@@ -18,7 +18,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 ## Calendario
 
-| Día | Mes        | Contenido                                        | Presentación                                                                                                                      |
+| Día | Mes        | Contenido                                        | Material                                                                                                                      |
 |-----|------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | 7   | Agosto    | Presentación del curso                           | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_0/class_0#1) [`[Código]`](slides/class_0/class_0.Rmd)        |
 | 7   | Agosto    | Basics teoría de la Probabilidad                 | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_1/class_1#1) [`[Código]`](slides/class_1/class_1.Rmd)        |
@@ -38,7 +38,21 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 ## Ayudantías
 
-[`[Por Definir]`]()
+| Día | Mes         | Contenido                                 | Material |
+|-----|-------------|-------------------------------------------|------------|
+| 16  | Agosto      | R                                         |            |
+| 30  | Agosto      | R                                         |            |
+| 6   | Septiembre  | R                                         |            |
+| 13  | Septiembre  | Regresión lineal, LPM                     |            |
+| 20  | Septiembre  | Regresión logística                       |            |
+| 27  | Septiembre  | Regresión logística                       |            |
+| 25  | Octubre     | Bootstrap y cross-validation              |            |
+| 8   | Noviembre   | Regresión logística multinomial           |            |
+| 22  | Noviembre   | Regresión logística ordenada y poisson    |            |
+| 29  | Noviembre   | Sobre trabajo final                       |            |
+
+
+
 
 ## Horario de Consulta
 
@@ -46,11 +60,16 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 ## Evaluaciones
 
-#### Tareas cortas
-
-- Tarea 1: [`[TC1]`](homework/tc_1.pdf) [`[TC1.Rmd]`](homework/tc_1.Rmd)
-  
-
+|               |     Asignación      |     Entrega      |                 Material                  |
+|---------------|---------------------|------------------|-------------------------------------------|
+| Tarea corta 1 | 7 agosto            | 15 agosto        | [`[TC1]`](homework/tc_1.pdf) [`[TC1.Rmd]`](homework/tc_1.Rmd) |
+| Tarea corta 2 | 21 agosto           | 29 agosto        |                                           |
+| Tarea corta 3 | 28 agosto           | 5 septiembre     |                                           |
+| Tarea corta 4 | 4 septiembre        | 12 septiembre    |                                           |
+| Trabajo 1     | 16 octubre          | 31 octubre       |                                           |
+| Tarea corta 5 | 30 octubre          | 7 noviembre      |                                           |
+| Trabajo 2     | 13 noviembre        | 28 noviembre     |                                           |
+| Trabajo final | 20 noviembre        | 5 diciembre      |                                           |
 
 
 ## Recursos computacion
