@@ -1,6 +1,6 @@
 ---
-title: "Análisis de Datos Categóricos (SOC3070)"
-subtitle: "#1: Fundamentos de Probabilidades"
+title: "Análisis de Datos Categóricos"
+subtitle: "Fundamentos de Probabilidades"
 author: "<br> Mauricio Bucca <br> [github.com/mebucca](https://github.com/mebucca) <br> mebucca@uc.cl"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
