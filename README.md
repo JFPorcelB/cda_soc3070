@@ -44,6 +44,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | Día | Mes         | Contenido                                 | Material |
 |-----|-------------|-------------------------------------------|------------|
 | 16  | Agosto      | R                                         |            |
+| 22  | Agosto      | R                                         |            | 
 | 30  | Agosto      | R                                         |            |
 | 6   | Septiembre  | R                                         |            |
 | 13  | Septiembre  | Regresión lineal, LPM                     |            |
