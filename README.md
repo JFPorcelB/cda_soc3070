@@ -39,6 +39,8 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 ## Ayudantías
 
+[Link](https://teams.microsoft.com/l/meetup-join/19%3ameeting_MjhlMzAyNzEtNjBiMS00ZWEyLThhMzgtYzQzZmRjNTZhMzQ5%40thread.v2/0?context=%7b%22Tid%22%3a%225ff5d9fa-f83f-4ac1-a4d2-eb48ea0a00d2%22%2c%22Oid%22%3a%22a6901aad-8777-4578-9043-5b080d1bcde8%22%7d) permanente de de las ayudantías. Recuerden que se realizaran en el primer modulo, es decir, todos los miércoles entre 12:20 y 13:30 hrs. 
+
 | Día | Mes         | Contenido                                 | Material |
 |-----|-------------|-------------------------------------------|------------|
 | 16  | Agosto      | R                                         |            |
