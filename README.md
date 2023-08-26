@@ -24,8 +24,8 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | 7   | Agosto    | Basics teoría de la Probabilidad                 | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_1/class_1#1) [`[Código]`](slides/class_1/class_1.Rmd)        |
 | 21  | Agosto    | Probabilidad Condicional y Teorema Bayes         | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_2/class_2#1) [`[Código]`](slides/class_2/class_2.Rmd)                                                                                                                                    |
 | 21  | Agosto    | Variables Aleatorias, Distribuciones Discretas         |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_3/class_3#1) [`[Código]`](slides/class_3/class_3.Rmd)                                                                                                                                 |
-| 28  | Agosto    | MLE y Tablas de contingencia|                                                                                                                                   |
-| 4   | Septiembre |                           |                                                                                                                                   |
+| 28  | Agosto    | Momentos y MLE |                                                                                                                                   |
+| 4   | Septiembre | Tablas de contingencia y medidas de asociación                      |                                                                                                                                   |
 | 11  | Septiembre | Modelo Lineal de Probabilidad (LPM)             |                                                                                                                                   |
 | 25  | Septiembre | Regresión Logística: estructura teórica y MLE   |                                                                                                                                   |
 | 16  | Octubre   | Regresión Logística: interpretación de efectos  |                                                                                                                                   |
@@ -39,9 +39,12 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 ## Ayudantías
 
+[Link](https://teams.microsoft.com/l/meetup-join/19%3ameeting_MjhlMzAyNzEtNjBiMS00ZWEyLThhMzgtYzQzZmRjNTZhMzQ5%40thread.v2/0?context=%7b%22Tid%22%3a%225ff5d9fa-f83f-4ac1-a4d2-eb48ea0a00d2%22%2c%22Oid%22%3a%22a6901aad-8777-4578-9043-5b080d1bcde8%22%7d) permanente de de las ayudantías. Recuerden que se realizaran en el primer modulo, es decir, todos los miércoles entre 12:20 y 13:30 hrs. 
+
 | Día | Mes         | Contenido                                 | Material |
 |-----|-------------|-------------------------------------------|------------|
 | 16  | Agosto      | R                                         |            |
+| 23  | Agosto      | R                                         |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/01_prob/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/01_prob/index.qmd)          | 
 | 30  | Agosto      | R                                         |            |
 | 6   | Septiembre  | R                                         |            |
 | 13  | Septiembre  | Regresión lineal, LPM                     |            |
