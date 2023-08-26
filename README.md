@@ -44,7 +44,6 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | Día | Mes         | Contenido                                 | Material |
 |-----|-------------|-------------------------------------------|------------|
 | 16  | Agosto      | R                                         |            |
-
 | 23  | Agosto      | R                                         |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/01_prob/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/01_prob/index.qmd)          | 
 | 30  | Agosto      | R                                         |            |
 | 6   | Septiembre  | R                                         |            |
