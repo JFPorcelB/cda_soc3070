@@ -23,7 +23,7 @@ class: inverse, center, middle
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
 library(tidyverse)
 library(xaringanthemer)
-style_duo_accent(primary_color = "#4953A6", secondary_color = "#E5E68C" ,
+style_duo_accent(primary_color = "#4953A6", secondary_color = "#FFD58D" ,
                  background_color = "#f8f7f3",
                  header_font_google = google_font("Archivo"),
                  text_font_google   = google_font("Inconsolata"), 
@@ -133,7 +133,7 @@ std_dev <- sd(prizes)
 
 # Bar plot of prizes
 plot <- ggplot(df, aes(x = prize)) +
-  geom_bar(aes(y = ..prop..), fill = "#E5E68C", color = "black", width = 100) +
+  geom_bar(aes(y = ..prop..), fill = "#FFD58D", color = "black", width = 100) +
   
   # Add a dashed line for the mean
   geom_vline(aes(xintercept = mean_prize), linetype="dashed", size = 1) +
@@ -319,7 +319,7 @@ std_dev <- sd(prizes)
 
 # Bar plot of prizes
 plot <- ggplot(df, aes(x = prize)) +
-  geom_bar(aes(y = ..prop..), fill = "#E5E68C", color = "black", width = 100) +
+  geom_bar(aes(y = ..prop..), fill = "#FFD58D", color = "black", width = 100) +
   
   # Add a dashed line for the mean
   geom_vline(aes(xintercept = mean_prize), linetype="dashed", size = 1) +
@@ -460,7 +460,7 @@ mydata$facet_title <- with(mydata, sprintf("Var(X) = 100 * %.2f * (1 - %.2f) = %
 plot <- ggplot(data = mydata, mapping = aes(x = x, y = y)) +
   
   # Binomial Bars with black borders and no space between bars
-  geom_bar(aes(fill = "#E5E68C"), color = "black", stat = "identity", position = "dodge", width = 1) +
+  geom_bar(aes(fill = "#FFD58D"), color = "black", stat = "identity", position = "dodge", width = 1) +
   
   # Labels and title
   labs(y = "f(x)", x = "X = x", title = "Probability function of X | n=100, p") +
@@ -508,7 +508,7 @@ plot <- ggplot(data = data.frame(p = 0), mapping = aes(x = p)) +
   stat_function(fun = var_binom, args = list(n = 1000), color = "black", size = 1.5) +
   xlim(0, 1) + 
   labs(title = "Varianza Binomial(n,p)", x = "p", y = expression(paste(n * p * (1 - p)))) +
-  geom_point(aes(x = 0.5, y = 1000/4), fill = "#E5E68C", shape=21, size = 8) +
+  geom_point(aes(x = 0.5, y = 1000/4), fill = "#FFD58D", shape=21, size = 8) +
   annotate(geom = "text", x = 0.5, y = 1060/4, label = 'bold("n/4")', color = "black", parse = TRUE, size = 8) +
   
   theme_minimal() +
@@ -563,7 +563,7 @@ mydata <- tibble(x = seq(from = 0, to = n, by = 1),
 
 plot <- ggplot(data = mydata, mapping = aes(x = x)) +
   # Binomial Bars with black borders and no space between bars
-  geom_bar(aes(y = binom, fill = "#E5E68C"), color = "black", stat = "identity", position = "dodge", width = 1) +
+  geom_bar(aes(y = binom, fill = "#FFD58D"), color = "black", stat = "identity", position = "dodge", width = 1) +
   # Normal Approximation Curve
   geom_line(aes(y = norm, color = "#4953A6"), size = 1.5) +
   
@@ -576,8 +576,8 @@ plot <- ggplot(data = mydata, mapping = aes(x = x)) +
                      guide = "legend") +
   
   scale_fill_manual(name = "", 
-                    values = c("#E5E68C"),
-                    breaks = c("#E5E68C"),
+                    values = c("#FFD58D"),
+                    breaks = c("#FFD58D"),
                     labels = c("Binomial(n=60,p=0.3)"),
                     guide = "legend") +
   
@@ -628,7 +628,7 @@ data_coins %>%
   ggplot(aes(x=factor(X))) + 
     geom_bar(aes(fill=factor(X)), width = 1, color = "black") + 
     geom_text(aes(label=..count.., y = ..count..), stat='count', vjust=-0.5, size = 5) + 
-    scale_fill_manual(values = c("#E5E68C", "#E5E68C")) + 
+    scale_fill_manual(values = c("#FFD58D", "#FFD58D")) + 
     labs(y="Recuentos", x="", title="") +
     guides(fill=FALSE) + 
     ylim(0,90) +
@@ -703,7 +703,7 @@ plot <- ggplot(data = data.frame(p = 0), mapping = aes(x = p))
 binom_distrib <- function(p,n,k) (p^(k))*((1-p)^(n-k))
 
 plot + 
-  stat_function(fun = binom_distrib, args = list(n= 100, k= 82), size=1.5, color = "#E5E68C") + 
+  stat_function(fun = binom_distrib, args = list(n= 100, k= 82), size=1.5, color = "#FFD58D") + 
   xlim(0,1) + 
   labs(title="Likelihood of p", x="p", y=expression(paste(p^{82}, (1-p)^{18}))) +
   guides(fill=FALSE, color=FALSE) +
@@ -809,8 +809,8 @@ parameter_space %>%
   as.data.frame() %>%
   ggplot(aes(x=p, y=loglik)) + 
   geom_line(aes(color=loglik), size=1.5) + 
-  geom_point(aes(x=m[which.max(m[,2]),1], y=m[which.max(m[,2]),2]), size=2.5, color="#E5E68C") +
-  scale_color_gradient(low = "#4953A6", high = "#E5E68C") + 
+  geom_point(aes(x=m[which.max(m[,2]),1], y=m[which.max(m[,2]),2]), size=2.5, color="#FFD58D") +
+  scale_color_gradient(low = "#4953A6", high = "#FFD58D") + 
   guides(fill=FALSE, color=FALSE) + 
   labs(title="Log-likelihood function", x="p", y="82*log(p) + (100 - 82)*log(1-p)") +
   annotate(geom="text", x=0.82, y=-35, label='bold("0.82")', color="black", parse=TRUE, size=8) +
