@@ -108,12 +108,15 @@ var(flip)  # varianza
 
 ```{r, message=F}
 library(tidyverse)
+library(readr)
 ```
 
 Visualizamos la distribución normal de la variable reading en el data frame `star`.
 
-```{r}
-star <- read.csv("STAR.csv") # datos
+```{r, message=FALSE}
+#star <- read.csv("STAR.csv") # datos
+url <- "https://raw.githubusercontent.com/mebucca/cda_soc3070/gh-pages/ayudantia/02_prob/STAR.csv"
+star <- readr::read_csv(url)
 
 # Histograma con densidad
 star %>%
