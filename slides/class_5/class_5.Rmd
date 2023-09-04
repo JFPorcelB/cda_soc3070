@@ -341,7 +341,7 @@ grid.arrange(p_y, NULL, p_main, p_x, ncol = 2, nrow = 2, widths = c(4, 1), heigh
 
 <br>
 
-- Recuerden que \mathbb{P}(Y=y \mid X=x)$ es la probabilidad de que la variable $Y$ tome valor $y$ si $X$ toma valor $x$.
+- Recuerden que $\mathbb{P}(Y=y \mid X=x)$ es la probabilidad de que la variable $Y$ tome valor $y$ si $X$ toma valor $x$.
 
 
 --
