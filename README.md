@@ -46,7 +46,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | 16  | Agosto      | R                                         |            |
 | 23  | Agosto      | R                                         |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/01_prob/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/01_prob/index.qmd) | 
 | 30  | Agosto      | R                                         |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/02_prob/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/02_prob/index.qmd) |
-| 6   | Septiembre  | R                                         |            |
+| 6   | Septiembre  | R                                         |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/03_manipulacion/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/03_manipulacion/index.qmd)          |
 | 13  | Septiembre  | Regresión lineal, LPM                     |            |
 | 20  | Septiembre  | Regresión logística                       |            |
 | 27  | Septiembre  | Regresión logística                       |            |
