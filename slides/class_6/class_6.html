@@ -4,10 +4,9 @@
     <title>Análisis de Datos Categóricos (SOC3070)</title>
     <meta charset="utf-8" />
     <meta name="author" content="  Mauricio Bucca  Profesor Asistente, Sociología UC" />
-    <script src="libs/header-attrs-2.15/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.24/header-attrs.js"></script>
     <link rel="stylesheet" href="gentle-r.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -17,7 +16,7 @@ class: center, middle, inverse, title-slide
 # Análisis de Datos Categóricos (SOC3070)
 ]
 .subtitle[
-## Clase #6
+## Clase #6: Modelo Lineal de Probabilidad
 ]
 .author[
 ### <br> Mauricio Bucca<br> Profesor Asistente, Sociología UC
@@ -28,923 +27,1149 @@ class: center, middle, inverse, title-slide
 
 ---
 
-
 class: inverse, center, middle
 
-#Tablas de Contingencia
-## Medidas de asociación
+
+#Modelo Lineal de Probabilidad
+##Modelos de Regresión para variable dependiente categórica
 
 ---
-##  Asociación en tablas de contingencia 
 
-Las variables de una tabla de contingencia están asociadas si la distribución condicional de las variables es distinta de su distribución marginal. Formalmente, 
+.pull-left[
+![allen](allen.jpg)
+]
+
+.pull-right[
+.huge[.bold[Todo lo que siempre quisiste saber sobre regresión lineal (ˆ)
+]]
+(ˆ) .bold[_Pero nunca te atreviste a preguntar_ ]
+]
+
+---
+##  Estructura de un modelo de regresión lineal
+
+
+Un modelo de regresión lineal estándar tiene la siguiente estructura:
 
 &lt;br&gt;
 
-- `\(f_{Y \mid X}(Y \mid X) \neq f_{Y}(Y)\)`
+`$$y_{i} = \overbrace{\beta_{0} + \beta_{1}x_{1i} + \dots \beta_{k}x_{ki}}^{\hat{y}} + e_{i}$$`
+donde:
 
-y por tanto,
+--
 
-- `\(f_{X \mid Y}(X \mid Y) \neq f_{X}(X)\)`
+- `\(y\)` es la variable dependiente
+
+- `\(x_{1} \dots x_{k}\)` son predictores o variables independientes 
+
+- `\(\beta_{1} \dots \beta_{k}\)` son los respectivos "efectos" de los predictores sobre `\(y\)`
+
+- `\(e\)` es un término de error aleatorio ("white noise")
+
+- `\(\hat{y} \perp e\)`
 
 
 ---
-##  Asociación en tablas de contingencia 
+##  Estructura de un modelo de regresión lineal
 
-
-
-Continuando con nuestro ejemplo,
-
-.pull-left[
-`\(f(\text{everaffair} \mid \text{sex})\)`
-
-```r
-prop.table(ctable,1)
-```
-
-```
-##         everaffair
-## sex      At least once     Never
-##   female     0.2285714 0.7714286
-##   male       0.2727273 0.7272727
-```
-
-
-`\(f(\text{everaffair})\)`
-
-```r
-prop.table(apply(ctable,2,sum))
-```
-
-```
-## At least once         Never 
-##      0.249584      0.750416
-```
-
-]
-
---
-
-.pull-right[
-Al parece que los hombres tienen una mayor probabilidad que las mujeres de haber tenido un "affair".
-
-En lo que sigue vamos a usar este ejemplo para estudiar:
-
-- Diferentes formas de cuantificar la asociación (o la ausencia de la misma) entre variables de una tabla de contingencia
-
-- Evaluar si las diferencias observadas son o no más sustanciales de lo se esperaría debido al mero azar.
-]
-
----
-class: inverse, center, middle
-
-## Medidas de Asociación
-
----
-## Diferencia de proporciones
-
-- Supongamos que tenemos una tabla de contingencia 2-ways que cruza las variables binarias `\(X\)` (independiente) y `\(Y\)` (dependiente).  Éxito se codifica con valor 1 y el fracaso con el valor 0.
-
-- Para detectar la asociación necesitamos medir diferencias en la distribución de `\(Y\)` condicional en `\(X\)`
-
---
-La diferencia de proporciones cuantifica estas diferencias de la siguiente manera:
-
-`$$\delta = \mathbb{P}(Y=1 \mid X=1) - \mathbb{P}(Y=1 \mid X=0)$$`
---
-
-Noten que `\(\delta \in [-1,1]\)` donde `\(\delta=0\)` indica proporciones iguales. 
-
---
-
-Volviendo a nuestro ejemplo, `\(\hat{p}_{H}\)`, llamemos y a la proporción de hombres que han tenido una aventura y `\(\hat{p}_{M}\)` a la proporción de mujeres que han tenido una aventura. La diferencia de proporciones se define simplemente como:
-
-`\begin{align}
-  \hat{\delta} &amp;= \hat{p}_{H} - \hat{p}_{M} \\ \\
-  &amp;= 0.273 - 0.229 \\ \\
-  &amp;= 0.044
-\end{align}`
-
----
-## Diferencia de proporciones
-
-Dos consideraciones importantes:
-
-1) La diferencia de proporciones debe estar adecuadamente definida en términos de una variable dependiente y otra independiente. La razón es que, en general:
-
-`$$\mathbb{P}(Y=1 \mid X=1) - \mathbb{P}(Y=1 \mid X=0) \neq  \mathbb{P}(X=1 \mid Y=1) - \mathbb{P}(X=1 \mid Y=0)$$`
-
---
-
-En nuestro ejemplo:
-
-
-```r
-prop.table(ctable,2)
-```
-
-```
-##         everaffair
-## sex      At least once     Never
-##   female     0.4800000 0.5388027
-##   male       0.5200000 0.4611973
-```
-
-Si tratamos género como variable dependiente y definimos "mujeres" como la categoría de éxito, la diferencia en las proporciones es `\(\delta = 0.48 - 0.54 = -0.06\)`. 
-
----
-## Diferencia de proporciones
-
-2) La diferencia de proporciones es una estadística intuitiva y fácil de interpretar, pero por sí sola puede ser engañosa cuando las proporciones son ambas cercanas a cero. Consideremos los dos casos hipotéticos siguientes:
-
-`\begin{align}
-  \text{Caso 1: } p_{1a}=0.410 \text{ and } p_{1b}=0.401  \\ \\
-  \text{aquí: } \delta_{1} = 0.009
-\end{align}`
-
---
-y
-
-`\begin{align}
-  \text{Caso 2: } p_{2a}=0.010 \text{ and } p_{2b}=0.001  \\ \\
-  \text{aquí: } \delta_{2} = 0.009
-\end{align}`
-
---
-¿Problemas? En el caso 1 ambas porciones son, según todos los indicios, casi idénticas. En el caso 2, sin embargo, ambas proporciones son similares en términos absolutos, por muy diferentes en términos relativos: `\(0.010\)` es 10 veces mayor `\(0.001\)`.
-
-
----
-## Odds Ratio
-
---
-&lt;br&gt;
-
-- Odds ratio ( `\(\theta\)` ) es una medida fundamental de asociación. 
-
---
-
-- Parámetro de interés en el modelo más importante de datos categóricos: regresión logística.
-
---
-
-- `\(\theta\)` está formulada para tablas de 2-por-2, pero también puede calcularse para tablas de mayor dimensión:
-
-  - Toda tabla `\(n\)`-ways, `\(I \cdot J\)`, puede ser re-escrita como  `\((I-1) \cdot (J-1) \cdot (n-1)\)` tablas de 2-por-2.
-
----
-### Odds
-
-La Odds Ratio es el ratio de dos "odds", donde las "odds" una variable binaria `\(Y\)` se definen como: 
-
-&lt;br&gt;
-
-`\begin{align}
-  \text{odds} &amp;= \frac{\mathbb{P}(Y=1)}{1-\mathbb{P}(Y=1)} \\ \\
-              &amp;=  \frac{p}{1-p}
-\end{align}`
+Podemos repensar el LM de la siguiente forma:
 
 &lt;br&gt;
 --
-
-Por ejemplo, si `\(Y\)` tiene una probabilidad de éxito `\(p=0.75\)`, las odds de éxito son `\(\text{odds}=\frac{0.75}{0.25} = 3\)`
-
-- Esto significa que las "chances" de éxito son 3:1
+.bold[Setup]
 
 
----
-### Odds
+- Tenemos `\(n\)` observaciones (individuos) independientes: `\(i = 1, \dots, n\)`
 
-las Odds son funciones de probabilidades y, por lo tanto, las probabilidades también pueden expresarse en función de las odds. Formalmente:
-
-`$$p = \frac{\text{odds}}{1 + \text{odds}}$$`
 
 --
 
-Siguiendo con ejemplo anterior, si sabemos que las odds de éxito son igual a 3, entonces la probabilidad ( `\(p\)` ) de éxito es:
+- Para cada individuo observamos un valor en la variable dependiente `\(y_{i}\)`, tal que  `\(y_{i} \in \{-\infty,\infty+ \}\)`
+
+
+--
+
+- Estos resultados son realizaciones de variables aleatorias `\(\text{Normal}(\mu_{i}, \sigma_{i})\)` con media y varianza desconocida: misma distribución pero parámetros (potencialmente) distintos
+
+  - Notar que es imposible identificar estos parámetros individualmente ( `\(n\)` observaciones y `\(2n\)` parámetros)
+
+---
+##  Estructura de un modelo de regresión lineal
+
+El modelo de regresión lineal estándar "resuelve" este problema de la siguiente manera
+
+`$$y_{i} \sim \text{Normal}(\mu_{i}, \sigma_{i}) \quad \quad \text{ donde}$$`
+--
+
+-  `\(\mu_{i} = \beta_{0} + \beta_{1}x_{1i} + \dots \beta_{k}x_{ki}\)`
+--
+`\(\quad =\mathbb{E}(y_{i} \mid x_{1}, \dots, x_{k})\)`
+
+
+--
+
+- `\(\sigma^{2}_{i} =  \sigma^{2}\)`
+--
+`\(\quad =\mathbb{Var}(y_{i} \mid x_{1}, \dots, x_{k})\)`
+
+--
+
+- `\(x_{1}, \dots, x_{k}\)` son valores fijos, no variables aleatorias
+
+
+--
+
+- Todo lo anterior implica que, si `\((e_{i} = y_{i} - \mu_{i})\)`, entonces
+--
+`\(\quad e_{i} = \text{Normal}(\mu_{i}, \sigma) - \mu_{i} \sim  \text{Normal}(0, \sigma)\)`
+
+
+--
+En resumen,
+
+.content-box-primary[
+`$$\color{white}{ y_{i} \sim \text{Normal}(\mu_{i}, \sigma) \quad  \text{ o, equivalentemente: } \quad  y_{i} = \mu_{i} + \text{Normal}(0, \sigma)}$$`
+]
+
+--
+
+Notar que  LM describe los datos con `\(k + 2\)` parámetros: `\(\beta_{0}, \beta_{1}, \dots, \beta_{k}, \sigma\)`
+
+---
+##  Estructura de un modelo de regresión lineal
+
+Es común encontrar el modelo lineal escrito en forma matricial:
+
+`$$\newcommand{\vect}[1]{\boldsymbol{#1}}$$`
+
+
 
 .pull-left[
-`\begin{align}
-p &amp;= \frac{3}{1 + 3} \\ \\
-  &amp;= 0.75
-\end{align}`
-]
+`$$\vect{y} \sim \text{Normal}_{n}(\vect{X}\vect{\beta},\vect{\Sigma}) \quad \text{ donde ...}$$`
 
---
 
-.pull-right[
-
-.content-box-blue[
-.tiny[.bold[Derivación]:
-`\begin{align}
-  \text{odds} &amp;= \frac{p}{1-p}  \text{  } \\ \\
-  \text{odds} &amp;= \frac{1}{\frac{1}{p} - 1}  \\ \\
-  \frac{1}{p} &amp;= \frac{1}{\text{odds}} + 1  \\  \\
-  \frac{1}{p} &amp;= \frac{1 + \text{odds}}{\text{odds}}  \\ \\
-           p  &amp;= \frac{\text{odds}}{1 + \text{odds}}
-\end{align}`
-]
-
-]
-]
-
----
-## Odds Ratio
-
-Las .bold[odds] resumen la distribución de una sola variable binaria. Para medir la asociación entre dos de estas variables en una tabla podemos calcular la .bold[odds *ratio*]. 
-
---
-
-Si `\(X\)` e `\(Y\)` son las variables binarias -- independiente y dependiente -- la distribución condicional `\(f(Y \mid X)\)` se puede resumir con dos .bold[odds]:
-
-`\begin{align}
-  \text{odds}_{0} &amp;=  \frac{\mathbb{P}(Y=1 | X=0) }{1 - \mathbb{P}(Y=1 | X=0) } \quad \text{y} \\ \\
-  \text{odds}_{1} &amp;=  \frac{\mathbb{P}(Y=1 | X=1) }{1 - \mathbb{P}(Y=1 | X=1) } 
-\end{align}`
-
---
-
-La .bold[odds *ratio*], por tanto, es:
-
-`\begin{align}
-  \theta &amp;= \frac{\text{odds}_{1}}{\text{odds}_{0}} \\ \\\
-\end{align}`
-
-
----
-## Odds Ratio
-
-Volviendo a nuestro ejemplo,
-
-
-```
-##         everaffair
-## sex      At least once     Never
-##   female     0.2285714 0.7714286
-##   male       0.2727273 0.7272727
-```
-
-Si `\(\hat{p}_{H}\)` es la proporción de hombres que han tenido una aventura y `\(\hat{p}_{M}\)` es la proporción de mujeres que han tenido una aventura. 
-
-
-`\begin{align}
-  \hat{\theta} = \frac{\text{odds}_{H}}{\text{odds}_{M}} &amp;= \\
-         &amp;= \frac{\hat{p}_{H}/(1 - \hat{p}_{H})}{\hat{p}_{M}/(1 - \hat{p}_{M})} \\ \\
-         &amp;= \frac{0.273/0.727}{0.229/0.771} \\ \\
-         &amp;= \frac{0.38}{0.30} = 1.27
-\end{align}`
-
----
-## Odds Ratio
-
-Dado que estas proporciones se *estiman* a partir de los recuentos de la tabla, `\(\hat{\theta}\)` también puede expresarse de la siguiente manera, denominada .bold[cross-product ratio].
-
-En nuestro ejemplo,
-
-.pull-left[
-
-```
-##         everaffair
-## sex      At least once Never
-##   female            72   243
-##   male              78   208
-```
-]
-
-.pull-right[
-`\begin{align}
-  \hat{\theta} &amp;= \frac{\hat{p}_{H}/(1 - \hat{p}_{H})}{\hat{p}_{M}/(1 - \hat{p}_{M})} \\ \\
-   &amp;= \frac{\frac{n_{21}}{n_{2+}} / \frac{n_{22}}{n_{2+}}}{\frac{n_{11}}{n_{1+}}/ \frac{n_{12}}{n_{1+} }} = \frac{n_{21}/n_{22}}{n_{11}/n_{12}}  \\ \\
-   &amp;= \frac{n_{21} \cdot n_{12}}{n_{22} \cdot n_{11}} \\ \\
-\end{align}`
-]
-
---
-
-
-```r
-Theta = (ctable[2,1]*ctable[1,2])/(ctable[2,2]*ctable[1,1]); Theta
-```
-
-```
-## [1] 1.265625
-```
-
----
-## Odds Ratio
-
-
-```r
-Theta = (ctable[2,1]*ctable[1,2])/(ctable[2,2]*ctable[1,1]); Theta
-```
-
-```
-## [1] 1.265625
-```
-
-.bold[Interpretación]: las odds de que un hombre tenga affair son 1,27 veces mayores que las de una mujer, es decir, 27% más altas. 
-
-Notice that:
-
-- `\(\theta \in [0,\infty+]\)`
-
---
-
-- `\(\theta=1\)` indica igualdad de odds y, por lo tanto, independencia
-
---
-
-- `\(\theta &gt; 1\)` indica que el éxito es más probable para el grupo en el numerador (hombres en este caso)
-
---
-
-- `\(\theta &lt; 1\)` indica que el éxito es más probable para el grupo en el denominador (mujeres en este caso)
-
---
-
-- Valores lejos de 1, en cualquier dirección, representan una fuerte evidencia contra independencia
-
----
-### Propiedades de la Odds Ratio
-
-1) Invirtiendo el orden de las filas o columnas obtenemos el inverso la odds ratio original.
-
-
-```
-##         everaffair
-## sex      At least once     Never
-##   female     0.2285714 0.7714286
-##   male       0.2727273 0.7272727
-```
-
-Si `\(\hat{p}_{H}\)` es la proporción de hombres que han tenido una aventura y `\(\hat{p}_{M}\)` es la proporción de mujeres que han tenido una aventura. 
-
-.pull-left[
-`\begin{align}
-  \hat{\theta}_{HM} &amp;= \frac{\hat{p}_{H}/(1 - \hat{p}_{H})}{\hat{p}_{M}/(1 - \hat{p}_{M})} \\ \\
-         &amp;= \frac{0.38}{0.30} \\ \\
-         &amp;= 1.27
-\end{align}`
-]
-
-.pull-right[
-`\begin{align}
-  \hat{\theta}_{HM} &amp;= \frac{\hat{p}_{M}/(1 - \hat{p}_{M})}{\hat{p}_{H}/(1 - \hat{p}_{H})} \\ \\
-         &amp;= \frac{0.30}{0.38} \\ \\
-         &amp;= 1/1.27 = 0.79
-\end{align}`
-]
-
-.full-width[
-Tanto `\(\theta\)` como `\(1/\theta\)` expresan el .bold[mismo grado de asociación].
-]
-
----
-### Propiedades de la Odds Ratio
-
-2) A diferencia de las otras medidas, la odds ratio no varia en función de que  variable actúa como dependiente e independiente. En otras palabras, no es necesario identificar una variable independiente para estimar correctamente `\(\theta\)`
-
---
-
-En nuestro ejemplo, tomando género como variable dependiente, donde `\(\hat{p}_{A}\)` es la probabilidad de ser hombre entre personar que han tenido un affair y `\(\hat{p}_{NA}\)` es la misma probabilidad para personas que nunca han tenido un affair, la odd-ratio de ser hombre es:
-
-.pull-left[
-
-```
-##         everaffair
-## sex      At least once     Never
-##   female     0.4800000 0.5388027
-##   male       0.5200000 0.4611973
-```
-]
-
-.pull-right[
-`\begin{align}
-  \hat{\theta} &amp;= \frac{\hat{p}_{A}/(1 - \hat{p}_{A})}{\hat{p}_{NA}/(1 - \hat{p}_{NA})} \\ \\
-         &amp;= \frac{0.52/0.48}{0.46/0.54} \\ \\
-         &amp;= \frac{1.1}{0.85} \\ \\
-         &amp;= 1.27
-\end{align}`
-]
-
----
-### Propiedades de la Odds Ratio
-
-3) La Odds Ratio es .bold[margins-free]: la odds ratio de una tabla de contingencia no se ven alteradas por el "escalamiento" (multiplicación por una constante) de filas o columnas.  
-
---
-
-.pull-top[
-.pull-left[
-.bold[Movilidad educacional 1980]
-
-```
-##          Hij@:NU Hij@:U
-## Padre:NU     160     20
-## Padres:U      20     20
-```
 ]
 .pull-right[
-.bold[Movilidad educacional 2020]
+- `\(\vect{y}\)` es un vector que contiene las diferentes `\(y_{i}, \dots, y_{n}\)`
 
-```
-##          Hij@:NU Hij@:U
-## Padre:NU     160     80
-## Padres:U      20     80
-```
-]
-]
+- `\(\vect{\mu} = \vect{X}\vect{\beta} = \beta_{0} + \beta_{1}\vect{x}_{1} + \dots + \beta_{k}\vect{x}_{k}\)`
 
---
-
-&lt;br&gt;
-
-.pull-bottom[
-.pull-left[
-- El .bold[13%] de los hijos padres sin estudios universitarios obtenía un grado universitario
-]
-.pull-right[
-- El .bold[33%] de los hijos padres sin estudios universitarios obtiene un grado universitario
-]
+- `\(\vect{\Sigma^{2}}\)` es la matriz de varianza-covarianza entre las observaciones
 ]
 
 &lt;br&gt;
 --
+visualmente:
 
-- .bold[Diferencia de proporciones]: 0.33 - 0.13 = 0.2
-- .bold[Riesgo relativo]: 0.33/0.13 = 2.5
-
---
-
-.full-width[
-.bold[Radio Duna:] _"En Chile practicamente se ha triplicado la movilidad educacional en los últimos 30 años, y aún así esta gente reclama..."_
-]
-
---
-.bold[Correcto?]
-
-
-&lt;style type="text/css"&gt;
-.pull-right ~ * { clear: unset; }
-.pull-right + * { clear: both; }
-&lt;/style&gt;
----
-### Propiedades de la Odds Ratio
-
-
-.bold[una verdad parcial:] el resultado refleja un .bold[cambio en la distribución marginal] de educación de los hijos, no un cambio en la asociación de las variables. 
---
- Concretamente, se cuaduplicó la cantidad de gente que termina la universidad, independiente de su origen. 
-
-.pull-top[
-
-.pull-left[
-.bold[Movilidad educacional 1980]
-
-```
-##          Hij@:NU Hij@:U
-## Padre:NU     160     20
-## Padres:U      20     20
-```
-]
-.pull-right[
-.bold[Movilidad educacional 2020]
-
-```
-##          Hij@:NU Hij@:U
-## Padre:NU     160     80
-## Padres:U      20     80
-```
-]
-
-]
-
-&lt;br&gt;
---
-
-.pull-bottom[
-
-.full-width[La odds ratio es "inmune a cambios" en la distribución marginal de las variables, capturando sólo la asociación neta entre ellas ("margin-free association")] 
-
-.pull-left[
-`\(\hat{\theta}_{1980} =  \frac{160 \cdot 20}{20 \cdot 20} = 8\)`
-]
-.pull-right[
-`\(\hat{\theta}_{2020} =  \frac{160 \cdot 80}{20 \cdot 80} = \frac{160 \cdot (4 \cdot 20)}{20 \cdot (4 \cdot 20)} = 8\)`
-]
-]
+`$$\begin{bmatrix}
+y_{i} \\  \vdots \\ y_{n}
+\end{bmatrix}_{(n,1)} \sim \text{Normal}_{n}\Bigg(  \vect{\mu} = \begin{bmatrix}
+\beta_{0} + \beta_{1}x_{1i} + \dots \beta_{k}x_{ki} \\ 
+ \vdots \\ \beta_{0} + \beta_{1}x_{1n} + \dots \beta_{k}x_{kn}
+\end{bmatrix}_{(n,1)} , \vect{\Sigma^{2}} = \begin{bmatrix}
+    \sigma^{2}    &amp; 0      &amp; \ldots         &amp; 0      \\
+    0      &amp; \sigma^{2}     &amp; \ldots         &amp; 0      \\
+    \vdots &amp; \vdots &amp; \sigma^{2}   &amp; \vdots \\
+    0      &amp; 0      &amp; \ldots         &amp; \sigma^{2} 
+\end{bmatrix}_{(n,n)}\Bigg)$$`
  
 ---
-### Log Odds Ratio
+##  Modelo de regresión lineal
 
-Como sabemos, `\(\theta \in [0,\infty+)\)`. Esto crea un problema tanto para la .bold[interpretación] como para la .bold[inferencia estadística]. Por ejemplo:
-
-- Supongamos que la odds ratio (hombres a mujeres) de tener un affair es `\(\theta = 20\)`.
-- Por ende, la odds ratio (mujeres a hombres) de tener un affair es `\(\theta^{*} = 1/ \theta = 0.05\)`. 
-- Ambos resultados indican el .bold[mismo nivel de asociación], pero uno parece mucho más grande que el otro.
-
+"Ensamblemos" el modelo via Monte Carlo Simulation. "Data Generating Process" (.bold[DGP]):
 --
 
-Transformando `\(\theta\)` a escala logarítmica permite mapear  `\([0,\infty+) \to (-\infty,\infty+)\)`, creando una medida de asociación  simétrica. 
 
-`\begin{align}
-  \theta &amp;=  \frac{1}{\theta^{*}}  \quad \text{entonces} \\ \\
-  \log(\theta) &amp;= -1 \cdot \log(\theta^{*})
-\end{align}`
-
---
-En nuestro ejemplo:
-.pull-left[
 
 ```r
-log(20)
+set.seed("87742") # seed
+n &lt;- 5000 # observaciones
+x &lt;- sample(1:100,n,replace=TRUE) # 1 predictor o var independiente
 ```
 
+
 ```
-## [1] 2.995732
+##  int [1:5000] 29 19 62 6 62 90 6 83 65 76 ...
 ```
+
+
+```r
+# parámetros
+sigma &lt;- 7 # sd
+b_0 &lt;- 10 # intercepto
+b_1 &lt;- 1.1 # coeficiente de x
+mu &lt;- b_0 + b_1*x # valor predicho
+```
+
+
+```
+##  num [1:5000] 41.9 30.9 78.2 16.6 78.2 ...
+```
+
+
+```r
+# variable dependiente
+y &lt;- rnorm(n,mu,sigma) # variable dependiente. Equivalente: y &lt;- mu + rnorm(n,0,sigma)
+```
+
+
+```
+##  num [1:5000] 44.4 37.03 81.88 9.85 81.41 ...
+```
+
+---
+## Estimación modelo de regresión lineal:
+
+.pull-left[
+.content-box-primary[
+.bold[OLS]
+`$$\color{white}{\hat{\boldsymbol{\beta}}_{OLS} = \underset{\beta}{\arg\min\ } \sum_{i=1}^{n} (y_{i} - \vect{X}_{i}'\vect{\beta})^{2} \quad \text{ donde}}$$`
+]
 ]
 
 .pull-right[
+- `\(\vect{y}\)` es el vector `\(y_{i}, \dots, y_{n}\)`
+- `\(\vect{X}_{i}'\vect{\beta} = \beta_{0} + \beta_{1}x_{1i} + \dots + \beta_{k}x_{ki}\)`
+]
+
+--
+
+.pull-left[
+.content-box-primary[
+.bold[MLE]
+`$$\color{white}{\hat{\boldsymbol{\beta}}_{MLE} = \underset{\beta}{\arg\max\ } \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^{2}}} e^{- \frac{(y_{i} - \vect{X}_{i}'\vect{\beta})^{2}}{2\sigma^{2}}} \quad \text{ donde}}$$`
+]
+]
+
+.pull-right[
+* `\(\frac{1}{\sqrt{2\pi\sigma^{2}}} e^{- \frac{(x - \mu)^{2}}{2\sigma^{2}}}\)` es la función de probabilidad de una variable `\(X\)` que distribuye .bold[normal]
+]
+
+&lt;style type="text/css"&gt;
+.pull-right ~ * { clear: unset; }
+.pull-right + * { clear: both; }
+&lt;/style&gt;
+--
+Ambos métodos producen mismos resultados en el caso de LM.
+
+
+---
+## Modelo de regresión lineal
+
+Ahora estimemos los parámetros de nuestro modelo via OLS 
+
 
 ```r
-log(0.05)
+our_data &lt;- tibble(y=y, x=x)
+our_lm_ols &lt;- lm(y ~ x, data=our_data) # "fit" el modelo usando función lm()
+print(summary(our_lm_ols)) # analicemos nuestros resultados
 ```
 
 ```
-## [1] -2.995732
+## 
+## Call:
+## lm(formula = y ~ x, data = our_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -24.9776  -4.6438   0.0353   4.6418  25.1847 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 10.168799   0.193246   52.62   &lt;2e-16 ***
+## x            1.095101   0.003382  323.81   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 6.943 on 4998 degrees of freedom
+## Multiple R-squared:  0.9545,	Adjusted R-squared:  0.9545 
+## F-statistic: 1.049e+05 on 1 and 4998 DF,  p-value: &lt; 2.2e-16
+```
+
+---
+## Modelo de regresión lineal
+
+Ahora estimemos los parámetros via MLE
+
+
+```r
+our_lm_mle &lt;- glm(y ~ x, family="gaussian", data=our_data) # "fit" modelo usando función glm()
+print(summary(our_lm_mle)) # analicemos nuestros resultados
+```
+
+```
+## 
+## Call:
+## glm(formula = y ~ x, family = "gaussian", data = our_data)
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 10.168799   0.193246   52.62   &lt;2e-16 ***
+## x            1.095101   0.003382  323.81   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for gaussian family taken to be 48.20756)
+## 
+##     Null deviance: 5295609  on 4999  degrees of freedom
+## Residual deviance:  240941  on 4998  degrees of freedom
+## AIC: 33571
+## 
+## Number of Fisher Scoring iterations: 2
+```
+
+---
+## Modelo de regresión lineal
+
+.pull-left[
+![](class_6_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+]
+
+--
+
+.pull-right[
+Observamos que:
+
+-  `\(\mathbb{E}(y_{i} \mid x = 50) = 64.9\)`
+
+-  `\(\mathbb{E}(y_{i} \mid x = 60) = 75.9\)`
+
+- Estas "medias condicionales" no son determinísticas sino .bold[_probabilísticas_].
+
+
+- Específicamente, sabemos que:
+
+  - `\(y_{i} \mid x = 50  \sim \text{Normal}(\mu= 64.9, \sigma=7)\)` 
+
+  - `\(y_{i} \mid x = 60  \sim \text{Normal}(\mu= 75.9, \sigma=7)\)`
+]
+
+---
+## Modelo de regresión lineal
+
+
+.pull-left[
+
+&lt;br&gt;
+Así se ve:
+
+-  `\(\mathbb{E}(y_{i} \mid x = 50) = 64.9\)`
+
+-  `\(\mathbb{E}(y_{i} \mid x = 60) = 75.9\)`
+
+&lt;br&gt;
+donde:
+
+  - `\(y_{i} \mid x = 50  \sim \text{Normal}(\mu= 64.9, \sigma=7)\)` 
+
+  - `\(y_{i} \mid x = 60  \sim \text{Normal}(\mu= 75.9, \sigma=7)\)`
+]
+
+
+.pull-right[
+
+
+
+
+![](class_6_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+
+
+]
+
+---
+## Interpretación coeficientes en LM
+
+`$$\text{Si } \quad \quad y_{i} = \overbrace{\beta_{0} + \beta_{1}x_{1i} + \dots \beta_{k}x_{ki}}^{\mathbb{E}(y_{i} \mid x_{1}, \dots, x_{k})} + \underbrace{e_{i}}_{\text{Normal}(0,\sigma)}$$`
+
+---
+## Interpretación coeficientes en LM
+
+`$$\text{Si } \quad \quad y_{i} = \overbrace{\beta_{0} + \beta_{1}x_{1i} + \dots \beta_{k}x_{ki}}^{\mathbb{E}(y_{i} \mid x_{1}, \dots, x_{k})} + \underbrace{e_{i}}_{\text{Normal}}(0,\sigma)$$`
+
+Entonces decimos que el efecto de `\(x_{k}\)` sobre `\(y\)` es `\(\beta_{k}\)`. ¿Qué significa?
+
+.pull-left[
+`$$\frac{\partial \mathbb{E}(y_{i} \mid x_{1}, \dots, x_{k})}{\partial x_{k}} = \beta_{k}$$`
+]
+.pull-right[
+"Un cambio en `\(\Delta\)` unidades de `\(x_{k}\)` se traduce en un cambio en `\(\Delta\)` `\(\beta_{k}\)` unidades en el valor esperado de `\(y_{i}\)`"
+]
+
+--
+
+¿Por qué?
+--
+ Asumamos que sólo la variable `\(x_{1}\)` cambia en una unidad, de `\(x_{1}=c\)` a `\(x_{1}=c+1\)`. Entonces:
+
+`\begin{align}
+  \frac{\Delta \mathbb{E}(y_{i})  }{\Delta x_{1}} &amp;= \frac{ \mathbb{E}(y_{i} \mid x_{1}=c+1, \dots, x_{k})  - \mathbb{E}(y_{i} \mid x_{1}=c, \dots, x_{k})}{(c+1) - c} \\ \\
+  &amp;=(\beta_{0} + \beta_{1}(c+1) +  \dots + \beta_{l}x_{k}) - (\beta_{0} + \beta_{1}c  \dots + \beta_{l}x_{k}) = \beta_{1}(c+1) - \beta_{1}c \\ \\
+  &amp;= \beta_{1}c + \beta_{1} - \beta_{1}c = \beta_{1}
+\end{align}`
+
+---
+## Interpretación coeficientes en LM
+
+En nuestro ejemplo:
+
+.pull-left[
+
+```r
+print(our_lm_ols)
+```
+
+```
+## 
+## Call:
+## lm(formula = y ~ x, data = our_data)
+## 
+## Coefficients:
+## (Intercept)            x  
+##      10.169        1.095
+```
+]
+.pull-right[
+Si `x=50`, entonces `y`=
+
+```r
+10.2 + 1.1*50
+```
+
+```
+## [1] 65.2
+```
+
+Si `x=51`, entonces `y`=
+
+```r
+10.2 + 1.1*51
+```
+
+```
+## [1] 66.3
+```
+
+Por tanto, `\(\beta\)`=
+
+```r
+((10.2 + 1.1*51)-(10.2 + 1.1*50))/(51 - 50)
+```
+
+```
+## [1] 1.1
 ```
 ]
 
 ---
-### Log Odds Ratio
+
+## Interpretación coeficientes en LM
+
+Un ejemplo más complejo: podemos incluir interacciones y efectos no lineales
+
+
+```r
+set.seed("87742") # seed
+n &lt;- 10000 # observaciones
+x &lt;- sample(1:100,n,replace=TRUE) # variable independiente continua
+d &lt;- sample(0:1,n,replace = TRUE) # dicotómica
+```
+
+
+```r
+# parámetros
+sigma &lt;- 50 # sd
+b_0 &lt;- 10  # intercepto
+b_1 &lt;- 0.1  # coeficiente de variable x^2
+b_2 &lt;- 2  # coeficiente de variable dummy d
+b_3 &lt;- 0.05 # coeficiente interacción x^2*d 
+
+mu &lt;- b_0 + b_1*I(x^2) + b_2*d + b_3*I(x^2)*d   # valor predicho
+```
+
+
+```r
+# variable dependiente
+y &lt;- mu + rnorm(n,0,sigma)
+```
+
+
+```
+##  'AsIs' num [1:10000] 114.0630.... -6.40535.... 472.9015.... 36.26481.... 387.7212.... ...
+```
+
+---
+## Interpretación coeficientes en LM
+
+Estimamos los parámetros  via OLS 
+
+
+
+```r
+our_data2 &lt;- tibble(y=y, x=x, d=d) 
+our_lm_ols2 &lt;- lm(y ~ I(x^2)*factor(d), data=our_data2) # "fit" el modelo usando función lm()
+print(summary(our_lm_ols2)) # analicemos nuestros resultados
+```
+
+```
+## 
+## Call:
+## lm(formula = y ~ I(x^2) * factor(d), data = our_data2)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -203.60  -32.74    0.05   33.05  181.90 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       9.3760348  1.0493901   8.935   &lt;2e-16 ***
+## I(x^2)            0.1002460  0.0002331 429.992   &lt;2e-16 ***
+## factor(d)1        0.1349249  1.4837465   0.091    0.928    
+## I(x^2):factor(d)1 0.0499252  0.0003301 151.246   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 49.45 on 9996 degrees of freedom
+## Multiple R-squared:  0.9843,	Adjusted R-squared:  0.9843 
+## F-statistic: 2.089e+05 on 3 and 9996 DF,  p-value: &lt; 2.2e-16
+```
+
+---
+## Interpretación coeficientes en LM
 
 .pull-left[
--  `\(\log(\theta) \in (\infty-,\infty+)\)` 
-
-- `\(\theta=0\)` indica igualdad de odds y, por lo tanto, independencia
-
-- `\(\log(\theta) &gt; 0\)` indica que el éxito es más probable para el grupo en el numerador
-
-- `\(\log(\theta) &lt; 0\)` indica que el éxito es más probable para el grupo en el denominador
-
-- `\(\lvert \log(\theta) \rvert\)` indica la fuerza de la asociación entre las variables
-
-- Valores lejos de 0, en cualquier dirección, representan fuerte evidencia contra independencia
-
+![](class_6_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
 ]
 
+--
+
+
 .pull-right[
-![](class_6_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+
+`$$y_{i} = \beta_{0} + \beta_{1} x^{2}_{i} +  \beta_{2}d_{i} + \beta_{3} x^{2}_{i} \cdot d_{i} + e_{i}$$`
+&lt;br&gt;
+Por tanto:
+
+`\begin{align}
+\mathbb{E}(y_{i} \mid x, d) =
+  \begin{cases} 
+    \beta_{0} + \beta_{1} x^{2}_{i}   &amp;\quad \text{ si } d_{i}=0 \\ \\
+    (\beta_{0} + \beta_{2}) + (\beta_{1} + \beta_{3}) x^{2}_{i} &amp;\quad  \text{ si } d_{i}=1
+  \end{cases}
+\end{align}`
+
+&lt;br&gt;
+&lt;br&gt;
+Específicamente:
+
+`\begin{align}
+\frac{\partial \mathbb{E}(y_{i} \mid x, d) }{\partial x} = 
+  \begin{cases} 
+    2 \beta_{1}x &amp; \quad \text{ si } d_{i}=0 \\ \\
+    2(\beta_{1} + \beta_{3})x &amp; \quad \text{ si } d_{i}=1
+  \end{cases}
+\end{align}`
 ]
 
 ---
 class: inverse, center, middle
 
-## Inferencia para Medidas de Asociación
+## El Modelo Lineal de Probabilidad (LPM)
 
 ---
-class: middle
-## Inferencia para medidas de Asociación: cuidado!
 
-.pull-left[![pvalues1](pvalue_nature.png)]
+## El Modelo Lineal de Probabilidad (LPM)
 
-
-.pull-right[![pvalues2](pvalue.png)]
-
----
-## Inferencia para medidas de Asociación
-
-O, sobre como podemos saber si nuestros resultados no son, o no, producidos por el mero azar.
+.bold[LMP] es simplemente un modelo de regresión lineal aplicado a una variable dicotómica. Un LMP estándar tiene la siguiente forma:
 
 --
 
-- Para responder esta pregunta debemos conocer la .bold[sampling distribution] de nuestro estimador, especialmente su _variabilidad_.
+`$$y_{i} = \overbrace{\beta_{0} + \beta_{1}x_{1i} + \dots + \beta_{k}x_{ki}}^{\mathbb{E}(y_{i} \mid x_{1}, \dots, x_{k})} +  e_{i} \quad \quad \text{ donde } y_{i} \in \{0,1\}$$`
 
-- Los parámetros que "generan" los datos no varían pero nuestra estimaciones si: de muestra en muestra.
+
+Dado que  `\(y_{i} \in \{0,1\}\)`,
+
+
+* `\(\mathbb{E}(y_{i} \mid x_{1}, \dots, x_{k}) \equiv \mathbb{P}(y_{i} =1 \mid x_{1}, \dots, x_{k})\)`
+
+* Equivalentemente, `\(\mu_{i} \equiv p_{i}\)`
+
+&lt;br&gt; &lt;br&gt;
+--
+
+Por tanto, en un LPM
+
+.content-box-primary[
+`$$\color{white}{y_{i} \sim \text{Normal}(p_{i}, \sigma) \quad  \text{ o, equivalentemente: } \quad  y_{i} = p_{i} + \text{Normal}(0, \sigma)}$$`
+]
+
+---
+## LMP en la práctica 
+
+Para ejemplificar el uso del LPM continuaremos trabajando con los datos de infidelidad. 
+
+
+```
+## # A tibble: 15 × 10
+##    sex      age    ym child religious education  rate nbaffairs everaffair   
+##    &lt;fct&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;     &lt;int&gt;     &lt;dbl&gt; &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;        
+##  1 male      57    15 yes           4        20     4         0 Never        
+##  2 female    57    15 yes           4        16     4         0 Never        
+##  3 female    57    15 yes           2        18     2         0 Never        
+##  4 male      57    15 yes           4         9     2         0 Never        
+##  5 male      57    15 yes           4        20     5         0 Never        
+##  6 male      57    15 yes           2        20     4         0 Never        
+##  7 male      57    15 yes           4         9     4         0 Never        
+##  8 male      57    15 yes           4        17     5         0 Never        
+##  9 male      57    15 yes           5        18     2         0 Never        
+## 10 female    57    15 yes           3        18     2         0 Never        
+## 11 male      57    15 no            4         9     1         0 Never        
+## 12 female    57    15 no            4        20     5         0 Never        
+## 13 female    57    15 yes           1        18     4         2 At least once
+## 14 male      57    15 yes           1        17     4         2 At least once
+## 15 male      57    15 yes           5        20     5         7 At least once
+## # ℹ 1 more variable: everaffair_d &lt;dbl&gt;
+```
+
+---
+## LMP en la práctica 
+
+Ajustaremos el siguiente modelo: `\(\text{everaffair}_{i} = \beta_{0} + \beta_{1}*\text{rate}_{i}\)`, que modela la probabilidad de tener un affair como función de la evaluación de los entrevistados de su matrimonio, desde 1 (muy infeliz) a 5 (muy feliz).
+
+
+```r
+lpm_affairs_rate &lt;- lm(everaffair_d ~ rate, data=affairsdata); summary(lpm_affairs_rate)
+```
+
+```
+## 
+## Call:
+## lm(formula = everaffair_d ~ rate, data = affairsdata)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.5417 -0.2428 -0.1431 -0.1431  0.8569 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.64140    0.06336  10.123  &lt; 2e-16 ***
+## rate        -0.09965    0.01552  -6.422 2.74e-10 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.4193 on 599 degrees of freedom
+## Multiple R-squared:  0.06442,	Adjusted R-squared:  0.06286 
+## F-statistic: 41.25 on 1 and 599 DF,  p-value: 2.736e-10
+```
+
+---
+## LMP en la práctica 
+
+.pull-left[
+![](class_6_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+]
 
 --
+
+.pull-right[
+.bold[Modelo]
+
+`\(\text{everaffair}_{i} = \beta_{0} + \beta_{1}*\text{rate}_{i}\)`
+
+Específicamente:
+
+`\(\frac{\partial \mathbb{P}(\text{affair}_{i}=1 \mid \text{ rate}) }{\partial \text{ rate}} = \beta_{1} = -0.1\)` 
+
+
+.bold[Interpretación]:
+
+"Un cambio en `\(\Delta\)` unidades en la evaluación del matrimonio se traduce en un cambio en `\(\Delta\)` `\(\beta_{1}\)` unidades la probabilidad de haber tenido un affair"
+
+
+.bold[Ejemplo]:
+
+Diferencia en probabilidad de affair entre personas con matrimonio "muy infeliz" vs "muy feliz":
+
+`\((\beta_{0} + \beta_{1}) - (\beta_{0} + 5\beta_{1}) = -4\beta_{1} = 0.4\)`
+
+]
+
+---
+## LMP en la práctica 
+
+.content-box-primary[
+`$$\color{white}{\text{LPM asume que: } \quad y_{i} \sim \text{Normal}(p_{i}, \sigma) \quad  \text{ o, equivalentemente: } \quad  y_{i} = p_{i} + \text{Normal}(0, \sigma)}$$`
+]
 
 &lt;br&gt;
 
-.bold[Caso canónico] es el _promedio muestral_, para el cual sabemos que: `\(\bar{X} \sim \text{Normal}(\mu,\frac{\sigma}{\sqrt{n}})\)`
- - La desviación estándar del .bold[estimador] (en este caso, `\(\frac{\sigma}{\sqrt{n}}\)` ) es lo que denominamos .bold[error estándar (SE)].
+En este caso:
+
+`$$\text{everaffair}_{i} \sim \text{Normal}(\hat{p}_{i}= 0.64 - 0.1*\text{rate}_{i}, \hat{\sigma}=0.42)$$`
+
+
+donde `\(\hat{p}_{i} \in (0.14,0.54)\)`
+
+&lt;br&gt;
+--
+
+Hasta aquí todo bien, pero ...
+
+---
+## Limitaciones del LMP  
+
+.content-box-primary[
+`$$\color{white}{\text{LPM asume que: } \quad  y_{i} \sim \text{Normal}(p_{i}, \sigma) \quad  \text{ o, equivalentemente: } \quad  y_{i} = p_{i} + \text{Normal}(0, \sigma)}$$`
+]
+
+&lt;br&gt;
+
+.bold[1) Distribución y rango]
+
+- LPM asume que las observaciones `\(y_{i}, \dots, y_{n}\)` siguen una distribución normal, pero sabemos que no es así. `\(y_{i} \in \{0,1\}\)`. 
 
 --
 
- - Por qué? Si `\(x_1, \dots, x_n\)` son _iid_, entonces:
+Derivado de lo anterior,
+
+- A pesar de que `\(y_{i} \in \{0,1\}\)`, las predicciones de un LPM no están restringidas a este rango. Teóricamente, `\(p_{i} \in \{-\infty,\infty+\}\)`. En la práctica  `\(\hat{p}_{i}\)` puede salir de rango `\(\{0,1\}\)`, especialmente cuando la probabilidad marginal `\(\mathbb{P}(y=1)\)` es cercana a `\(0\)` o `\(1\)`.
+
+---
+## Limitaciones del LMP  
+
+.bold[1) Distribución y rango]
+
+
+  - El problema no es sólo que obtener probabilidades predichas menores que 0 o mayores que 1 no tiene sentido.
+  
+  - Cuando esto ocurre, los coeficientes estimados por el LMP son .bold[sesgados] e .bold[inconsistentes]
+    
+    - Más aún, en muestras grandes el problema es peor: converge hacia valores erróneos
+    
+    - Problema especialmente serio cuando el modelo produce una proporción alta de predicciones fuera de rango
+    
+
+&lt;br&gt;
+
+.pull-left[
+![oaxaca1](oaxaca1.png)
+]
+
+.pull-left[
+![oaxaca2](oaxaca2.png)
+]
+
+---
+
+.bold[Paréntesis: Sesgo (Bias) y Consistencia (Consistency) de un estimador]
+
+--
+
+.pull-left[
+
+![unb_cons](unbiased_consistent.png)
+]
+
+--
+
+.pull-right[
+![b_incons](biased_inconsistent.png)
+
+]
+
+---
+.bold[Paréntesis: Sesgo (Bias) y Consistencia (Consistency) de un estimador]
+
+--
+
+.pull-left[
+![b_cons](biased_consistent.png)
+
+]
+
+--
+
+.pull-right[
+![unb_incons](unbiased_inconsistent.png)
+
+]
+
+
+---
+## Limitaciones del LMP  
+
+.content-box-primary[
+`$$\color{white}{\text{LPM asume que: } \quad  y_{i} \sim \text{Normal}(p_{i}, \sigma) \quad  \text{ o, equivalentemente: } \quad  y_{i} = p_{i} + \text{Normal}(0, \sigma)}$$`
+]
+
+.bold[2) Observaciones con varianza heterogénea (o, errores heterocedásticos)]
+
 `\begin{align}
-\mathbb{Var}\big(\bar{X}\big) &amp;= \mathbb{Var}\Big(\frac{x_{i} + ... + x_{n}}{n}\Big) = \frac{1}{n^2} \Big(\mathbb{Var}(x_{i}) + ... + \mathbb{Var}(x_{n})\Big) \\
- &amp;= \frac{1}{n^2}( \sigma^2 + ... + \sigma^2 ) = \frac{n\sigma^2}{n^2} = \frac{\sigma^2}{n} 
+  \mathbb{Var}(y_{i}) &amp;=  \sum_{\text{valores } y_{i}} (y_{i} - \mathbb{E}(y_{i}) )^{2} \cdot \mathbb{P}(y_{i}) \\ 
+             &amp;= \sum_{\text{valores } y_{i}} (y_{i} - p_{i})^{2} \cdot \mathbb{P}(y_{i}) 
 \end{align}`
 
-
-
 ---
-### Inferencia para Diferencia de proporciones
+## Limitaciones del LMP  
 
-Como recordarán de clases anteriores, asintóticamente, la "sampling distribution" de una proporción es:
-
-`$$\hat{p} \sim \text{Normal}(\mu,\sigma) \quad \quad \text{ donde }\mu = p \quad \text{ y }\quad \sigma^2 = p(1-p)/n$$`
-
---
-
-Por tanto, la "sampling distribution" de la diferencia entre dos proporciones _independientes_,  `\(\hat{\delta} = \hat{p}_{1} - \hat{p}_{2}\)`, es:
-
-
-`$$\text{Normal}\Big(\mu_{1} = p_{1}, \sigma_{1} = \sqrt{p_{1}(1-p_{1})/n_{1}}\Big) - \text{Normal}\Big(\mu_{2} = p_{2},  \sigma_{2} = \sqrt{p_{2}(1-p_{2})/n_{2}}\Big)$$`
---
-
-dado que para variables independiente X e Y: 
-  - `\(\mathbb{E}(X - Y)  = E(X) -  E(Y)\)` y `\(\mathbb{Var}(X - Y)  = \mathbb{Var}(X) + \mathbb{Var}(Y)\)`
-
---
-
-  - `\(\text{Normal}() \pm \text{Normal}() \sim \text{Normal}()\)`,  entonces:
-
---
-
-.content-box-blue[
-`$$\hat{p}_{1} - \hat{p}_{2} \sim \text{Normal}\Big(\mu_{\delta} = p_{1} - p_{2}, \sigma_{\delta} = \sqrt{p_{1}(1-p_{1})/n_{1} + p_{2}(1-p_{2})/n_{2}}\Big)$$`
+.content-box-primary[
+`$$\text{LPM asume que: } \quad  y_{i} \sim \text{Normal}(p_{i}, \sigma) \quad  \text{ o, equivalentemente: } \quad  y_{i} = p_{i} + \text{Normal}(0, \sigma)$$`
 ]
 
----
-### Inferencia para Diferencia de proporciones
+&lt;br&gt;
 
-.bold[Intervalo de confianza]
-Podemos usar este resultado para construir un intervalo de confianza para `\(\hat{\delta} = \hat{p_{1}} - \hat{p_{2}}\)`, al (1 - `\(\alpha\)`)% de confianza. Para un nivel de significación estadística de `\(\alpha=0.05\)`,
+.bold[2) Observaciones con varianza heterogenea (o, errores heterocedásticos)]
+
+&lt;br&gt;
 
 `\begin{align}
-  95\% \text{ CI}_{\hat{\delta}} &amp;= \hat{\delta} \pm 2 \times SE \\ \\
-          &amp;= (\hat{p_{1}} - \hat{p_{2}}) \pm 2  \sqrt{p_{1}(1-p_{1})/n_{1} + p_{2}(1-p_{2})/n_{2}}
+  \mathbb{Var}(y_{i}) &amp;=  \sum_{\text{valores } y_{i}} (y_{i} - \mathbb{E}(y_{i}) )^{2} \cdot \mathbb{P}(y_{i}) \\ 
+             &amp;= \sum_{\text{valores } y_{i}} (y_{i} - p_{i})^{2} \cdot \mathbb{P}(y_{i}) \\  \\
+             &amp;=   (1 - p_{i})^{2} \cdot \mathbb{P}(y_{i}=1) + (0 - p_{i})^{2} \cdot \mathbb{P}(y_{i}=0) \\ 
+             &amp;=   (1 - p_{i})^{2}p_{i} + (0 - p_{i})^{2} (1-p_{i}) \\ 
+             &amp;= p_{i}(1-p_{i}) 
 \end{align}`
 
+---
+## Limitaciones del LMP  
+
+
+.bold[2) Observaciones con varianza heterogénea (o, errores heterocedásticos)]
+
+`\begin{align}
+  \mathbb{Var}(y_{i}) &amp;=  p_{i}(1-p_{i}) \\
+                      &amp;= (\beta_{0} + \beta_{1}x_{1i} + \dots + \beta_{k}x_{ki})(1 - \beta_{0} + \beta_{1}x_{1i} + \dots + \beta_{k}x_{ki})
+\end{align}`
+
+--
+
+Por tanto,
 &lt;br&gt;
-.bold[Nota importante]: cuando no conocemos los _verdaderos_ parámetros reemplazamos por sus valores estimados  (en este caso, `\(\hat{p_{1}}\)` y `\(\hat{p_{2}}\)` en vez de `\(p_{1}\)` y `\(p_{2}\)`).
-
-
----
-### Inferencia para Diferencia de proporciones
-
-`$$95\% \text{ CI}_{\hat{\delta}} = (\hat{p_{1}} - \hat{p_{2}}) \pm 2  \sqrt{p_{1}(1-p_{1})/n_{1} + p_{2}(1-p_{2})/n_{2}}$$`
-
-En nuestro ejemplo,
-
-.pull-left[
-
-```r
-print(ctable)
-```
-
-```
-##         everaffair
-## sex      At least once Never
-##   female            72   243
-##   male              78   208
-```
+.content-box-primary[
+`$$\color{white}{\text{LPM asume que: } \quad  y_{i} \sim \text{Normal}(p_{i}, \sigma) \quad  \text{ o, equivalentemente: } \quad  y_{i} = p_{i} + \text{Normal}(0, \sigma)}$$`
 ]
-
-.pull-right[
-
-```r
-n1 = sum(ctable[2,])
-n2 = sum(ctable[1,])
-p1_hat = ctable[2,1]/n1
-p2_hat = ctable[1,1]/n2
-```
-]
-
-
-
-```r
-delta_hat = p1_hat - p2_hat
-se = sqrt((p1_hat*(1 - p1_hat))/n1 +  (p2_hat*(1 - p2_hat))/n2)
-ci95_delta= c(ll=(delta_hat - 2*se), ul=(delta_hat + 2*se)); print(ci95_delta)
-```
-
---
-
-.pull-left[
-Nuestro 95% CI:
-
-```
-##          ll          ul 
-## -0.02664777  0.11495946
-```
-]
-
-.pull-right[
-Versión automática con `prop.test()` en `R`:
-
-```
-## [1] -0.02523043  0.11354212
-```
-]
-
-&lt;style type="text/css"&gt;
-.pull-right ~ * { clear: unset; }
-.pull-right + * { clear: both; }
-&lt;/style&gt;
-
-
----
-### Inferencia para Diferencia de proporciones
-
-.bold[Test de hipótesis]
-
---
-
-1) ¿Cuál es la distribución de `\(\hat{p}_{1} - \hat{p}_{2}\)` si la hipótesis nula es verdadera?
-  - `\(H_{0}: \tilde{\delta} = \hat{p}_{1} - \hat{p}_{2}=0\)` 
-
---
-
-.content-box-blue[
-`$$\tilde{\delta} =  \hat{p}_{1} - \hat{p}_{2} \sim \text{Normal}\Big(\mu_{\delta} = 0, \sigma_{\delta} = \sqrt{p(1-p)(1/n_{1}+1/n_{2})}\Big)$$`
-]
-
-
-- Típicamente `\(p\)` se reemplaza por el promedio ponderado de `\(\hat{p_{1}}\)` y `\(\hat{p_{2}}\)`  
 
 &lt;br&gt;
 --
 
-2) Calcular .bold[p-value] (1 colas)
-
-
-.content-box-blue[
-`$$\mathbb{P}(\delta  &gt; \hat{\delta} \mid H_{0})$$`
+pero en realidad,
+&lt;br&gt;
+.content-box-secondary[
+`$$\color{white}{y_{i} \sim \text{Normal}(p_{i}, \sigma_{i} = p_{i}(1-p_{i})) \quad  \text{ o, equivalentemente: } \quad  y_{i} = p_{i} + \text{Normal}(0, \sigma_{i} = p_{i}(1-p_{i}))}$$`
 ]
-
-&lt;style type="text/css"&gt;
-.pull-right ~ * { clear: unset; }
-.pull-right + * { clear: both; }
-&lt;/style&gt;
 
 ---
-### Inferencia para Diferencia de proporciones
+## Limitaciones del LMP en la práctica 
 
-.bold[Test de hipótesis]
+Para ejemplificar estas limitaciones del LPM estimemos un modelo ligeramente más complejo:
 
-1) ¿Cuál es la distribución de `\(\hat{p}_{1} - \hat{p}_{2}\)` si la hipótesis nula es verdadera?
-  - `\(H_{0}: \tilde{\delta} = \hat{p}_{1} - \hat{p}_{2}=0\)` 
-
-
-.content-box-blue[
-`$$\tilde{\delta} =  \hat{p}_{1} - \hat{p}_{2} \sim \text{Normal}\Big(\mu_{\delta} = 0, \sigma_{\delta} = \sqrt{p(1-p)(1/n_{1}+1/n_{2})}\Big)$$`
-]
+`\(\text{everaffair}_{i} = \beta_{0} + \beta_{1}*\text{rate}_{i} + \beta_{2}*\text{rate}^{2}_{i} + \sum_{j}\vect{1} \{\text{rel}=j\}\Big( \beta_{0j} + \beta_{1j} \cdot \text{rate}_{i} + \beta_{2j} \cdot \text{rate}^{2}_{i}\Big)\)`
 
 
-- Típicamente `\(p\)` se reemplaza por el promedio ponderado de `\(\hat{p_{1}}\)` y `\(\hat{p_{2}}\)`  
+```r
+lpm_affairs_raterel &lt;- 
+  lm(everaffair_d ~ rate*factor(religious) + I(rate^2)*factor(religious), 
+     data=affairsdata)
+summary(lpm_affairs_raterel)$coefficients
+```
+
+---
+## Limitaciones del LMP en la práctica 
+
+`\(\text{everaffair}_{i} = \beta_{0} + \beta_{1}*\text{rate}_{i} + \beta_{2}*\text{rate}^{2}_{i} + \sum_{j}\vect{1} \{\text{rel}=j\}\Big( \beta_{0j} + \beta_{1j} \cdot \text{rate}_{i} + \beta_{2j} \cdot \text{rate}^{2}_{i}\Big)\)`
 
 &lt;br&gt;
 
-2) Calcular .bold[p-value] (1 colas)
 
-
-.content-box-blue[
-`$$\mathbb{P}(\delta  &gt; \hat{\delta} \mid H_{0}): \mathbb{P}(\text{Normal}(\mu_{\delta} = 0, \sigma_{\delta} = \sqrt{p(1-p)(1/n_{1}+1/n_{2})}) &gt; \hat{\delta} )$$`
-]
+```
+##                                 Estimate Std. Error    t value    Pr(&gt;|t|)
+## (Intercept)                   1.93223443 0.60757213  3.1802552 0.001549173
+## rate                         -0.59564510 0.35259983 -1.6892949 0.091694858
+## factor(religious)2           -1.78379916 0.66768379 -2.6716227 0.007758429
+## factor(religious)3           -1.18924248 0.68392110 -1.7388592 0.082584703
+## factor(religious)4           -1.01501689 0.67535567 -1.5029368 0.133394036
+## factor(religious)5           -1.13934373 0.75671094 -1.5056525 0.132695217
+## I(rate^2)                     0.05270655 0.04893715  1.0770254 0.281912084
+## rate:factor(religious)2       0.76126301 0.39243452  1.9398472 0.052877724
+## rate:factor(religious)3       0.58088887 0.40189195  1.4453857 0.148884129
+## rate:factor(religious)4       0.24746240 0.39320415  0.6293484 0.529366259
+## rate:factor(religious)5       0.28202792 0.44449596  0.6344893 0.526009189
+## factor(religious)2:I(rate^2) -0.08602173 0.05487567 -1.5675752 0.117520116
+## factor(religious)3:I(rate^2) -0.07467898 0.05622021 -1.3283299 0.184586222
+## factor(religious)4:I(rate^2) -0.01475551 0.05465733 -0.2699640 0.787283004
+## factor(religious)5:I(rate^2) -0.01503184 0.06208400 -0.2421210 0.808771116
+```
 
 ---
+## Limitaciones del LMP en la práctica 
 
-### Inferencia para Diferencia de proporciones
-
-.bold[Test de hipótesis]
-
+.bold[Predicciones fuera de rango, sesgo e inconsistencia]
 
 .pull-left[
-
-
-```r
-p_null = p1_hat*(n1/(n1+n2)) + p2_hat*(n2/(n1+n2))
-se_null = sqrt(p_null*(1 - p_null)*(1/n1 + 1/n2))
-```
-
-
-```r
-1 - pnorm(delta_hat,mean=0,sd=se_null)
-```
-
-```
-## [1] 0.1057971
-```
-]
-
-
-.pull-right[
 ![](class_6_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
 ]
 
-.bold[p-value] (1 cola):
+--
 
-`$$\mathbb{P}( \delta \geq 0.044 \mid H_{0})  = 0.106$$`
+.pull-right[
+![](class_6_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
+]
+
+---
+## Limitaciones del LMP en la práctica 
+
+.bold[Errores heterocedásticos]
+
+.pull-left[
+![](class_6_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
+]
+
+--
+
+.pull-right[
+
+![](class_6_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
+
+]
 
 
 ---
-### Inferencia para la Odds Ratio
-
-- Cual es la .bold[sampling distribucion] de `\(\hat{\theta}\)`? 
+## Ventajas del LMP
 
 --
 
-  - Si para un proporción sabemos que `\(\hat{p} \sim \text{Normal}(\mu,\sigma) \quad \quad \text{ donde }\mu = p \quad \text{ y }\quad \sigma^2 = p(1-p)/n\)`
+- Fácil de estimar: OLS
+
+--
+
+
+- Fácil de interpretar: los coeficientes tienen una interpretación directa en términos de efectos parciales (marginales) sobre la _probabilidad_ de éxito en la variable dependiente. 
+
+  - Especialmente importante cuando trabajamos con modelos complejos: interacciones, efectos no-lineales, etc.
   
+--
 
-&lt;br&gt;
-La sampling distribution de `\(\hat{\theta}\)` debe ser ...
+  - Permite una serie de extensiones propias de cualquier LM (.bold[mediación], variables instrumentales, efectos fijos) que con otros modelos para datos categóricos (ej, logit) no son posibles o son muy complejas.
+  
+  
+--
+
+.pull-left[
+Por lo mismo, hay .bold[mucho] interés en "rescatar" el LPM
+]
+.pull-right[
+![rescue](rescue.jpg)
+]
+
+---
+## Al rescate de LPM
+
+.bold[Problema: Observaciones con varianza heterogénea (heterocedasticidad)] 
+
+`\(\quad \quad \Box\)` .bold[Solución: Errores Estándar "Robustos"]
+
+
+
+```r
+# Paquetes necesarios
+library(lmtest)
+library(sandwich)
+
+# Estimación del modelo
+lpm_affairs_raterel &lt;- 
+  lm(everaffair_d ~ rate*factor(religious) + I(rate^2)*factor(religious), 
+     data=affairsdata)
+
+# Inferencia usando matrix de varianza-covarianza robusta (White method)
+coeftest(lpm_affairs_raterel, vcov = vcovHC(lpm_affairs_raterel, type="HC1")) 
+
+## type="HC3" es default R pero type="HC1" produce mismo resultados de Stata
+```
+
+
+---
+## Al rescate de LPM
+
+.bold[Problema: Observaciones con varianza heterogenea (heterocedásticidad)] 
+
+`\(\quad \quad \Box\)` .bold[Solución: Errores Estándar "Robustos"]
+
+
+```
+## 
+## t test of coefficients:
+## 
+##                               Estimate Std. Error t value  Pr(&gt;|t|)    
+## (Intercept)                   1.932234   0.548892  3.5202 0.0004646 ***
+## rate                         -0.595645   0.347765 -1.7128 0.0872818 .  
+## factor(religious)2           -1.783799   0.623893 -2.8591 0.0043991 ** 
+## factor(religious)3           -1.189242   0.649859 -1.8300 0.0677576 .  
+## factor(religious)4           -1.015017   0.649529 -1.5627 0.1186639    
+## factor(religious)5           -1.139344   0.755811 -1.5074 0.1322354    
+## I(rate^2)                     0.052707   0.050265  1.0486 0.2948060    
+## rate:factor(religious)2       0.761263   0.392281  1.9406 0.0527854 .  
+## rate:factor(religious)3       0.580889   0.407477  1.4256 0.1545234    
+## rate:factor(religious)4       0.247462   0.397200  0.6230 0.5335156    
+## rate:factor(religious)5       0.282028   0.456356  0.6180 0.5368156    
+## factor(religious)2:I(rate^2) -0.086022   0.056444 -1.5240 0.1280416    
+## factor(religious)3:I(rate^2) -0.074679   0.058482 -1.2770 0.2021206    
+## factor(religious)4:I(rate^2) -0.014756   0.056383 -0.2617 0.7936437    
+## factor(religious)5:I(rate^2) -0.015032   0.064420 -0.2333 0.8155792    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+## Al rescate de LPM
+
+.bold[Problema: Predicciones fuera de rango, sesgo e inconsistencia] 
+
+`\(\quad \quad \Box\)` .bold[Solución: No hay]
 
 --
+
+`\(\quad \quad \Box\)` .bold[Paleativo: "trimming"]
 
 
 .pull-left[
-`$$\hat{\theta} = \frac{\hat{p}_{1}/(1 - \hat{p}_{1})}{\hat{p}_{2}/(1 - \hat{p}_{2})}  \sim \frac{\frac{\text{Normal}(\mu_{1},\sigma_{1})}{1 - \text{Normal}(\mu_{1},\sigma_{1})}}{\frac{\text{Normal}(\mu_{2},\sigma_{2})}{1 - \text{Normal}(\mu_{2},\sigma_{2})}}$$`  
+![oaxaca1](oaxaca1.png)
 ]
+
+.pull-left[
+![oaxaca2](oaxaca3.png)
+]
+
+---
+## Al rescate de LPM
+
+.bold[Problema: Predicciones fuera de rango, sesgo e inconsistencia] 
+
+`\(\quad \quad \Box\)` .bold[Paleativo: "trimming"]
+
+
+
+
+```r
+# Estimación del modelo
+lpm_affairs_raterel &lt;- 
+  lm(everaffair_d ~ rate*factor(religious) + I(rate^2)*factor(religious), 
+     data=affairsdata)
+
+# Muestra recortada
+trimmed_sample &lt;- affairsdata %&gt;% mutate(fitted= lpm_affairs_raterel$fitted.values) %&gt;%
+                  filter(between(fitted,0,1))
+
+# Re-estimación del modelo en muestra trimmed
+lpm_affairs_raterel_trimmed  &lt;- 
+  lm(everaffair_d ~ rate*factor(religious) + I(rate^2)*factor(religious), 
+     data=trimmed_sample)
+
+summary(lpm_affairs_raterel_trimmed)
+```
+---
+## Al rescate de LPM
+
+.bold[Problema: Predicciones fuera de rango, sesgo e inconsistencia] 
+
+`\(\quad \quad \Box\)` .bold[Paleativo: "trimming"]
+
+
+
+```
+## 
+## Call:
+## lm(formula = everaffair_d ~ rate * factor(religious) + I(rate^2) * 
+##     factor(religious), data = trimmed_sample)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.7063 -0.2779 -0.1317 -0.1199  0.8801 
+## 
+## Coefficients:
+##                              Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)                   3.06937    0.95990   3.198  0.00146 **
+## rate                         -1.18867    0.52390  -2.269  0.02364 * 
+## factor(religious)2           -2.92094    0.99895  -2.924  0.00359 **
+## factor(religious)3           -2.32638    1.00985  -2.304  0.02159 * 
+## factor(religious)4           -2.15216    1.00408  -2.143  0.03249 * 
+## factor(religious)5           -2.27648    1.06038  -2.147  0.03222 * 
+## I(rate^2)                     0.12660    0.06874   1.842  0.06601 . 
+## rate:factor(religious)2       1.35429    0.55144   2.456  0.01434 * 
+## rate:factor(religious)3       1.17392    0.55819   2.103  0.03589 * 
+## rate:factor(religious)4       0.84049    0.55198   1.523  0.12838   
+## rate:factor(religious)5       0.87506    0.58954   1.484  0.13827   
+## factor(religious)2:I(rate^2) -0.15992    0.07308  -2.188  0.02904 * 
+## factor(religious)3:I(rate^2) -0.14858    0.07409  -2.005  0.04539 * 
+## factor(religious)4:I(rate^2) -0.08865    0.07291  -1.216  0.22453   
+## factor(religious)5:I(rate^2) -0.08893    0.07862  -1.131  0.25848   
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.4096 on 585 degrees of freedom
+## Multiple R-squared:  0.1239,	Adjusted R-squared:  0.1029 
+## F-statistic: 5.908 on 14 and 585 DF,  p-value: 6.241e-11
+```
+
+
+---
+## Al rescate de LPM
+
+.bold[Problema: Predicciones fuera de rango, sesgo e inconsistencia] 
+
+`\(\quad \quad \Box\)` .bold[Paleativo: "trimming"]
+
+
+.pull-left[
+![](class_6_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
+]
+
+
+.pull-right[
+
+![](class_6_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
+]
+
+
+---
+## Esto no para ...[Wooldridge et al: "iterative trimming"]
+
+.pull-left[
+![lmp1](lmp1.png)
+]
+
+.pull-right[
+![lmp2](lmp2.png)
+
+]
+
+---
+## En resumen
 
 --
-.pull-right[
-![meme](meme.png)
 
-Complicado ...
-]
+- LMP tiene muchas ventajas y muchos adeptos (economistas) debido a su parsimonia
 
+- LMP tiene también muchos problemas
 
-
-  
-  
----
-### Inferencia para la Odds Ratio
-
-- Más conveniente hacer inferencia sobre `\(\log \hat{\theta}\)`
-
-- Usando la definición de `\(\hat{\theta}\)` como cross-product, obtenemos:
-
-
-  `$$\log \hat{\theta} = \log \frac{n_{11}n_{22}}{n_{12}n_{21}} = \log n_{11} + \log n_{22} - \log n_{12} - \log n_{21}$$`
 
 &lt;br&gt;
 --
 
-Importante resultado teórico: la sampling distribution de `\(\log \hat{\theta}\)` es _asintóticamente_ normal:
-
-`$$\log(\hat{\theta}) \sim \text{Normal}(\mu,\sigma)$$`
-con parámetros _estimados_ por:
-
- - `\(\hat{\mu} = \log \hat{\theta}\)` 
- 
- - `\(\hat{\sigma} = \sqrt{ \frac{1}{n_{11}} + \frac{1}{n_{12}} + \frac{1}{n_{21}} + \frac{1}{n_{22}}}\)`
-
----
-### Inferencia para la Odds Ratio
-
-#### Intervalo de confianza para log Odds ratio
-
-Podemos usar este resultado para construir un intervalo de confianza para el log Odds ratio, al (1 - `\(\alpha\)`) de confianza. Para un nivel de significación estadística de `\(\alpha=0.05\)`,
-
-`\begin{align}
-  95\% \text{ CI}_{\log \hat{\theta}} &amp;= \log \hat{\theta} \pm 2 \cdot SE \\ \\
-          &amp;= \log \hat{\theta} \pm 2 \cdot \sqrt{ \frac{1}{n_{11}} + \frac{1}{n_{12}} + \frac{1}{n_{21}} + \frac{1}{n_{22}} } 
-\end{align}`
-
+¿Son esas ventajas suficientes para contrapesar las desventajas?
 --
+ Depende del contexto, pero:
+ 
 
-#### Intervalo de confianza para Odds ratio
+&lt;br&gt;
 
-Podemos obtener un intervalo de confianza estándar para la Odds ratio, al (1 - `\(\alpha\)`) de confianza tomando el exponencial del intervalo obtenido para `\(\log \hat{\theta}\)`.
-
-`\begin{align}
-  95\% \text{ CI}_{\hat{\theta}} &amp;= e^{\log \hat{\theta} \pm 2 \cdot \sqrt{ \frac{1}{n_{11}} + \frac{1}{n_{12}} + \frac{1}{n_{21}} + \frac{1}{n_{22}}} } 
-\end{align}`
-
----
-### Inferencia para la Odds Ratio
-#### Ilustración via Monte Carlo simulation
-
-Escenario:
-- Conocemos las verdaderas probabilidad `\(Y \mid X\)` (ambas binarias).
-- A partir de ellas calculamos  `\(\theta\)` y `\(\log \theta\)`.
-- Estos son los parámetros "verdaderos", no estimaciones. 
+![cuidado](https://media1.tenor.com/images/8d77dfaf373ed23296797e20c237b5d0/tenor.gif?itemid=13809357)
 
 
-
-
-```
-##      [,1] [,2]
-## [1,]  0.6  0.4
-## [2,]  0.4  0.6
-```
-
-```
-## [1] "Theta= 2.25; log Theta = 0.81"
-```
-
-
+  
 ---
 class: inverse, center, middle
 
-.huge[
-**Hasta la próxima clase. Gracias!**
-]
+
+##Hasta la próxima clase. Gracias!
 
 &lt;br&gt;
 Mauricio Bucca &lt;br&gt;
