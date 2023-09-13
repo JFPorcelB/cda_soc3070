@@ -26,7 +26,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | 21  | Agosto    | Variables Aleatorias, Distribuciones Discretas         |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_3/class_3#1) [`[Código]`](slides/class_3/class_3.Rmd)                                                                                                                                 |
 | 28  | Agosto    | Momentos y MLE |      [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_4/class_4#1) [`[Código]`](slides/class_4/class_4.Rmd)                                                                                                                            |
 | 4   | Septiembre | Tablas de contingencia y medidas de asociación                      |   [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_5/class_5#1) [`[Código]`](slides/class_5/class_5.Rmd)                                                                                                                                |
-| 11  | Septiembre | Modelo Lineal de Probabilidad (LPM)             |                                                                                                                                   |
+| 11  | Septiembre | Modelo Lineal de Probabilidad (LPM)             |   [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_6/class_6#1) [`[Código]`](slides/class_6/class_6.Rmd)                                                                                                                                |
 | 25  | Septiembre | Regresión Logística: estructura teórica y MLE   |                                                                                                                                   |
 | 16  | Octubre   | Regresión Logística: interpretación de efectos  |                                                                                                                                   |
 | 23  | Octubre   | Regresión Logística: inferencia                 |                                                                                                                                   |
@@ -46,7 +46,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | 16  | Agosto      | R                                         |            |
 | 23  | Agosto      | R                                         |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/01_prob/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/01_prob/index.qmd) | 
 | 30  | Agosto      | R                                         |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/02_prob/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/02_prob/index.qmd) |
-| 6   | Septiembre  | R                                         |            |
+| 6   | Septiembre  | R                                         |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/03_manipulacion/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/03_manipulacion/index.qmd)          |
 | 13  | Septiembre  | Regresión lineal, LPM                     |            |
 | 20  | Septiembre  | Regresión logística                       |            |
 | 27  | Septiembre  | Regresión logística                       |            |
@@ -69,7 +69,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | Tarea corta 1 | 7 agosto            | 15 agosto        | [`[TC1]`](homework/tc_1.pdf) [`[TC1.Rmd]`](homework/tc_1.Rmd) |
 | Tarea corta 2 | 21 agosto           | 29 agosto        | [`[TC2]`](https://mebucca.github.io/cda_soc3070/homework/tc_2.html) [`[TC2.Rmd]`](homework/tc_2.Rmd) |
 | Tarea corta 3 | 28 agosto           | 5 septiembre     | [`[TC3]`](homework/tc_3.pdf) [`[TC2.qmd]`](homework/tc_3.qmd)                                          |
-| Tarea corta 4 | 4 septiembre        | 12 septiembre    |                                           |
+| Tarea corta 4 | 13 septiembre       | 20 septiembre    |                                           |
 | Trabajo 1     | 16 octubre          | 31 octubre       |                                           |
 | Tarea corta 5 | 30 octubre          | 7 noviembre      |                                           |
 | Trabajo 2     | 13 noviembre        | 28 noviembre     |                                           |
