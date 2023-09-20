@@ -1,0 +1,406 @@
+---
+title: "Ejercicio 4"
+subtitle: "Ayudantía soc3070"
+author: "Cantillan, R. | Bucca, M."
+institute: "ISUC"
+page-layout: article
+date: today
+date-format: short
+number-sections: true
+format:
+  html:
+    titlepage-logo: "images/uc-chile.png"
+    logo-align: left
+    logo-size: 1.5
+    theme: 
+      light: flatly
+      dark: darkly
+    toc: true
+    toc_float: true
+    toc-depth: 5
+    toc-title: "En este ejercicio"
+editor: visual
+title-block-banner: true
+title-block-style: default
+title-block-categories: true
+freeze: true
+execute: 
+  echo: fenced
+  eval: true
+  output: true
+  warning: false
+reference-location: margin
+citation-location: margin
+bibliography: catagorical_data.bib
+#highlight-style: ayu-dark
+#code-block-bg: "#2E2E2E"
+#code-block-border-left: "#31BAE9"
+---
+
+<head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></head>
+
+::: sidebar-icons
+<a href="https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/03_manipulacion/index.qmd"><i class="fab fa-github"></i> source </a> <!-- Otros íconos aquí -->
+:::
+
+<head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+```{=html}
+<style>
+    .sidebar-icons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .sidebar-icons a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #333;
+    }
+    .sidebar-icons i {
+      margin-right: 10px;
+    }
+  </style>
+```
+</head>
+
+En este ejercicio aplicaremos un análisis de regresión lineal y lineal probabilístico, admeás de calcular efectos marginales. La pregunta sustantiva de ambos ejericios analíticos tiene relación con descubrir los determinantes de acceso a capital social de los individuos en Chile. 
+
+En la primera parte, nuestras hipótesis estarán fundamentadas en la teoría del capital social desarrolla por @linSocialCapitalTheory2002, la cual entiende el capital social como un recurso individual. Un complemento fundamental de esta teoría es el desarrollo de  @burtBrokerageClosureIntroduction2007 la cual indica que las dos fuentes de capital social son la Clausura y la Intermediación. Ambas Teorías se vinculan muy estrechamente con el desarrollo del estructuralismo de redes [@wassermanSocialNetworkAnalysis1994].
+
+En el primer ejercicio construiremos una medida de prestigio accedido mediante la red de conocidos y en el segundo utilizarmos un índice de hetegoneidad de contactos, los cuales puedes ser considerados dimensiones del capital social [@linSocialCapitalTheory2002]
+
+
+
+::: {#fig-socialcapital layout-ncol=1}
+
+![Dimensiones del capital social.](screen1.png){}
+
+Figura extraida de @linSocialCapitalTheory2002
+:::
+
+
+
+::: {#fig-socialcapital layout-ncol=1}
+
+![Determinantes del capital social.](screen2.png){}
+
+Figura extraida de @linSocialCapitalTheory2002
+:::
+
+
+Al igual que en ocasiones anteriores trabajaremos con los datos de ELSOC, en específico la Ola 1 correspondiente al año 2016. 
+
+## Librerías
+
+```{r, message=F}
+pacman::p_load(tidymodels,
+               tidyverse,
+               kableExtra,
+               interplot,
+               margins,
+               sjPlot,
+               stargazer,
+               httr,
+               texreg)
+```
+
+## data (ELSOC 2016 w1)
+
+```{r}
+#ELSOC 2016
+url <- "https://github.com/rcantillan/ricantillan.rbind.io/raw/main/dat/ELSOC/ELSOC_W01_v4.01_R.RData"
+response <- GET(url)
+local_path <- "ELSOC_W01_v4.01_R.RData"
+writeBin(response$content, local_path)
+load("ELSOC_W01_v4.01_R.RData") 
+```
+
+## Aálisis 1 (OLS)
+### Construcción de variable dependiente
+
+Siguiendo la teoría de @linSocialCapitalTheory2002 una dimensión relevante del capital social es el prestigio. A continuación trabajamos con el instrumento llamado "generador de posiciones" [@perryEgocentricNetworkAnalysis2018; @linPositionGeneratorMeasurement2017] presente en la encuesta ELSOC. 
+
+
+![Generador de posiciones ELSOC 2016](screen3.png){}
+
+Para la construcción de la variable dependiente le imputaremos un valor de prestigio ISEI a cada una de las ocupaciones 
+
+### Descriptivos
+```{r}
+occupation<-c("Physician","Attorney","University professor","CEO","Assistant in office","Bookkeeper","Sales-person",
+              "Preschool teacher","Car mechanic","Waiter/waitress","Taxi driver","Street vendor","Cleaner in office")
+sample<-c(53.5,50.3,45.6,44.1,61.2,55.4,68.4,62.1,68.4,33.2,32.3,34.1,45.8)
+male<-c(50.9,49.7,46.9,51.3,61.6,58.4,67.2,59.8,74.6,38.1,66.6,39.3,47.2)
+female<-c(56.1,50.8,44.4,37.0,60.6,52.6,69.6,64.4,62.3,28.4,58.1,28.7,44.5)
+isei<-c(88,85,77,70,53,51,43,43,34,34,30,28,16)
+pg<-tibble(occupation,sample,male,female,isei)
+
+pg %>%
+  kbl(caption = "Percent respondents with access to occupations of the positional generator. Chile 2016.  ISEI scores according to Ganzeboom & Treiman (1996)") %>% kable_classic("hover", full_width = T)
+```
+
+
+### Crear una variable de prestigio accedido 
+```{r}
+elsoc_2016[elsoc_2016=="-999"] <- NA
+elsoc_2016[elsoc_2016=="-888"] <- NA
+
+el<-elsoc_2016 %>%
+  dplyr::select(idencuesta,r01_01,r01_02,r01_03,r01_04,r01_05,r01_06,r01_07,r01_08,r01_09,r01_10,r01_11,r01_12,r01_13)%>%
+  pivot_longer(!idencuesta, names_to = "ocup", values_to = "count")%>%
+  mutate(isei=case_when(ocup=="r01_01"~70,
+                        ocup=="r01_02"~28,
+                        ocup=="r01_03"~53,
+                        ocup=="r01_04"~34,
+                        ocup=="r01_05"~43,
+                        ocup=="r01_06"~85,
+                        ocup=="r01_07"~16,
+                        ocup=="r01_08"~88,
+                        ocup=="r01_09"~43,
+                        ocup=="r01_10"~30,
+                        ocup=="r01_11"~34,
+                        ocup=="r01_12"~51,
+                        ocup=="r01_13"~77)) %>%
+  mutate(count=case_when(count==1~0,
+                         count==2~1,
+                         count==3~2,
+                         count==4~3,
+                         count==5~4,
+                         count==6~5,
+                         count==7~6))%>%
+  group_by(idencuesta) %>%
+  summarize(promedio_isei = weighted.mean(isei, w = count))
+```
+
+
+### Revisamos distribución de la variable de capital social 
+```{r, warning=FALSE}
+ggplot(el, aes(x = promedio_isei)) +
+  geom_density(fill = "blue", alpha = 0.5) +
+  labs(title = "Density Plot de Promedio Ponderado ISEI",
+       x = "Promedio Ponderado ISEI") +
+  theme_minimal()
+```
+
+
+### Unir con datos originales y seleccionamos variables de análisis
+
+```{r}
+el<-left_join(el, elsoc_2016, by="idencuesta")%>%
+  mutate_at(vars(matches("c12")), ~ifelse(. < 2, 0, 1)) %>% # se reduce  una línea.
+  dplyr::mutate (sexo = case_when(m0_sexo == 1  ~ "hombre",
+                                  m0_sexo == 2  ~ "mujer")) %>%
+  #dplyr::mutate (edad = case_when(m0_edad %in% 18:29 ~ "joven",
+  #                                m0_edad %in% 30:65 ~ "adulto",
+  #                                m0_edad %in% 66:88 ~ "adulto_mayor")) %>%
+  dplyr::mutate (nivel_educ = case_when(m01 %in% 1:3 ~ "basica",
+                                        m01 %in% 4:5 ~ "media",
+                                        m01 %in% 6:7 ~ "tecnica",
+                                        m01 %in% 8:10~ "universitaria"))%>%
+  dplyr::mutate(confianza = case_when(c02==1~1,
+                                      TRUE~0))%>%
+  dplyr::select(JJVV=c12_01, Religiosa=c12_02, AAEE=c12_03, Deportiva=c12_04, 
+                Partido=c12_05, Profesional=c12_06, Sindicato=c12_07, Caridad=c12_08, 
+                Otras=c12_09, sexo,m0_edad,nivel_educ, promedio_isei, confianza, ponderador02)
+```
+
+### modelo de regresión. 
+```{r}
+m1<-lm(promedio_isei~
+         + sexo 
+         + m0_edad
+         + I(m0_edad^2)
+         + nivel_educ 
+         + sexo*nivel_educ
+         + JJVV 
+         + Religiosa 
+         + AAEE
+         + Deportiva
+         + Partido
+         + Profesional
+         + Sindicato
+         + Caridad
+         + Otras, data=el, weights = ponderador02)
+```
+
+
+
+```{r, results = "asis", message=FALSE}
+stargazer(m1, style="ajs", type = 'html', single.row = TRUE)
+```
+
+
+### Efectos marginales
+```{r}
+me<-summary(margins(m1, variables = c("nivel_educ")))
+glimpse(me)
+```
+
+
+
+```{r}
+me%>%
+  ggplot(aes(x =factor, y= AME)) + 
+  geom_point() + 
+  geom_line(group="factor") +
+  geom_errorbar(aes(ymin = lower, ymax = upper), alpha = 1, width=0.2)+
+  xlab("") +
+  ylab("Efectos marginales")+
+  scale_x_discrete(labels=c("nivel_educmedia" = "Media", 
+                            "nivel_eductecnica" = "Técnica", 
+                            "nivel_educuniversitaria" = "Universitaria"))+
+  theme(axis.ticks.y=element_blank(),
+        legend.position = "right",
+        plot.title = element_text(hjust = 0.5, size = 9),
+        axis.title = element_text(size=10),
+        axis.text.x = element_text(size=11),
+        axis.text.y = element_text(size = 9),
+        legend.text = element_text(size = 10),
+        legend.title = element_text(face = "bold",
+                                    size = 10)) 
+```
+
+
+```{r}
+me2 <- summary(margins(m1, at = list(sexo = c("hombre", "mujer")), variables = "nivel_educ"))
+me2 %>% kbl(caption = "Efectos marginales") %>% kable_classic("hover", full_width = T)
+```
+
+
+```{r}
+me2%>%
+  ggplot(aes(x =factor, y= AME)) + 
+  geom_point() + 
+  geom_line(group="factor") +
+  geom_errorbar(aes(ymin = lower, ymax = upper), alpha = 1, width=0.2)+
+  facet_grid(.~sexo) +
+    scale_x_discrete(labels=c("nivel_educmedia" = "Media", 
+                            "nivel_eductecnica" = "Técnica", 
+                            "nivel_educuniversitaria" = "Universitaria"))+
+  xlab("") +
+  ylab("Efectos marginales")+
+  theme(axis.ticks.y=element_blank(),
+        legend.position = "right",
+        plot.title = element_text(hjust = 0.5, size = 9),
+        axis.title = element_text(size=10),
+        axis.text.x = element_text(size=11),
+        axis.text.y = element_text(size = 9),
+        legend.text = element_text(size = 10),
+        legend.title = element_text(face = "bold",
+                                    size = 10)) 
+```
+
+
+## Análisis 2 (LPM)
+
+En esta segunda parte, las hipótesis están fundamentadas en la teorización y evidencia indicada por el trabajo de @putnamBowlingAloneCollapse2000. La intuición simple es que la actividad asociativa incrementa el nivel de confianza generalizada percibida por los integrantes de una comunidad (nación). 
+
+### Distribución variable dependiente. 
+
+```{r warning=FALSE}
+ggplot(el, aes(x = confianza, fill = confianza)) +
+  geom_bar(fill = "blue", alpha = 0.5) +
+   geom_text(aes(label = scales::percent(..count../sum(..count..))), 
+             color="white",
+            stat = "count", 
+            position = position_stack(vjust = 0.5), 
+            size = 4) + # Agregar etiquetas de texto con porcentajes
+  labs(title = "Confianza generalizada",
+       x = "Categorías",
+       y = "Frecuencia") +
+  theme_minimal()
+```
+
+### Modelos de regresión.
+```{r}
+m2 <-lm(confianza~
+           sexo 
+         + m0_edad
+         + nivel_educ 
+         + JJVV 
+         + Religiosa 
+         + AAEE
+         + Deportiva
+         + Partido
+         + Profesional
+         + Sindicato
+         + Caridad
+         + Otras
+         + Religiosa*nivel_educ
+         + AAEE*nivel_educ, data=el, weights = ponderador02)
+
+m2_logit<-glm(confianza~
+           sexo 
+         + m0_edad
+         + nivel_educ 
+         + JJVV 
+         + Religiosa 
+         + AAEE
+         + Deportiva
+         + Partido
+         + Profesional
+         + Sindicato
+         + Caridad
+         + Otras
+         + Religiosa*nivel_educ
+         + AAEE*nivel_educ, data=el, family = "binomial", weights = ponderador02)
+```
+
+
+```{r, results = "asis", message=FALSE, warning=FALSE}
+stargazer(m2,m2_logit, style="ajs", type = 'html', single.row = TRUE)
+```
+
+### Efectos marginales
+```{r}
+me2<-summary(margins(m2, at = list(nivel_educ = c("media", "tecnica","universitaria")), 
+                     variables = c("Religiosa","AAEE")))
+
+me2 %>% kbl(caption = "Efectos marginales") %>% kable_classic("hover", full_width = T)
+glimpse(me2)
+```
+
+
+```{r}
+me2%>%
+  ggplot(aes(x =nivel_educ, y= AME)) + 
+  geom_point() + 
+  geom_line(group="nivel_educ") +
+  geom_errorbar(aes(ymin = lower, ymax = upper), alpha = 1, width=0.2)+
+  facet_grid(.~factor) +
+    scale_x_discrete(labels=c("nivel_educmedia" = "Media", 
+                            "nivel_eductecnica" = "Técnica", 
+                            "nivel_educuniversitaria" = "Universitaria"))+
+  xlab("") +
+  ylab("Efectos marginales")+
+  theme(axis.ticks.y=element_blank(),
+        legend.position = "right",
+        plot.title = element_text(hjust = 0.5, size = 9),
+        axis.title = element_text(size=10),
+        axis.text.x = element_text(size=11),
+        axis.text.y = element_text(size = 9),
+        legend.text = element_text(size = 10),
+        legend.title = element_text(face = "bold",
+                                    size = 10)) 
+
+```
+
+
+.
+
+
+
+
+
+
+
+
+
+
+
+
+

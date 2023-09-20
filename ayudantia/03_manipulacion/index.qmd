@@ -132,10 +132,7 @@ load("ELSOC_W01_v4.01_R.RData")
 #                 Profesional, Sindicato, Caridad, Otras)
 
 elsoc_2016<-elsoc_2016%>%
-  mutate_at(vars(matches("c12")), ~ifelse(. < 2, 0, 1)) %>% # se reduce  una línea. 
-  dplyr::mutate (c02         = case_when(c02 == 1 ~ 1,  
-                                         c02 == 2 ~ 0, 
-                                         c02 == 3 ~ 1)) %>%
+  mutate_at(vars(matches("c12")), ~ifelse(. < 2, 0, 1)) %>% # se reduce  una línea.
   dplyr::mutate (mujer        = case_when(m0_sexo   == 1     ~ "hombre",
                                           m0_sexo   == 2     ~ "mujer")) %>%
   dplyr::mutate (edad         = case_when(m0_edad %in% 18:29 ~ "joven",
