@@ -1,12 +1,12 @@
 ---
 title: "Análisis de Datos Categóricos (SOC3070)"
-subtitle: "Clase #8"
+subtitle: "Clase #7: Modelos Lineales Generalizados"
 author: "<br> Mauricio Bucca<br> Profesor Asistente, Sociología UC"
 date: "[github.com/mebucca](https://github.com/mebucca)"
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: ["default","default-fonts","gentle-r.css"]
+    css: ["gentle-r.css","xaringan-themer.css"]
     df_print: default
     nature:
       ratio: 16:9
@@ -17,9 +17,27 @@ output:
 editor_options: 
   chunk_output_type: console
 ---
-
 class: inverse, center, middle
 
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(tidyverse)
+library(xaringanthemer)
+
+primary_color = "#B76E79"
+secondary_color = "#336699"
+background_color = "#f8f7f3"
+header_font = google_font("Archivo")
+text_font = google_font("Inconsolata")
+link_color = "#A8C2A9"
+
+style_duo_accent(primary_color = primary_color, secondary_color = secondary_color,
+                 background_color = background_color,
+                 header_font_google = google_font("Archivo"),
+                 text_font_google   = google_font("Inconsolata"), 
+                 link_color=link_color
+)
+
+```
 #Modelos Lineales Generalizados (GLM)
 
 ---
@@ -31,20 +49,20 @@ LM es un marco muy útil y productivo, pero hay situaciones en las que no propor
 
 --
 
-- Cuando $Y$ no se distribuye normalmente
+- Cuando $y_i$'s no distribuyen normal
 
 --
 
-- Cuando el rango de $Y$ está restringido (por ejemplo, binario, recuento)
+- Cuando el rango de $y_i$'s está restringido (por ejemplo, binario, recuento)
 
 --
 
-- Cuando la variación de $Y$ no es independiente de la media de $Y$.
+- Cuando la varianza de los $y_i$'s no es independiente de su valor esperado.
 
 <br>
 --
 
-GLM ofrece un marco mucho más general y flexible que incorpora y amplía el LM para abordar estas cuestiones.
+.bold[GLM] ofrece un marco mucho más general y flexible que incorpora y amplía el LM para abordar estas cuestiones.
 
 ---
 ## Estructura de los modelos lineales generalizados
@@ -67,7 +85,12 @@ Un modelo lineal generalizado tiene cuatro componentes:
 ]
 
 ---
-### Componente aleatorio
+class: inverse, center, middle
+
+# Componente Aleatorio
+
+---
+## Componente Aleatorio
 
 $$\newcommand{\vect}[1]{\boldsymbol{#1}}$$
 
@@ -75,7 +98,7 @@ El componente aleatorio de un GLM identifica la distribución de probabilidad de
 
 <br>
 
-- Al igual que con LM, los datos que queremos modelar ( $\vect{y}$ ) son una colección de observaciones $y_{1}, \dots, y_{n}$, donde cada observación es la manifestación de una variable aleatoria.
+- Al igual que con LM, los datos que queremos modelar son una colección de observaciones $y_{1}, \dots, y_{n}$, donde cada observación es la manifestación de una variable aleatoria.
 
 --
 
@@ -86,14 +109,22 @@ El componente aleatorio de un GLM identifica la distribución de probabilidad de
 
 
 ---
-### Componente aleatorio
+## Componente Aleatorio
 
 
 Mientras que la LM asume que la variable dependiente sigue una distribución normal, GLM abarca un conjunto más amplio de distribuciones, .bold[tanto continuas como discretas], siempre y cuando pertenezcan a la clase más general de la [_familia exponencial de distribuciones_](https://en.wikipedia.org/wiki/Exponential_family).  
 
+<br><br>
 --
 
+.center[
 ![Some distributions of the exponential family and their relationship](expo_fam.png)
+]
+
+---
+class: inverse, center, middle
+
+# Componente Sistemático
 
 ---
 ## Componente Sistemático
@@ -102,60 +133,83 @@ El componente sistemático de un GLM especifica las variables explicativas, es d
 
 <br>
 
-$$\eta_{i} = \beta_{0} + \beta_{1} x_{i1} + \dots + \beta_{k} x_{ik}$$
-<br>
+.content-box-primary[
+$$\color{white}{\eta_{i} = \beta_{0} + \beta_{1} x_{i1} + \dots + \beta_{k} x_{ik}}$$
+]
+
+<br><br>
 --
 
- - En terminología GLM $\eta$ se denomina _predictor lineal_.
+ - En terminología GLM $\eta$ se denomina .bold[predictor lineal].
+
+--
  
  - $\eta$ es lineal "en parámetros": no vamos a encontrar términos del tipo $\beta_{0}*\beta_{1}$ o $\beta_{1}^{\beta_{0}}$.
  
 --
-   - pero puede ser no lineal "en variables" (por ejemplo, interacciones, términos cuadrados, etc.): $\beta_{1}x_{1} + \beta_{2}x_{1}^2$ 
-
+   - pero puede ser no lineal "en variables" (por ejemplo, interacciones, términos cuadrados, etc.): $\beta_{1}x_{1} + \beta_{2}x_{1}^2$
+   
 --
 
  - Las $x$'s son tratadas como fijas, no como variables aleatorias.
  
 ---
+class: inverse, center, middle
+
+# Función de Enlace
+
+---
+
+
 ## Función de enlace (link)
 
-En el LM estándar, la media condicional del resultado $\mu_{i}$ está linealmente relacionada con los predictores del modelo.
+En el .bold[LM estándar], la media condicional del resultado $\mu_{i}$ está linealmente relacionada con los predictores del modelo.
 
 $$\underbrace{\mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k} )}_{\mu_{i}} = \underbrace{\beta_{0} + \beta_{1} x_{i1} + \dots + \beta_{k} x_{ik}}_{\eta_{i}}$$
 
+<br>
 --
 
-- GLM permiten una relación más general y flexible entre estos dos términos. 
+- .bold[GLM] permiten una relación más general y flexible entre estos dos términos. 
 
 --
 
 - En un GLM el componente sistemático $\eta_{i}$ debe estar relacionado linealmente (en parámetros) con una función $g(\cdot)$ de $\mu_{i}$. Dicha función se denomina *función de enlace*. Formalmente,
 
-$$g(\mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k})) =  g(\mu_{i}) = \eta_{i}$$
+.content-box-primary[
+$$\color{white}{g\Big(\mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k})\Big) =  g(\mu_{i}) = \eta_{i}}$$]
+
 --
 
 Ejemplo, si $g(\cdot) = \ln(\cdot)$, entonces
 
 
 $$\ln \mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k}) =  \ln \mu_{i} = \eta_{i}$$
+
 
 ---
+##Función de Enlace (link)
 
-##Función de enlace (link)
+- El inverso de esta expresión es la llamada .bold[función media], que expresa la media condicional de $y_{i}$ como una función potencialmente no lineal de los predictores:
 
-- El inverso de esta expresión es la llamada *función media*, que expresa la media condicional de $y_{i}$ como una función potencialmente no lineal de los predictores:
 
-$$\mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k}) = \mu_{i} = g^{-1}(\eta_{i})$$
+.content-box-primary[
+$$\color{white}{\mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k}) = \mu_{i} = g^{-1}(\eta_{i})}$$]
+
+
+<br>
 --
 
 Ejemplo, si $g(\cdot) = \ln(\cdot)$, entonces
 
 $$\ln \mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k}) =  \ln \mu_{i} = \eta_{i}$$
+
+
 --
 En consecuencia, $g^{-1}(\cdot) = e^{(\cdot)}$ y,
 
 $$\mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k}) = \mu_{i} = e^{\eta_{i}}$$
+
 <br>
 --
 
@@ -165,40 +219,60 @@ $$\mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k}) = \mu_{i} = e^{\eta_{i}}$$
 
 
 ---
-## Función de enlace (link)
+## Función de Enlace (link)
+
+<br>
 
 Más allá de este ejemplo, hay una variedad de posibles funciones de enlace:
 
+<br>
 
-![Some commonly used link functions](link_fn.png)
+.center[![Some commonly used link functions](link_fn.png)]
+
 - $g(\cdot)$ debe ser "smooth" y monotónica
+
+
+---
+class: inverse, center, middle
+
+#Función de Varianza
+
+
 
 ---
 ## Función de varianza
 
 La función de varianza describe cómo la varianza $\mathbb{Var}(y_{i})$ depende de la media $\mu_{i}$. Formalmente:
 
-<br>
+.content-box-primary[
+$$\color{white}{\mathbb{Var}(y_{i}) = \phi V(\mu_{i})}$$
+]
 
-$$\mathbb{Var}(y_{i}) = \phi V(\mu_{i})$$
 donde
 
 - $\phi$ es una constante llamada "parámetro de dispersión"
 
-- $V(\cdot)$ es la  función de varianza, definida como:
+- $V(\cdot)$ es la  función de varianza, definida como: $V(\mu) = \frac{d\mu}{d \eta}$
 
-$$V(\mu) = \frac{d\mu}{d \eta}$$
 <br>
 --
 
-- La _función de varianza_ es única cada distribución de la familia exponencial.
+Por ejemplo, si $\mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k}) =  \mu_{i} = e^{\eta_{i}}$, entonces,
+
+$$V(\mu_i) = \frac{d\mu_i}{d \eta_i} = e^{\eta_{i}} \quad \to \quad \mathbb{Var}(y_{i}) = \phi e^{\eta_{i}}$$
 
 
+---
+class: inverse,  middle
+
+# .......... Definiendo un GLM .....
+
+.img-right[![mizer](mixer.png)]
 
 ---
 ## Definiendo un GLM
 
-La estructura básica de un GLM se especifica mediante la elección de dos componentes: (1) la distribución de la variable dependiente (componente sistemático) y (2) la función de enlace. 
+La estructura básica de un GLM se especifica mediante la elección de dos componentes: (1) .bold[componente sistemático] (la distribución de la variable dependiente ) y (2) la .bold[función de enlace]. 
 
 <br>
 \begin{align}
@@ -251,6 +325,8 @@ El tipo más simple de GLM es el que tiene un componente aleatorio normal y una 
 --
  con $\phi=\sigma^2$ y $V(\mu_{i})= \frac{d\mu_{i}}{d\eta_{i}}=1$.
 
+
+<br><br>
 --
 
 Por tanto,
@@ -261,7 +337,14 @@ $$y_{i} \sim \text{Normal}(\mu_{i} = \eta_{i}, \sigma_{i} = \sqrt{\phi})$$
 - En nomenclatura GLM $\phi$ (parámetro de dispersión) es un modo más general de expesar el componente constante de la varianza ( $\sigma^2$ en LM)
 
 ---
-## GLM log-linear: ejemplo de modelo "híbrido" 
+class: inverse, center, middle
+
+#Ejemplo empírico
+##GLM log-lineal
+
+
+---
+## GLM log-lineal: ejemplo de modelo "híbrido" 
 
 
 Ejemplo:
@@ -282,6 +365,7 @@ Ejemplo:
 
 - $\mu_{i} = e^{\eta_{i}}$
 
+<br>
 --
 
 Se sigue de lo anterior que:
@@ -289,9 +373,10 @@ Se sigue de lo anterior que:
 
 - $\mathbb{Var}(y_{i}) = \phi V(\mu) = \phi \frac{d\mu_{i}}{d\eta_{i}} = \phi e^{\eta_{i}} = \phi \mu_{i}$
 
+<br>
 --
 
-Obtenemos un _modelo log-lineal_, que es apropiado cuando las predicciones deben ser estrictamente positivas.
+Obtenemos un .bold[modelo log-lineal], que es apropiado cuando las predicciones deben ser estrictamente positivas.
 
 
 $$y_{i} \sim \text{Normal}(\mu_{i} = e^{\eta_{i}}, \sigma_{i} = \sqrt{\phi \mu_{i}})$$
@@ -300,7 +385,9 @@ $$y_{i} \sim \text{Normal}(\mu_{i} = e^{\eta_{i}}, \sigma_{i} = \sqrt{\phi \mu_{
 
 Usar una función de enlance .bold[es distinto] de transformar la variable dependiente!
 
-Ejemplo: es un práctica común trabajar con la variable dependiente transforma a logs 
+--
+
+.bold[Ejemplo:] es un práctica común trabajar con la variable dependiente transforma a logs (ej. ingresos).
 
 - $y_{1}, \dots y_{n}$ son $n$ variables que no distribuyen normal  pero $\ln(y_{1}), \dots \ln(y_{n})$ si.
 
@@ -314,16 +401,16 @@ $$\ln y_{i} = \overbrace{\beta_{0} + \beta_{1}x_{1i} + \dots \beta_{k}x_{ki}}^{\
 
 Notar diferencia:
 .pull-left[
-.bold[GLM con log link]
-$$\ln \mathbb{E} (Y_{i}) = \beta_{0} + \beta_{1}x_{1i} + \dots \beta_{k}x_{ki}$$
+.bold[GLM con log-link]
+$$\ln \mathbb{E} (y_{i} \mid x_{1}, \dots, x_{k}  ) = \beta_{0} + \beta_{1}x_{1i} + \dots \beta_{k}x_{ki}$$
 ]
 .pull-right[
 .bold[LM con variable dependiente log(y) ]
-$$\mathbb{E}( \ln y_{i}) = \beta_{0} + \beta_{1}x_{1i} + \dots \beta_{k}x_{ki}$$
+$$\mathbb{E}( \ln y_{i} \mid x_{1}, \dots, x_{k} ) = \beta_{0} + \beta_{1}x_{1i} + \dots \beta_{k}x_{ki}$$
 ]
 
 ---
-## GLM, una aplicación empírica: gender wage gap 
+## GLM con log-link: aplicación a gender wage gap 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library("tidyverse")
@@ -333,29 +420,30 @@ data(SLID)
 ourdata <- SLID
 ```
 
-.pull-left[
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=5}
-ourdata %>% ggplot(aes(x=wages, fill="")) + 
-    geom_histogram() +
-    scale_fill_viridis_d() + 
-    guides(fill=FALSE, color=FALSE) + labs(x="wages") +
-    theme(axis.text.y = element_text(size = 22), axis.text.x = element_text(size = 22),
-    axis.title.y = element_text(size = 24), axis.title.x = element_text(size = 24), 
-    legend.text = element_text(size = 18), legend.position="bottom") 
-```
-]
+<br>
 
---
-
-.pull-right[
+.center[
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=5}
-ourdata %>% ggplot(aes(x=log(wages), fill="")) + 
-    geom_histogram() +
-    scale_fill_viridis_d() + 
-    guides(fill=FALSE, color=FALSE) + labs(x="ln(wages)") +
-    theme(axis.text.y = element_text(size = 22), axis.text.x = element_text(size = 22),
-    axis.title.y = element_text(size = 24), axis.title.x = element_text(size = 24), 
-    legend.text = element_text(size = 18), legend.position="bottom") 
+
+primary_color = "#B76E79"
+secondary_color = "#336699"
+
+ourdata %>% 
+  ggplot(aes(x = wages)) + 
+  geom_histogram(fill = primary_color, color = primary_color, alpha=0.7) + 
+  guides(fill = FALSE, color = FALSE) + 
+  labs(x = "wages") +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.text.y = element_text(size = 22, color = "black"),
+    axis.text.x = element_text(size = 22, color = "black"),
+    axis.title.y = element_text(size = 24, color = "black"),
+    axis.title.x = element_text(size = 24, color = "black"),
+    panel.border = element_rect(color = "black", fill = NA, linewidth = 1)
+  )
+
+
 ```
 ]
 
@@ -422,39 +510,10 @@ $\mathbb{Var}(y_{i})  = \phi \mu_{i} = \phi e^{\beta_{0} +  \beta_{1}\text{male}
 
 $\mathbb{Var}(y_{i})  = \phi\mu_{i} = 59.38 \cdot  e^{2.631 + 0.215\text{male}_{i}}$
 
-]
-
---
-
-.pull-right[
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=4, fig.width=8}
-library("tidyverse")
-library("ggfortify")
-eta <- function(x) {exp(2.631 + 0.215*x)}
-sdy  <- function(x) {sqrt(59.38 * eta(x))}
-
-preds <- data_frame(x = c(0,1)) %>% mutate(mu = eta(x), sd=sdy(x)) %>% as.matrix()
-
-
-plot <- ggplot(data.frame(x = seq(-100,150,by=0.1)), aes(x = x)) +
-      stat_function(fun = dnorm, args = list(preds[1,2], preds[1,3]),
-                      aes(colour = "female"), size = 1.5) +
-      stat_function(fun = dnorm, args = list(preds[2,2], preds[2,3]),
-                      aes(colour = "male"), size = 1.5) +
-      scale_x_continuous(name = "Wages") + 
-      scale_color_viridis_d() +
-      geom_vline(xintercept=0, size = 1.5) +
-      theme(axis.text.y = element_text(size = 22), axis.text.x = element_text(size = 22),
-      axis.title.y = element_text(size = 24), axis.title.x = element_text(size = 24), 
-      legend.text = element_text(size = 18), legend.position="right") + labs(y="")
-
-print(plot)
-```
-]
+<br><br>
 
 Por tanto, 
 
-.pull-left[
 $$y_{i} \sim \text{Normal}(\mu_{i},\sigma_{i}) \quad \text{ donde}$$
 
 - $\mu_{i}=e^{\beta_{0} +  \beta_{1}\text{male}_{i}} = e^{2.631 + 0.215\text{male}_{i}}$
@@ -463,13 +522,51 @@ $$y_{i} \sim \text{Normal}(\mu_{i},\sigma_{i}) \quad \text{ donde}$$
 
 ]
 
+--
+
+.pull-right[
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6, fig.width=8}
+library("tidyverse")
+library("ggfortify")
+eta <- function(x) {exp(2.631 + 0.215*x)}
+sdy  <- function(x) {sqrt(59.38 * eta(x))}
+
+preds <- data_frame(x = c(0,1)) %>% mutate(mu = eta(x), sd=sdy(x)) %>% as.matrix()
+
+
+primary_color = "#B76E79"
+secondary_color = "#336699"
+
+plot <- ggplot(data.frame(x = seq(-100,150,by=0.1)), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(preds[1,2], preds[1,3]),
+                aes(colour = "female"), size = 1.5) +
+  stat_function(fun = dnorm, args = list(preds[2,2], preds[2,3]),
+                aes(colour = "male"), size = 1.5) +
+  scale_x_continuous(name = "Wages") + 
+  scale_color_manual(values = c(female = primary_color, male = secondary_color)) +
+  labs(y="densidad")+
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.text.y = element_text(size = 22, color = "black"),
+    axis.text.x = element_text(size = 22, color = "black"),
+    axis.title.y = element_text(size = 24, color = "black"),
+    axis.title.x = element_text(size = 24, color = "black"),
+    panel.border = element_rect(color = "black", fill = NA, linewidth = 1)
+  )
+
+
+print(plot)
+```
+]
+
+
+
 
 ---
 class: inverse, center, middle
 
-.huge[
-**Hasta la próxima clase. Gracias!**
-]
+##Hasta la próxima clase. Gracias!
 
 <br>
 Mauricio Bucca <br>
