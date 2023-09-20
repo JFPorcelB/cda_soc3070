@@ -246,6 +246,7 @@ m1<-glm(barrio~
         + ego_edad
         + expresivas
         + instrument
+        + t01
         + neigh_attach, data = obs, family = "binomial")
 
 summary(m1)
@@ -275,6 +276,7 @@ m3<-glm(barrio~
         + ego_edad
         + expresivas
         + instrument
+        + t01 
         + neigh_attach
         + sexo_dist1 
         + educ_dist1 
@@ -326,6 +328,7 @@ tidy_m3<- logistic_reg() %>%
         + ego_edad
         + expresivas
         + instrument
+        + t01
         + neigh_attach
         + sexo_dist1 
         + educ_dist1 
@@ -356,6 +359,7 @@ data_model_plot <- data_model_plot %>%
     term == "ego_edad +" ~ "Edad (ego)",
     term == "expresivas" ~ "Memb. Expresiva",
     term == "instrument" ~ "Memb. Instrumental",
+    term == "t01" ~ "Confianza vecinal",
     term == "neigh_attach" ~ "comprom. barrio",
     term == "sexo_dist1" ~ "Sexo distancia",
     term == "educ_dist1" ~ "Educación distancia",
@@ -400,6 +404,7 @@ data_model_plot %>%
                               "Edad (ego)",
                               "Memb. Expresiva",
                               "Memb. Instrumental",
+                              "Confianza vecinal",
                               "comprom. barrio",
                               "Sexo distancia",
                               "Educación distancia",

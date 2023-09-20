@@ -728,40 +728,42 @@ $ r13_contacto_02 &lt;dbl&gt; NA, NA, 1, NA, NA, NA, 1, 1, 1, NA, NA, NA, NA, NA
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ego_edad</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> expresivas</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> instrument</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> neigh_attach, <span class="at">data =</span> obs, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> t01</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> neigh_attach, <span class="at">data =</span> obs, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
 glm(formula = barrio ~ ego_sexo + ego_educ + ego_edad + expresivas + 
-    instrument + neigh_attach, family = "binomial", data = obs)
+    instrument + t01 + neigh_attach, family = "binomial", data = obs)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
--1.5508  -1.2266   0.9335   1.0722   1.5933  
+-1.5409  -1.2273   0.9292   1.0715   1.6307  
 
 Coefficients:
               Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)   0.363782   0.129861   2.801 0.005089 ** 
-ego_sexo2     0.087516   0.047786   1.831 0.067038 .  
-ego_educ2    -0.249576   0.062537  -3.991 6.58e-05 ***
-ego_educ3    -0.583735   0.077620  -7.520 5.46e-14 ***
-ego_educ4    -1.010239   0.078590 -12.854  &lt; 2e-16 ***
-ego_edad     -0.005493   0.001689  -3.253 0.001143 ** 
-expresivas    0.071223   0.029954   2.378 0.017418 *  
-instrument   -0.069801   0.030581  -2.282 0.022460 *  
-neigh_attach  0.092019   0.024793   3.711 0.000206 ***
+(Intercept)   0.338118   0.131036   2.580 0.009870 ** 
+ego_sexo2     0.088500   0.047836   1.850 0.064304 .  
+ego_educ2    -0.256651   0.062746  -4.090 4.31e-05 ***
+ego_educ3    -0.602153   0.078242  -7.696 1.40e-14 ***
+ego_educ4    -1.034857   0.079427 -13.029  &lt; 2e-16 ***
+ego_edad     -0.005904   0.001700  -3.472 0.000516 ***
+expresivas    0.070501   0.029984   2.351 0.018710 *  
+instrument   -0.068326   0.030602  -2.233 0.025565 *  
+t01           0.037240   0.020888   1.783 0.074607 .  
+neigh_attach  0.073871   0.026810   2.755 0.005862 ** 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 11004  on 7959  degrees of freedom
-Residual deviance: 10740  on 7951  degrees of freedom
-  (4405 observations deleted due to missingness)
-AIC: 10758
+    Null deviance: 10988  on 7947  degrees of freedom
+Residual deviance: 10718  on 7938  degrees of freedom
+  (4417 observations deleted due to missingness)
+AIC: 10738
 
 Number of Fisher Scoring iterations: 4</code></pre>
 </div>
@@ -829,54 +831,56 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ego_edad</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> expresivas</span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> instrument</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> neigh_attach</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> sexo_dist1 </span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> educ_dist1 </span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ideol_dist1</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> relig_dist1</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ego_educ<span class="sc">*</span>educ_dist1, <span class="at">data =</span> obs, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> t01 </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> neigh_attach</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> sexo_dist1 </span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> educ_dist1 </span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ideol_dist1</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> relig_dist1</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ego_educ<span class="sc">*</span>educ_dist1, <span class="at">data =</span> obs, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
 glm(formula = barrio ~ ego_sexo + ego_educ + ego_edad + expresivas + 
-    instrument + neigh_attach + sexo_dist1 + educ_dist1 + ideol_dist1 + 
-    relig_dist1 + ego_educ * educ_dist1, family = "binomial", 
+    instrument + t01 + neigh_attach + sexo_dist1 + educ_dist1 + 
+    ideol_dist1 + relig_dist1 + ego_educ * educ_dist1, family = "binomial", 
     data = obs)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
--1.9603  -1.1340   0.7513   1.0945   1.9061  
+-1.9620  -1.1346   0.7478   1.0962   1.9285  
 
 Coefficients:
                       Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)           0.554787   0.175024   3.170 0.001526 ** 
-ego_sexo2             0.132748   0.053878   2.464 0.013744 *  
-ego_educ2            -0.572371   0.114966  -4.979 6.40e-07 ***
-ego_educ3            -1.103318   0.151795  -7.268 3.64e-13 ***
-ego_educ4            -1.734458   0.132763 -13.064  &lt; 2e-16 ***
-ego_edad             -0.006345   0.001908  -3.325 0.000885 ***
-expresivas            0.067106   0.033899   1.980 0.047750 *  
-instrument           -0.079303   0.033536  -2.365 0.018046 *  
-neigh_attach          0.088216   0.028082   3.141 0.001682 ** 
-sexo_dist1            0.874638   0.054117  16.162  &lt; 2e-16 ***
-educ_dist1           -0.506018   0.122934  -4.116 3.85e-05 ***
-ideol_dist1          -0.087153   0.051997  -1.676 0.093714 .  
-relig_dist1          -0.123558   0.053846  -2.295 0.021752 *  
-ego_educ2:educ_dist1  0.395450   0.146222   2.704 0.006842 ** 
-ego_educ3:educ_dist1  0.724795   0.180114   4.024 5.72e-05 ***
-ego_educ4:educ_dist1  1.264635   0.169440   7.464 8.42e-14 ***
+(Intercept)           0.538449   0.176536   3.050 0.002288 ** 
+ego_sexo2             0.132749   0.053917   2.462 0.013813 *  
+ego_educ2            -0.573387   0.115031  -4.985 6.21e-07 ***
+ego_educ3            -1.112651   0.152159  -7.312 2.62e-13 ***
+ego_educ4            -1.753413   0.133491 -13.135  &lt; 2e-16 ***
+ego_edad             -0.006532   0.001919  -3.404 0.000663 ***
+expresivas            0.066937   0.033927   1.973 0.048497 *  
+instrument           -0.077809   0.033553  -2.319 0.020394 *  
+t01                   0.021177   0.023567   0.899 0.368865    
+neigh_attach          0.078013   0.030254   2.579 0.009920 ** 
+sexo_dist1            0.872426   0.054151  16.111  &lt; 2e-16 ***
+educ_dist1           -0.505575   0.122926  -4.113 3.91e-05 ***
+ideol_dist1          -0.087221   0.052035  -1.676 0.093697 .  
+relig_dist1          -0.126534   0.053886  -2.348 0.018865 *  
+ego_educ2:educ_dist1  0.389892   0.146255   2.666 0.007680 ** 
+ego_educ3:educ_dist1  0.723789   0.180128   4.018 5.86e-05 ***
+ego_educ4:educ_dist1  1.277941   0.169602   7.535 4.89e-14 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 9248.9  on 6690  degrees of freedom
-Residual deviance: 8668.5  on 6675  degrees of freedom
-  (5674 observations deleted due to missingness)
-AIC: 8700.5
+    Null deviance: 9238.1  on 6682  degrees of freedom
+Residual deviance: 8655.9  on 6666  degrees of freedom
+  (5682 observations deleted due to missingness)
+AIC: 8689.9
 
 Number of Fisher Scoring iterations: 4</code></pre>
 </div>
@@ -893,22 +897,23 @@ Number of Fisher Scoring iterations: 4</code></pre>
 z test of coefficients:
 
                        Estimate Std. Error  z value  Pr(&gt;|z|)    
-(Intercept)           0.5547869  0.1755195   3.1608  0.001573 ** 
-ego_sexo2             0.1327483  0.0538163   2.4667  0.013637 *  
-ego_educ2            -0.5723715  0.1148280  -4.9846 6.209e-07 ***
-ego_educ3            -1.1033182  0.1497941  -7.3656 1.764e-13 ***
-ego_educ4            -1.7344581  0.1323968 -13.1005 &lt; 2.2e-16 ***
-ego_edad             -0.0063447  0.0019358  -3.2775  0.001047 ** 
-expresivas            0.0671060  0.0339300   1.9778  0.047954 *  
-instrument           -0.0793025  0.0332998  -2.3815  0.017244 *  
-neigh_attach          0.0882155  0.0280382   3.1463  0.001654 ** 
-sexo_dist1            0.8746377  0.0543487  16.0931 &lt; 2.2e-16 ***
-educ_dist1           -0.5060178  0.1231507  -4.1089 3.975e-05 ***
-ideol_dist1          -0.0871533  0.0519972  -1.6761  0.093716 .  
-relig_dist1          -0.1235583  0.0537656  -2.2981  0.021557 *  
-ego_educ2:educ_dist1  0.3954497  0.1465970   2.6975  0.006986 ** 
-ego_educ3:educ_dist1  0.7247947  0.1783978   4.0628 4.849e-05 ***
-ego_educ4:educ_dist1  1.2646355  0.1695213   7.4600 8.650e-14 ***
+(Intercept)           0.5384486  0.1770258   3.0416 0.0023529 ** 
+ego_sexo2             0.1327495  0.0538507   2.4651 0.0136961 *  
+ego_educ2            -0.5733871  0.1147837  -4.9954 5.872e-07 ***
+ego_educ3            -1.1126509  0.1500356  -7.4159 1.208e-13 ***
+ego_educ4            -1.7534131  0.1330831 -13.1753 &lt; 2.2e-16 ***
+ego_edad             -0.0065320  0.0019524  -3.3457 0.0008208 ***
+expresivas            0.0669372  0.0339530   1.9715 0.0486707 *  
+instrument           -0.0778088  0.0332879  -2.3374 0.0194158 *  
+t01                   0.0211772  0.0235943   0.8976 0.3694229    
+neigh_attach          0.0780130  0.0301340   2.5889 0.0096292 ** 
+sexo_dist1            0.8724258  0.0543925  16.0395 &lt; 2.2e-16 ***
+educ_dist1           -0.5055749  0.1230718  -4.1080 3.992e-05 ***
+ideol_dist1          -0.0872214  0.0520273  -1.6765 0.0936490 .  
+relig_dist1          -0.1265343  0.0537898  -2.3524 0.0186535 *  
+ego_educ2:educ_dist1  0.3898921  0.1466048   2.6595 0.0078262 ** 
+ego_educ3:educ_dist1  0.7237894  0.1783624   4.0580 4.950e-05 ***
+ego_educ4:educ_dist1  1.2779409  0.1696569   7.5325 4.978e-14 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -968,13 +973,13 @@ ego_sexo2
 ego_educ2
 </td>
 <td>
--.250<sup>***</sup> (.063)
+-.257<sup>***</sup> (.063)
 </td>
 <td>
 -.268<sup>***</sup> (.072)
 </td>
 <td>
--.572<sup>***</sup> (.115)
+-.573<sup>***</sup> (.115)
 </td>
 </tr>
 <tr>
@@ -982,13 +987,13 @@ ego_educ2
 ego_educ3
 </td>
 <td>
--.584<sup>***</sup> (.078)
+-.602<sup>***</sup> (.078)
 </td>
 <td>
 -.639<sup>***</sup> (.086)
 </td>
 <td>
--1.103<sup>***</sup> (.152)
+-1.113<sup>***</sup> (.152)
 </td>
 </tr>
 <tr>
@@ -996,13 +1001,13 @@ ego_educ3
 ego_educ4
 </td>
 <td>
--1.010<sup>***</sup> (.079)
+-1.035<sup>***</sup> (.079)
 </td>
 <td>
 -1.073<sup>***</sup> (.087)
 </td>
 <td>
--1.734<sup>***</sup> (.133)
+-1.753<sup>***</sup> (.133)
 </td>
 </tr>
 <tr>
@@ -1010,13 +1015,13 @@ ego_educ4
 ego_edad
 </td>
 <td>
--.005<sup>**</sup> (.002)
-</td>
-<td>
--.005<sup>**</sup> (.002)
-</td>
-<td>
 -.006<sup>***</sup> (.002)
+</td>
+<td>
+-.005<sup>**</sup> (.002)
+</td>
+<td>
+-.007<sup>***</sup> (.002)
 </td>
 </tr>
 <tr>
@@ -1037,12 +1042,25 @@ expresivas
 instrument
 </td>
 <td>
--.070<sup>*</sup> (.031)
+-.068<sup>*</sup> (.031)
 </td>
 <td>
 </td>
 <td>
--.079<sup>*</sup> (.034)
+-.078<sup>*</sup> (.034)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+t01
+</td>
+<td>
+.037 (.021)
+</td>
+<td>
+</td>
+<td>
+.021 (.024)
 </td>
 </tr>
 <tr>
@@ -1050,12 +1068,12 @@ instrument
 neigh_attach
 </td>
 <td>
-.092<sup>***</sup> (.025)
+.074<sup>**</sup> (.027)
 </td>
 <td>
 </td>
 <td>
-.088<sup>**</sup> (.028)
+.078<sup>**</sup> (.030)
 </td>
 </tr>
 <tr>
@@ -1068,7 +1086,7 @@ sexo_dist1
 .845<sup>***</sup> (.053)
 </td>
 <td>
-.875<sup>***</sup> (.054)
+.872<sup>***</sup> (.054)
 </td>
 </tr>
 <tr>
@@ -1107,7 +1125,7 @@ relig_dist1
 -.133<sup>*</sup> (.053)
 </td>
 <td>
--.124<sup>*</sup> (.054)
+-.127<sup>*</sup> (.054)
 </td>
 </tr>
 <tr>
@@ -1119,7 +1137,7 @@ ego_educ2:educ_dist1
 <td>
 </td>
 <td>
-.395<sup>**</sup> (.146)
+.390<sup>**</sup> (.146)
 </td>
 </tr>
 <tr>
@@ -1131,7 +1149,7 @@ ego_educ3:educ_dist1
 <td>
 </td>
 <td>
-.725<sup>***</sup> (.180)
+.724<sup>***</sup> (.180)
 </td>
 </tr>
 <tr>
@@ -1143,7 +1161,7 @@ ego_educ4:educ_dist1
 <td>
 </td>
 <td>
-1.265<sup>***</sup> (.169)
+1.278<sup>***</sup> (.170)
 </td>
 </tr>
 <tr>
@@ -1151,13 +1169,13 @@ ego_educ4:educ_dist1
 Constant
 </td>
 <td>
-.364<sup>**</sup> (.130)
+.338<sup>**</sup> (.131)
 </td>
 <td>
 .475<sup>***</sup> (.133)
 </td>
 <td>
-.555<sup>**</sup> (.175)
+.538<sup>**</sup> (.177)
 </td>
 </tr>
 <tr>
@@ -1165,13 +1183,13 @@ Constant
 Observations
 </td>
 <td>
-7,960
+7,948
 </td>
 <td>
 6,780
 </td>
 <td>
-6,691
+6,683
 </td>
 </tr>
 <tr>
@@ -1179,13 +1197,13 @@ Observations
 Log Likelihood
 </td>
 <td>
--5,370.028
+-5,359.124
 </td>
 <td>
 -4,440.019
 </td>
 <td>
--4,334.225
+-4,327.926
 </td>
 </tr>
 <tr>
@@ -1193,13 +1211,13 @@ Log Likelihood
 Akaike Inf. Crit.
 </td>
 <td>
-10,758.060
+10,738.250
 </td>
 <td>
 8,900.037
 </td>
 <td>
-8,700.451
+8,689.852
 </td>
 </tr>
 <tr>
@@ -1244,22 +1262,23 @@ Akaike Inf. Crit.
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                            OR     2.5 %    97.5 %
-(Intercept)          1.7415698 1.2370103 2.4570143
-ego_sexo2            1.1419625 1.0275344 1.2691875
-ego_educ2            0.5641859 0.4494723 0.7055479
-ego_educ3            0.3317684 0.2459818 0.4460955
-ego_educ4            0.1764958 0.1357714 0.2285095
-ego_edad             0.9936754 0.9899608 0.9973949
-expresivas           1.0694088 1.0006951 1.1429272
-instrument           0.9237604 0.8649113 0.9864774
-neigh_attach         1.0922235 1.0337348 1.1540510
-sexo_dist1           2.3980063 2.1573087 2.6671609
-educ_dist1           0.6028916 0.4730414 0.7660916
-ideol_dist1          0.9165366 0.8277280 1.0148772
-relig_dist1          0.8837702 0.7952657 0.9821701
-ego_educ2:educ_dist1 1.4850519 1.1160952 1.9801396
-ego_educ3:educ_dist1 2.0643073 1.4516211 2.9414051
-ego_educ4:educ_dist1 3.5418014 2.5435340 4.9425435</code></pre>
+(Intercept)          1.7133466 1.2133451 2.4243259
+ego_sexo2            1.1419639 1.0274562 1.2692867
+ego_educ2            0.5636132 0.4489600 0.7049220
+ego_educ3            0.3286865 0.2435236 0.4422683
+ego_educ4            0.1731819 0.1330320 0.2245384
+ego_edad             0.9934893 0.9897549 0.9972283
+expresivas           1.0692283 1.0004716 1.1427963
+instrument           0.9251413 0.8661787 0.9879864
+t01                  1.0214031 0.9752944 1.0696988
+neigh_attach         1.0811367 1.0188936 1.1472081
+sexo_dist1           2.3927081 2.1523999 2.6614421
+educ_dist1           0.6031587 0.4732586 0.7664181
+ideol_dist1          0.9164742 0.8276102 1.0148840
+relig_dist1          0.8811439 0.7928388 0.9793278
+ego_educ2:educ_dist1 1.4768214 1.1098353 1.9692900
+ego_educ3:educ_dist1 2.0622330 1.4501214 2.9385295
+ego_educ4:educ_dist1 3.5892415 2.5767997 5.0103791</code></pre>
 </div>
 </div>
 <p>Con la transformación exponencial (a OR) se puede decir, “con el incremento en una unidad de Edad del ego, se incrementan los odds (probabilidad) de que los vínculos de confidencia formados sean vecinales (versus la posibilidad de que no lo sean)</p>
@@ -1280,42 +1299,44 @@ ego_educ4:educ_dist1 3.5418014 2.5435340 4.9425435</code></pre>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ego_edad</span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> expresivas</span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> instrument</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> neigh_attach</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> sexo_dist1 </span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> educ_dist1 </span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ideol_dist1</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> relig_dist1</span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ego_educ<span class="sc">*</span>educ_dist1, <span class="at">data =</span> obs)</span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy(tidy_m3) #Summary Table</span></span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co"># data for plot. </span></span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>data_model_plot<span class="ot">&lt;-</span><span class="fu">tidy</span>(tidy_m3, <span class="at">exponentiate =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="dv">4</span>) </span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a> <span class="co"># select(-std.error, -statistic)</span></span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>data_model_plot</span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> t01</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> neigh_attach</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> sexo_dist1 </span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> educ_dist1 </span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ideol_dist1</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> relig_dist1</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ego_educ<span class="sc">*</span>educ_dist1, <span class="at">data =</span> obs)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy(tidy_m3) #Summary Table</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="co"># data for plot. </span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>data_model_plot<span class="ot">&lt;-</span><span class="fu">tidy</span>(tidy_m3, <span class="at">exponentiate =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="dv">4</span>) </span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a> <span class="co"># select(-std.error, -statistic)</span></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>data_model_plot</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 16 × 7
+<pre><code># A tibble: 17 × 7
    term                 estimate std.error statistic p.value conf.low conf.high
    &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
- 1 (Intercept)            0.555     0.175       3.17  0.0015   0.213     0.899 
- 2 ego_sexo2              0.133     0.0539      2.46  0.0137   0.0272    0.238 
- 3 ego_educ2             -0.572     0.115      -4.98  0       -0.800    -0.349 
- 4 ego_educ3             -1.10      0.152      -7.27  0       -1.40     -0.807 
- 5 ego_educ4             -1.73      0.133     -13.1   0       -2.00     -1.48  
- 6 ego_edad              -0.0063    0.0019     -3.32  0.0009  -0.0101   -0.0026
- 7 expresivas             0.0671    0.0339      1.98  0.0478   0.0007    0.134 
- 8 instrument            -0.0793    0.0335     -2.36  0.018   -0.145    -0.0136
- 9 neigh_attach           0.0882    0.0281      3.14  0.0017   0.0332    0.143 
-10 sexo_dist1             0.875     0.0541     16.2   0        0.769     0.981 
-11 educ_dist1            -0.506     0.123      -4.12  0       -0.749    -0.266 
-12 ideol_dist1           -0.0872    0.052      -1.68  0.0937  -0.189     0.0148
-13 relig_dist1           -0.124     0.0538     -2.29  0.0218  -0.229    -0.018 
-14 ego_educ2:educ_dist1   0.395     0.146       2.70  0.0068   0.110     0.683 
-15 ego_educ3:educ_dist1   0.725     0.180       4.02  0.0001   0.373     1.08  
-16 ego_educ4:educ_dist1   1.26      0.169       7.46  0        0.934     1.60  </code></pre>
+ 1 (Intercept)            0.538     0.176      3.05   0.0023   0.193     0.886 
+ 2 ego_sexo2              0.133     0.0539     2.46   0.0138   0.0271    0.238 
+ 3 ego_educ2             -0.573     0.115     -4.98   0       -0.801    -0.350 
+ 4 ego_educ3             -1.11      0.152     -7.31   0       -1.41     -0.816 
+ 5 ego_educ4             -1.75      0.134    -13.1    0       -2.02     -1.49  
+ 6 ego_edad              -0.0065    0.0019    -3.40   0.0007  -0.0103   -0.0028
+ 7 expresivas             0.0669    0.0339     1.97   0.0485   0.0005    0.134 
+ 8 instrument            -0.0778    0.0336    -2.32   0.0204  -0.144    -0.0121
+ 9 t01                    0.0212    0.0236     0.899  0.369   -0.025     0.0674
+10 neigh_attach           0.078     0.0303     2.58   0.0099   0.0187    0.137 
+11 sexo_dist1             0.872     0.0542    16.1    0        0.767     0.979 
+12 educ_dist1            -0.506     0.123     -4.11   0       -0.748    -0.266 
+13 ideol_dist1           -0.0872    0.052     -1.68   0.0937  -0.189     0.0148
+14 relig_dist1           -0.126     0.0539    -2.35   0.0189  -0.232    -0.0209
+15 ego_educ2:educ_dist1   0.390     0.146      2.67   0.0077   0.104     0.678 
+16 ego_educ3:educ_dist1   0.724     0.180      4.02   0.0001   0.372     1.08  
+17 ego_educ4:educ_dist1   1.28      0.170      7.53   0        0.946     1.61  </code></pre>
 </div>
 </div>
 </section>
@@ -1333,59 +1354,61 @@ ego_educ4:educ_dist1 3.5418014 2.5435340 4.9425435</code></pre>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"ego_edad +"</span> <span class="sc">~</span> <span class="st">"Edad (ego)"</span>,</span>
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"expresivas"</span> <span class="sc">~</span> <span class="st">"Memb. Expresiva"</span>,</span>
 <span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"instrument"</span> <span class="sc">~</span> <span class="st">"Memb. Instrumental"</span>,</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"neigh_attach"</span> <span class="sc">~</span> <span class="st">"comprom. barrio"</span>,</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"sexo_dist1"</span> <span class="sc">~</span> <span class="st">"Sexo distancia"</span>,</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"educ_dist1"</span> <span class="sc">~</span> <span class="st">"Educación distancia"</span>,</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"ideol_dist1"</span> <span class="sc">~</span> <span class="st">"Ideología distancia"</span>,</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"relig_dist1"</span> <span class="sc">~</span> <span class="st">"Religión distancia"</span>,</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"ego_educ2:educ_dist1"</span> <span class="sc">~</span> <span class="st">"Nivel educativo medio (ego)*Educ. dist."</span>,</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"ego_educ3:educ_dist1"</span> <span class="sc">~</span> <span class="st">"Nivel educativo técnico (ego)*Educ. dist."</span>,</span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"ego_educ4:educ_dist1"</span> <span class="sc">~</span> <span class="st">"Nivel educativo superior (ego)*Educ. dist."</span>,</span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Agrega más condiciones según sea necesario</span></span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> term  <span class="co"># Mantener otros valores sin cambios</span></span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"t01"</span> <span class="sc">~</span> <span class="st">"Confianza vecinal"</span>,</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"neigh_attach"</span> <span class="sc">~</span> <span class="st">"comprom. barrio"</span>,</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"sexo_dist1"</span> <span class="sc">~</span> <span class="st">"Sexo distancia"</span>,</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"educ_dist1"</span> <span class="sc">~</span> <span class="st">"Educación distancia"</span>,</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"ideol_dist1"</span> <span class="sc">~</span> <span class="st">"Ideología distancia"</span>,</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"relig_dist1"</span> <span class="sc">~</span> <span class="st">"Religión distancia"</span>,</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"ego_educ2:educ_dist1"</span> <span class="sc">~</span> <span class="st">"Nivel educativo medio (ego)*Educ. dist."</span>,</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"ego_educ3:educ_dist1"</span> <span class="sc">~</span> <span class="st">"Nivel educativo técnico (ego)*Educ. dist."</span>,</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    term <span class="sc">==</span> <span class="st">"ego_educ4:educ_dist1"</span> <span class="sc">~</span> <span class="st">"Nivel educativo superior (ego)*Educ. dist."</span>,</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Agrega más condiciones según sea necesario</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> term  <span class="co"># Mantener otros valores sin cambios</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>  ))</span>
 <span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>data_model_plot <span class="sc">%&gt;%</span></span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">or=</span><span class="fu">round</span>(<span class="fu">exp</span>(estimate), <span class="dv">2</span>))<span class="sc">%&gt;%</span> <span class="co"># crear odds</span></span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> term, <span class="at">x =</span> estimate, <span class="at">label =</span> or)) <span class="sc">+</span></span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> term, <span class="at">x=</span>estimate), <span class="at">color=</span> <span class="st">"blue"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span>  </span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbarh</span>(<span class="fu">aes</span>(<span class="at">xmax =</span> conf.high, <span class="at">xmin =</span> conf.low, <span class="at">height =</span> .<span class="dv">12</span>), <span class="at">color =</span><span class="st">"blue"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="fl">0.6</span>) <span class="sc">+</span>  </span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span><span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">19</span>)) <span class="sc">+</span></span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">size =</span> <span class="fl">3.5</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>,<span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.25</span>) <span class="sc">+</span> </span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>  <span class="co">#facet_grid(.~y.level) +</span></span>
-<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>()<span class="sc">+</span></span>
-<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">15</span>),</span>
-<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>),</span>
-<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>),</span>
-<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
-<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
-<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">12</span>)) <span class="sc">+</span></span>
-<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">pch=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"Patrones"</span>)) <span class="sc">+</span></span>
-<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> </span>
-<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Coeficientes de regresión con OR"</span>) <span class="sc">+</span></span>
-<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a> <span class="co"># scale_y_discrete(limits=rev) +</span></span>
-<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.05</span>, <span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="st">"(Intercept)"</span>,</span>
-<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"sexo (ego)"</span>,</span>
-<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Nivel educativo (media)"</span>,</span>
-<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Nivel educativo (técnico)"</span>,</span>
-<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Nivel educativo (superior)"</span>,</span>
-<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Edad (ego)"</span>,</span>
-<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Memb. Expresiva"</span>,</span>
-<span id="cb25-55"><a href="#cb25-55" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Memb. Instrumental"</span>,</span>
-<span id="cb25-56"><a href="#cb25-56" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"comprom. barrio"</span>,</span>
-<span id="cb25-57"><a href="#cb25-57" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Sexo distancia"</span>,</span>
-<span id="cb25-58"><a href="#cb25-58" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Educación distancia"</span>,</span>
-<span id="cb25-59"><a href="#cb25-59" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Ideología distancia"</span>,</span>
-<span id="cb25-60"><a href="#cb25-60" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Religión distancia"</span>,</span>
-<span id="cb25-61"><a href="#cb25-61" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Nivel educativo medio (ego)*Educ. dist."</span>,</span>
-<span id="cb25-62"><a href="#cb25-62" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Nivel educativo técnico (ego)*Educ. dist."</span>,</span>
-<span id="cb25-63"><a href="#cb25-63" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Nivel educativo superior (ego)*Educ. dist."</span>))</span>
-<span id="cb25-64"><a href="#cb25-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>data_model_plot <span class="sc">%&gt;%</span></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">or=</span><span class="fu">round</span>(<span class="fu">exp</span>(estimate), <span class="dv">2</span>))<span class="sc">%&gt;%</span> <span class="co"># crear odds</span></span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> term, <span class="at">x =</span> estimate, <span class="at">label =</span> or)) <span class="sc">+</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> term, <span class="at">x=</span>estimate), <span class="at">color=</span> <span class="st">"blue"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span>  </span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbarh</span>(<span class="fu">aes</span>(<span class="at">xmax =</span> conf.high, <span class="at">xmin =</span> conf.low, <span class="at">height =</span> .<span class="dv">12</span>), <span class="at">color =</span><span class="st">"blue"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="fl">0.6</span>) <span class="sc">+</span>  </span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span><span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">19</span>)) <span class="sc">+</span></span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">size =</span> <span class="fl">3.5</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>,<span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.25</span>) <span class="sc">+</span> </span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>  <span class="co">#facet_grid(.~y.level) +</span></span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>()<span class="sc">+</span></span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">15</span>),</span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>),</span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>),</span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">pch=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"Patrones"</span>)) <span class="sc">+</span></span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> </span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Coeficientes de regresión con OR"</span>) <span class="sc">+</span></span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a> <span class="co"># scale_y_discrete(limits=rev) +</span></span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.05</span>, <span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="st">"(Intercept)"</span>,</span>
+<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"sexo (ego)"</span>,</span>
+<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Nivel educativo (media)"</span>,</span>
+<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Nivel educativo (técnico)"</span>,</span>
+<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Nivel educativo (superior)"</span>,</span>
+<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Edad (ego)"</span>,</span>
+<span id="cb25-55"><a href="#cb25-55" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Memb. Expresiva"</span>,</span>
+<span id="cb25-56"><a href="#cb25-56" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Memb. Instrumental"</span>,</span>
+<span id="cb25-57"><a href="#cb25-57" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Confianza vecinal"</span>,</span>
+<span id="cb25-58"><a href="#cb25-58" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"comprom. barrio"</span>,</span>
+<span id="cb25-59"><a href="#cb25-59" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Sexo distancia"</span>,</span>
+<span id="cb25-60"><a href="#cb25-60" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Educación distancia"</span>,</span>
+<span id="cb25-61"><a href="#cb25-61" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Ideología distancia"</span>,</span>
+<span id="cb25-62"><a href="#cb25-62" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Religión distancia"</span>,</span>
+<span id="cb25-63"><a href="#cb25-63" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Nivel educativo medio (ego)*Educ. dist."</span>,</span>
+<span id="cb25-64"><a href="#cb25-64" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Nivel educativo técnico (ego)*Educ. dist."</span>,</span>
+<span id="cb25-65"><a href="#cb25-65" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Nivel educativo superior (ego)*Educ. dist."</span>))</span>
+<span id="cb25-66"><a href="#cb25-66" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
