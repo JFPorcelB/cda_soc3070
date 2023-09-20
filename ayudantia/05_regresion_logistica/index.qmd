@@ -404,7 +404,7 @@ data_model_plot %>%
                               "Edad (ego)",
                               "Memb. Expresiva",
                               "Memb. Instrumental",
-                              "Confianza vecinal",
+                              "Confianza vecinal", 
                               "comprom. barrio",
                               "Sexo distancia",
                               "Educación distancia",
