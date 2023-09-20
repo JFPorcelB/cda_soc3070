@@ -1,0 +1,413 @@
+---
+title: "Ejercicio 5"
+subtitle: "Ayudantía soc3070"
+author: "Cantillan, R. | Bucca, M."
+institute: "ISUC"
+page-layout: article
+date: today
+date-format: short
+number-sections: true
+format:
+  html:
+    titlepage-logo: "images/uc-chile.png"
+    logo-align: left
+    logo-size: 1.5
+    theme: 
+      light: flatly
+      dark: darkly
+    toc: true
+    toc_float: true
+    toc-depth: 5
+    toc-title: "En este ejercicio"
+editor: visual
+title-block-banner: true
+title-block-style: default
+title-block-categories: true
+freeze: true
+execute: 
+  echo: fenced
+  eval: true
+  output: true
+  warning: false
+reference-location: margin
+citation-location: margin
+bibliography: catagorical_data.bib
+#highlight-style: ayu-dark
+#code-block-bg: "#2E2E2E"
+#code-block-border-left: "#31BAE9"
+---
+
+<head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></head>
+
+::: sidebar-icons
+<a href="https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/03_manipulacion/index.qmd"><i class="fab fa-github"></i> source </a> <!-- Otros íconos aquí -->
+:::
+
+<head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+```{=html}
+<style>
+    .sidebar-icons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .sidebar-icons a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #333;
+    }
+    .sidebar-icons i {
+      margin-right: 10px;
+    }
+  </style>
+```
+</head>
+
+En este ejercicio vamos a utilizar nuevamente ELSOC en su versión 2019. Esta vez nos preguntamos acerca de los determinantes que influten en la probabilidad de armar vinculos de confidencia con vecinos. La pregunta es del todo relevante, puesto que los vínculos vecinales muchas veces constituyen al contexto y dan forma a la estructura de oportunidades de vínculación [@blauInequalityHeterogeneityPrimitive1977; @feldFocusedOrganizationSocial1981]. Sin embargo, la especificidad de los vecindarios es que son contextos en los cuales la actividad e interacción social están fuertemente condicionados por la proximidad física y social [@feldSocialStructuralDeterminants1982]. Asimismo, los vecindarios suelen a otros de interacción como escuelas o asociaciones voluntarias. Por esta razón, los barrios o vecindarios implican más oportunidades y probabilidades de encuentro y vinculación entre sus miembros. Por lo tanto, las áreas locales son un campo de investigación óptimo para estudiar cómo los extraños se convierten en amigos [@volkerSixteenMillionNeighbors2007].
+
+@wellmanArePersonalCommunities1996 y @fernandezReviewAmericanApartheid1993 indican que aún cuando los lazos locales generalmente sean débiles, son contactos frecuentes. Su mayor probabilidad deriva de la cantidad relativa de tiempo que pasamos en nuestros trabajos, vecindarios y hogares. Razón por la cual puede ser inevitable el encuentro con aquellos con los cuales compartimos un vecindario. Si consideramos que los barrios y los lugares de trabajo suelen ser socialmente más homogéneos @feldFocusedOrganizationSocial1981, el predominio de este tipo de lazos puede indicar altos niveles de segregación y aislamiento social [@dipreteSegregationSocialNetworks2011; @masseyAmericanApartheidSegregation2003] . Razón por la cual el estudio de los lazos vecinales son un proxi relevante para el estudio general de las desigualdades persistentes [@tillyDurableInequality2009].
+
+¿sobre qué bases los individuos establecen o no relaciones de cercanía con sus vecinos? y, ¿por qué algunas personas los incluyen en sus redes y otras no?
+
+En efecto el ejericio incluirá lo siguiente:
+
+-   Creación de data frames diádico.
+-   Creación de variable dependiente binaria.
+-   Estimación de errores estándar robustos (dada la dependencia en la estructura de datos).
+-   Estimación de un modelo de regresión logística con la variable dependiente a nivel de diáda (vecino o no vecino) y como variables dependientes atributos del ego (se pueden -o deben- incluir otros niveles como el barrial, y caracteírticas de los alteris).
+
+LAs hipótesis son bien simples y sugieren lo siguiente: a) individuos con mayor sociabilidad incluiran a vecinos en las reedes de confidencia, b) individuos de mayor nivel socioeconoómico incluiran a vecinos en las redes de confidencia. Por supuesto, esxisten múltiples deimensiones aidcionales que pueden incluirse.
+
+## Librerías
+
+```{r, message=F}
+pacman::p_load(tidymodels,
+               tidyverse,
+               kableExtra,
+               interplot,
+               margins,
+               sjPlot,
+               stargazer,
+               httr,
+               car,
+               lmtest,
+               sandwich,
+               texreg)
+```
+
+## data (ELSOC 2019 w4)
+
+```{r}
+#ELSOC 2017
+url <- "https://github.com/rcantillan/ricantillan.rbind.io/raw/main/dat/ELSOC/ELSOC_W02_v3.00_R.RData"
+response <- GET(url)
+local_path <- "ELSOC_W02_v3.00_R.RData"
+writeBin(response$content, local_path)
+load("ELSOC_W02_v3.00_R.RData") #reemplazar por ruta local de descarga
+
+#ELSOC 2016
+url <- "https://github.com/rcantillan/ricantillan.rbind.io/raw/main/dat/ELSOC/ELSOC_W01_v4.01_R.RData"
+response <- GET(url)
+local_path <- "ELSOC_W01_v4.01_R.RData"
+writeBin(response$content, local_path)
+load("ELSOC_W01_v4.01_R.RData") 
+```
+
+## Construcción variables
+
+### egonet (wide)
+
+```{r}
+egonet<-elsoc_2017 %>%
+  #glimpse() %>%
+  dplyr::select(7:24)
+
+glimpse(egonet)
+```
+
+### data alteris (a formato long)
+
+```{r}
+columnas <- c("sexo", "edad", "educ", "relig", "ideol", "barrio", "relacion")
+num_alters <- 5
+
+alter_list <- list()
+
+for (i in 1:num_alters) {
+  alter_cols <- paste0("r13_", columnas, "_", sprintf("%02d", i))
+  alter <- elsoc_2017 %>%
+    dplyr::select(idencuesta, all_of(alter_cols)) %>%
+    rename_with(~ columnas, alter_cols) %>%
+    mutate(n = i)
+  
+  alter_list[[i]] <- alter
+}
+
+alteris <- bind_rows(alter_list)
+alteris<-arrange(alteris, idencuesta)
+kable(head(alteris, n=25))
+```
+
+### recode
+
+```{r}
+alteris$educ <-factor(Recode(alteris$educ ,"1=1;2:3=2;4=3;5=4;-888=NA;-999=NA"))
+alteris$relig<-factor(Recode(alteris$relig,"1=1;2=2;3=3;4=4;5=5;-888=NA;-999=NA"))
+alteris$ideol<-factor(Recode(alteris$ideol,"1=1;2=2;3=3;4=4;5=5;6=6;-888=NA;-999=NA"))
+alteris$edad <-factor(Recode(alteris$edad ,"0:18=1;19:29=2;30:40=3;41:51=4;52:62=5;63:100=6;-888=NA;-999=NA"))
+alteris$sexo <-factor(Recode(alteris$sexo ,"1=1;2=2;-888=NA;-999=NA"))
+alteris$barrio<-factor(Recode(alteris$barrio ,"1=1;2=0;-888=NA;-999=NA"))
+#alteris<-na.omit(alteris)   
+```
+
+### data egos (Entrevistados)
+
+```{r}
+asoc<-elsoc_2016%>%dplyr::select(idencuesta,c12_01,c12_02,c12_03,c12_04,c12_05,
+                                 c12_06,c12_07,c12_08,c12_09)
+
+
+egos <-elsoc_2017 %>%dplyr::select(idencuesta,ego_sexo=m0_sexo,ego_edad=m0_edad,
+                                   ego_ideol=c15,ego_educ=m01,ego_relig=m38,ego_ideol=c15,
+                                   t01,t02_01,t02_02,t02_03,t02_04,ponderador02)
+
+egos<-left_join(egos,asoc, by="idencuesta")
+egos <- as_tibble(egos)
+```
+
+Recodificamos las variables de la data de ego siguiendo el patrón de la data de alteris.
+
+```{r}
+egos$ego_educ <-factor(Recode(egos$ego_educ,"1:3=1;4:5=2;6:7=3;8:10=4;-999:-888=NA"))
+egos$ego_relig<-factor(Recode(egos$ego_relig,"1=1;2=2;9=3;7:8=4;3:6=5;-999:-888=NA"))
+egos$ego_ideol<-factor(Recode(egos$ego_ideol,"9:10=1;6:8=2;5=3;2:4=4;0:1=5;11:12=6;-999:-888=NA"))
+#egos$ego_edad <-factor(Recode(egos$ego_edad,"0:18=1;19:29=2;30:40=3;41:51=4;52:62=5;63:100=6;-888=NA;-999=NA"))
+egos$ego_sexo <-factor(Recode(egos$ego_sexo,"1=1;2=2;-888=NA;-999=NA"))
+```
+
+### Join
+
+Con la función left_join agregamos la data de alteris y egos hacia el lado, en función del id de ego.
+
+```{r}
+obs<-left_join(egos,alteris, by="idencuesta")
+obs[obs=="-999"] <- NA
+obs[obs=="-888"] <- NA
+```
+
+### Crear variables independientes de interés
+
+```{r}
+# distancia 
+obs <- obs %>%
+  mutate(sexo_dist1 = ifelse(sexo == ego_sexo, 0, 1))%>%
+  mutate(educ_dist1 = ifelse(educ == ego_educ, 0, 1))%>%
+  mutate(ideol_dist1= ifelse(ideol== ego_ideol,0, 1))%>%
+  mutate(relig_dist1= ifelse(relig== ego_relig,0, 1))%>%
+  # índice compromiso barrial 
+  mutate(neigh_attach=(t02_01+t02_02+t02_03+t02_04)/4)%>%
+  # tipos de comportamiento asociativo
+  mutate_at(vars(matches("c12")), ~ifelse(. < 2, 0, 1)) %>% 
+  mutate(expresivas= c12_01+c12_02+c12_04)%>%
+  mutate(instrument= c12_03+c12_05+c12_06+c12_07+c12_08)
+```
+
+### Variable dependiente (alter vecino)
+
+```{r, message=FALSE}
+x <- c("No es vecino", "Es vecino")
+
+obs%>%
+  filter(!is.na(barrio)) %>%  # Filtrar las filas donde barrio no sea NA
+  ggplot(aes(x = barrio, fill = barrio)) +
+  geom_bar(fill = "blue", alpha = 0.5) +
+   geom_text(aes(label = scales::percent(..count../sum(..count..))), 
+             color="white",
+            stat = "count", 
+            position = position_stack(vjust = 0.5), 
+            size = 4) + # Agregar etiquetas de texto con porcentajes
+  labs(title = "Alter es vecin@",
+       x = "",
+       y = "Frecuencia") +
+  scale_x_discrete(labels=x) +
+  theme_minimal()
+```
+
+## Modelo de regresión logística
+
+### Modelo 1
+
+```{r}
+m1<-glm(barrio~
+          ego_sexo
+        + ego_educ
+        + ego_edad
+        + expresivas
+        + instrument
+        + neigh_attach, data = obs, family = "binomial")
+
+summary(m1)
+```
+
+### Modelo 2
+
+```{r}
+m2<-glm(barrio~
+          ego_sexo
+        + ego_educ
+        + ego_edad
+        + sexo_dist1 
+        + educ_dist1 
+        + ideol_dist1
+        + relig_dist1, data = obs, family = "binomial")
+
+summary(m2)
+```
+
+### Modelo 3
+
+```{r}
+m3<-glm(barrio~
+          ego_sexo
+        + ego_educ
+        + ego_edad
+        + expresivas
+        + instrument
+        + neigh_attach
+        + sexo_dist1 
+        + educ_dist1 
+        + ideol_dist1
+        + relig_dist1
+        + ego_educ*educ_dist1, data = obs, family = "binomial")
+
+summary(m3)
+```
+
+### SE robustos
+
+```{r}
+coeftest(m3, vcov = vcovHC(m3, type="HC1"))
+```
+
+### Tabla comparativa
+
+```{r, results = "asis", message=FALSE, warning=FALSE}
+stargazer(m1,m2,m3, style="ajs", type = 'html', single.row = TRUE)
+```
+
+### Ejemplo de interpretación: coeficiente (log odds)
+
+Para variables "continuas": "Un incremento en ... los log odds de la formación de vínculos vecinales se incrementa (o decrece) en ...
+
+Para Variables "categóricas": ejemplo, "tener un nivel educativo superior, en contraste con el nivel educativo básico, modifica los log odds de formas vínculos vecinales en -1.533"
+
+### Ejemplo de interpretación II: odds
+
+```{r}
+exp(cbind(OR = coef(m3), confint(m3)))
+```
+
+Con la transformación exponencial (a OR) se puede decir, "con el incremento en una unidad de Edad del ego, se incrementan los odds (probabilidad) de que los vínculos de confidencia formados sean vecinales (versus la posibilidad de que no lo sean)
+
+### Tidy model y plot de coeficientes con OR
+
+```{r}
+tidy_m3<- logistic_reg() %>%
+        # Set the engine
+        set_engine("glm") %>%
+        # Set the mode
+        set_mode("classification") %>%
+        # Fit the model
+        fit(barrio~
+          ego_sexo
+        + ego_educ
+        + ego_edad
+        + expresivas
+        + instrument
+        + neigh_attach
+        + sexo_dist1 
+        + educ_dist1 
+        + ideol_dist1
+        + relig_dist1
+        + ego_educ*educ_dist1, data = obs)
+
+# tidy(tidy_m3) #Summary Table
+
+# data for plot. 
+data_model_plot<-tidy(tidy_m3, exponentiate = FALSE, conf.int = TRUE) |> 
+  mutate_if(is.numeric, round, 4) 
+ # select(-std.error, -statistic)
+
+data_model_plot
+```
+
+### Plot
+
+```{r warning=F}
+data_model_plot <- data_model_plot %>%
+  mutate(term= case_when(
+    #term == "(Intercept)"~"(Intercept)",
+    term == "ego_sexo2" ~ "sexo (ego)",
+    term == "ego_educ2" ~ "Nivel educativo (media)",
+    term == "ego_educ3" ~ "Nivel educativo (técnico)",
+    term == "ego_educ4" ~ "Nivel educativo (superior)",
+    term == "ego_edad +" ~ "Edad (ego)",
+    term == "expresivas" ~ "Memb. Expresiva",
+    term == "instrument" ~ "Memb. Instrumental",
+    term == "neigh_attach" ~ "comprom. barrio",
+    term == "sexo_dist1" ~ "Sexo distancia",
+    term == "educ_dist1" ~ "Educación distancia",
+    term == "ideol_dist1" ~ "Ideología distancia",
+    term == "relig_dist1" ~ "Religión distancia",
+    term == "ego_educ2:educ_dist1" ~ "Nivel educativo medio (ego)*Educ. dist.",
+    term == "ego_educ3:educ_dist1" ~ "Nivel educativo técnico (ego)*Educ. dist.",
+    term == "ego_educ4:educ_dist1" ~ "Nivel educativo superior (ego)*Educ. dist.",
+    # Agrega más condiciones según sea necesario
+    TRUE ~ term  # Mantener otros valores sin cambios
+  ))
+
+
+data_model_plot %>%
+  mutate(or=round(exp(estimate), 2))%>% # crear odds
+  ggplot(aes(y = term, x = estimate, label = or)) +
+  geom_point(aes(y = term, x=estimate), color= "blue", alpha = 0.5) +  
+  geom_errorbarh(aes(xmax = conf.high, xmin = conf.low, height = .12), color ="blue", alpha = 0.5, size = 0.6) +  
+  geom_vline(xintercept =0, linetype = "dashed") +
+  scale_shape_manual(values = c(0,2,19)) +
+  geom_text(size = 3.5, nudge_x = 2,vjust = -0.25) + 
+  #facet_grid(.~y.level) +
+  scale_x_continuous(limits=c(-5,5)) +
+  theme_gray()+
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5, size = 15),
+        axis.title = element_text(size=10),
+        axis.text.x = element_text(size=11),
+        axis.text.y = element_text(size = 11),
+        legend.text = element_text(size = 10),
+        legend.title = element_text(face = "bold", size = 12)) +
+  guides(pch=guide_legend(title="Patrones")) +
+  ylab("") + 
+  xlab("") +
+  ggtitle("Coeficientes de regresión con OR") +
+ # scale_y_discrete(limits=rev) +
+  scale_y_discrete(expand=c(0.05, 0), limits = c("(Intercept)",
+                              "sexo (ego)",
+                              "Nivel educativo (media)",
+                              "Nivel educativo (técnico)",
+                              "Nivel educativo (superior)",
+                              "Edad (ego)",
+                              "Memb. Expresiva",
+                              "Memb. Instrumental",
+                              "comprom. barrio",
+                              "Sexo distancia",
+                              "Educación distancia",
+                              "Ideología distancia",
+                              "Religión distancia",
+                              "Nivel educativo medio (ego)*Educ. dist.",
+                              "Nivel educativo técnico (ego)*Educ. dist.",
+                              "Nivel educativo superior (ego)*Educ. dist."))
+```
