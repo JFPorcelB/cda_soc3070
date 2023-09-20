@@ -1,5 +1,5 @@
 ---
-title: "Ejercicio 4"
+title: "Ejercicio 5"
 subtitle: "Ayudantía soc3070"
 author: "Cantillan, R. | Bucca, M."
 institute: "ISUC"
@@ -67,26 +67,20 @@ bibliography: catagorical_data.bib
 ```
 </head>
 
-
-
-En este ejercicio vamos a utilizar nuevamente ELSOC en su versión 2019. Esta vez nos preguntamos acerca de los determinantes que influten en la probabilidad de armar vinculos de confidencia con vecinos. La pregunta es del todo relevante, puesto que los vínculos vecinales muchas veces constituyen al contexto y dan forma a la estructura de oportunidades de vínculación [@blauInequalityHeterogeneityPrimitive1977; @feldFocusedOrganizationSocial1981]. Sin embargo, la especificidad de los vecindarios es que son contextos en los cuales la actividad e interacción social  están fuertemente condicionados por la proximidad física y social [@feldSocialStructuralDeterminants1982]. Asimismo, los vecindarios suelen a otros de interacción como escuelas o asociaciones voluntarias. Por esta razón, los barrios o vecindarios implican más oportunidades y probabilidades de encuentro y vinculación entre sus miembros. Por lo tanto, las áreas locales son un campo de investigación óptimo para estudiar cómo los extraños se convierten en amigos [@volkerSixteenMillionNeighbors2007]. 
+En este ejercicio vamos a utilizar nuevamente ELSOC en su versión 2019. Esta vez nos preguntamos acerca de los determinantes que influten en la probabilidad de armar vinculos de confidencia con vecinos. La pregunta es del todo relevante, puesto que los vínculos vecinales muchas veces constituyen al contexto y dan forma a la estructura de oportunidades de vínculación [@blauInequalityHeterogeneityPrimitive1977; @feldFocusedOrganizationSocial1981]. Sin embargo, la especificidad de los vecindarios es que son contextos en los cuales la actividad e interacción social están fuertemente condicionados por la proximidad física y social [@feldSocialStructuralDeterminants1982]. Asimismo, los vecindarios suelen a otros de interacción como escuelas o asociaciones voluntarias. Por esta razón, los barrios o vecindarios implican más oportunidades y probabilidades de encuentro y vinculación entre sus miembros. Por lo tanto, las áreas locales son un campo de investigación óptimo para estudiar cómo los extraños se convierten en amigos [@volkerSixteenMillionNeighbors2007].
 
 @wellmanArePersonalCommunities1996 y @fernandezReviewAmericanApartheid1993 indican que aún cuando los lazos locales generalmente sean débiles, son contactos frecuentes. Su mayor probabilidad deriva de la cantidad relativa de tiempo que pasamos en nuestros trabajos, vecindarios y hogares. Razón por la cual puede ser inevitable el encuentro con aquellos con los cuales compartimos un vecindario. Si consideramos que los barrios y los lugares de trabajo suelen ser socialmente más homogéneos @feldFocusedOrganizationSocial1981, el predominio de este tipo de lazos puede indicar altos niveles de segregación y aislamiento social [@dipreteSegregationSocialNetworks2011; @masseyAmericanApartheidSegregation2003] . Razón por la cual el estudio de los lazos vecinales son un proxi relevante para el estudio general de las desigualdades persistentes [@tillyDurableInequality2009].
 
-¿sobre qué bases los individuos establecen o no relaciones de cercanía con sus vecinos? y, ¿por qué algunas personas los incluyen en sus redes y otras no?  
+¿sobre qué bases los individuos establecen o no relaciones de cercanía con sus vecinos? y, ¿por qué algunas personas los incluyen en sus redes y otras no?
 
-En efecto el ejericio incluirá lo siguiente: 
+En efecto el ejericio incluirá lo siguiente:
 
-  - Creación de data frames diádico. 
-  - Creación de variable dependiente binaria. 
-  - Estimación de errores estándar robustos (dada la dependencia en la estructura de datos).
-  - Estimación de un modelo de regresión logística con la variable dependiente a nivel de diáda (vecino o no vecino) y como variables dependientes atributos del ego (se pueden -o deben- incluir otros niveles como el barrial, y caracteírticas de los alteris). 
+-   Creación de data frames diádico.
+-   Creación de variable dependiente binaria.
+-   Estimación de errores estándar robustos (dada la dependencia en la estructura de datos).
+-   Estimación de un modelo de regresión logística con la variable dependiente a nivel de diáda (vecino o no vecino) y como variables dependientes atributos del ego (se pueden -o deben- incluir otros niveles como el barrial, y caracteírticas de los alteris).
 
-
-LAs hipótesis son bien simples y sugieren lo siguiente: a) individuos con mayor sociabilidad incluiran a vecinos en las reedes de confidencia, b) individuos de mayor nivel socioeconoómico incluiran a vecinos en las redes de confidencia. Por supuesto, esxisten múltiples deimensiones aidcionales que pueden incluirse. 
-
-
-
+LAs hipótesis son bien simples y sugieren lo siguiente: a) individuos con mayor sociabilidad incluiran a vecinos en las reedes de confidencia, b) individuos de mayor nivel socioeconoómico incluiran a vecinos en las redes de confidencia. Por supuesto, esxisten múltiples deimensiones aidcionales que pueden incluirse.
 
 ## Librerías
 
@@ -123,9 +117,10 @@ writeBin(response$content, local_path)
 load("ELSOC_W01_v4.01_R.RData") 
 ```
 
-
 ## Construcción variables
+
 ### egonet (wide)
+
 ```{r}
 egonet<-elsoc_2017 %>%
   #glimpse() %>%
@@ -135,6 +130,7 @@ glimpse(egonet)
 ```
 
 ### data alteris (a formato long)
+
 ```{r}
 columnas <- c("sexo", "edad", "educ", "relig", "ideol", "barrio", "relacion")
 num_alters <- 5
@@ -156,8 +152,8 @@ alteris<-arrange(alteris, idencuesta)
 kable(head(alteris, n=25))
 ```
 
-
 ### recode
+
 ```{r}
 alteris$educ <-factor(Recode(alteris$educ ,"1=1;2:3=2;4=3;5=4;-888=NA;-999=NA"))
 alteris$relig<-factor(Recode(alteris$relig,"1=1;2=2;3=3;4=4;5=5;-888=NA;-999=NA"))
@@ -168,8 +164,8 @@ alteris$barrio<-factor(Recode(alteris$barrio ,"1=1;2=0;-888=NA;-999=NA"))
 #alteris<-na.omit(alteris)   
 ```
 
- 
 ### data egos (Entrevistados)
+
 ```{r}
 asoc<-elsoc_2016%>%dplyr::select(idencuesta,c12_01,c12_02,c12_03,c12_04,c12_05,
                                  c12_06,c12_07,c12_08,c12_09)
@@ -194,6 +190,7 @@ egos$ego_sexo <-factor(Recode(egos$ego_sexo,"1=1;2=2;-888=NA;-999=NA"))
 ```
 
 ### Join
+
 Con la función left_join agregamos la data de alteris y egos hacia el lado, en función del id de ego.
 
 ```{r}
@@ -220,6 +217,7 @@ obs <- obs %>%
 ```
 
 ### Variable dependiente (alter vecino)
+
 ```{r, message=FALSE}
 x <- c("No es vecino", "Es vecino")
 
@@ -239,8 +237,10 @@ obs%>%
   theme_minimal()
 ```
 
-## Modelo de regresión logística 
+## Modelo de regresión logística
+
 ### Modelo 1
+
 ```{r}
 m1<-glm(barrio~
           ego_sexo
@@ -254,6 +254,7 @@ summary(m1)
 ```
 
 ### Modelo 2
+
 ```{r}
 m2<-glm(barrio~
           ego_sexo
@@ -268,6 +269,7 @@ summary(m2)
 ```
 
 ### Modelo 3
+
 ```{r}
 m3<-glm(barrio~
           ego_sexo
@@ -285,32 +287,34 @@ m3<-glm(barrio~
 summary(m3)
 ```
 
-### SE robustos 
+### SE robustos
+
 ```{r}
 coeftest(m3, vcov = vcovHC(m3, type="HC1"))
 ```
 
 ### Tabla comparativa
+
 ```{r, results = "asis", message=FALSE, warning=FALSE}
 stargazer(m1,m2,m3, style="ajs", type = 'html', single.row = TRUE)
 ```
 
 ### Ejemplo de interpretación: coeficiente (log odds)
 
-Para variables "continuas": "Un incremento en ... los log odds de la formación de vínculos vecinales se incrementa (o decrece) en ... 
+Para variables "continuas": "Un incremento en ... los log odds de la formación de vínculos vecinales se incrementa (o decrece) en ...
 
 Para Variables "categóricas": ejemplo, "tener un nivel educativo superior, en contraste con el nivel educativo básico, modifica los log odds de formas vínculos vecinales en -1.533"
 
-
 ### Ejemplo de interpretación II: odds
+
 ```{r}
 exp(cbind(OR = coef(m3), confint(m3)))
 ```
 
 Con la transformación exponencial (a OR) se puede decir, "con el incremento en una unidad de Edad del ego, se incrementan los odds (probabilidad) de que los vínculos de confidencia formados sean vecinales (versus la posibilidad de que no lo sean)
 
-
 ### Tidy model y plot de coeficientes con OR
+
 ```{r}
 tidy_m3<- logistic_reg() %>%
         # Set the engine
@@ -342,6 +346,7 @@ data_model_plot
 ```
 
 ### Plot
+
 ```{r warning=F}
 data_model_plot <- data_model_plot %>%
   mutate(term= case_when(
@@ -406,17 +411,3 @@ data_model_plot %>%
                               "Nivel educativo técnico (ego)*Educ. dist.",
                               "Nivel educativo superior (ego)*Educ. dist."))
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
