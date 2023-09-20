@@ -80,8 +80,6 @@ En efecto el ejericio incluirá lo siguiente:
 -   Estimación de errores estándar robustos (dada la dependencia en la estructura de datos).
 -   Estimación de un modelo de regresión logística con la variable dependiente a nivel de diáda (vecino o no vecino) y como variables dependientes atributos del ego (se pueden -o deben- incluir otros niveles como el barrial, y caracteírticas de los alteris).
 
-LAs hipótesis son bien simples y sugieren lo siguiente: a) individuos con mayor sociabilidad incluiran a vecinos en las reedes de confidencia, b) individuos de mayor nivel socioeconoómico incluiran a vecinos en las redes de confidencia. Por supuesto, esxisten múltiples deimensiones aidcionales que pueden incluirse.
-
 ## Librerías
 
 ```{r, message=F}
