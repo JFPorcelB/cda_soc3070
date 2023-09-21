@@ -1,8 +1,7 @@
 ---
 title: "SOL3070 Análisis de Datos Categóricos"
-subtitle: "Tarea corta 2, respuestas"
-author: "Mauricio Bucca"
-format: html
+author: "Tarea corta 2, respuestas"
+format: pdf
 editor: visual
 ---
 
