@@ -195,6 +195,7 @@ Con la función left_join agregamos la data de alteris y egos hacia el lado, en 
 obs<-left_join(egos,alteris, by="idencuesta")
 obs[obs=="-999"] <- NA
 obs[obs=="-888"] <- NA
+
 ```
 
 ### Crear variables independientes de interés
