@@ -80,16 +80,14 @@ En efecto el ejericio incluirá lo siguiente:
 -   Estimación de errores estándar robustos (dada la dependencia en la estructura de datos).
 -   Estimación de un modelo de regresión logística con la variable dependiente a nivel de diáda (vecino o no vecino) y como variables dependientes atributos del ego (se pueden -o deben- incluir otros niveles como el barrial, y caracteírticas de los alteris).
 
-En la sesión del miércoles 26 de septiembre: 
+En la sesión del miércoles 26 de septiembre:
 
 -   Dvidir data en *Train* y *Test*
--   Volver a ajustar modelo 
+-   Volver a ajustar modelo
 -   Test Data Class Prediction
 -   Test Data Class Probabilities
--   Preparación final de datos para evaluación 
+-   Preparación final de datos para evaluación
 -   Evaluación del modelo (Confusion Matrix, Accuracy, Sensitivity, etc.)
-
-
 
 ## Librerías
 
@@ -427,33 +425,164 @@ data_model_plot %>%
                               "Nivel educativo superior (ego)*Educ. dist."))
 ```
 
+## Train y Test data
+
+En esta sección trabajaremos con la idea de predicción. Por lo general, para realizar la predicción de una clasificación los datos completos se divide en un 75% que usa como "data train" y un 25% que se usa como "test data". El 75% de los datos de entrenamiento se utiliza para el entrenamiento del modelo, mientras que el 25% restante se utiliza para comprobar cómo se generalizó el modelo en un conjunto de datos de prueba o no vistos.
+
+Para dividir los datos vamos a utilizar la función `inicial_split()` de la librería `tidymodels`. En esta, se deben especificar el nombre del objeto de datos, la proporción y un argumento de estrato. Al proporcionar su variable dependiente en el atributo estratos se realiza un muestreo estratificado. El muestreo estratificado es útil si su variable dependiente tiene un desequilibrio de clases.
+
+El siguiente paso es llamar a las funciones de `entrenamiento()` y `prueba()` para guardar ambos conjuntos de datos (train y test).
 
 
-## Train y Test data 
+
+
+```{r}
+# seed
+set.seed(123)
+
+# delete na "barrio"
+obs <- obs %>% drop_na(barrio)
+
+# data split 
+vecino_split <- initial_split(obs,
+                              prop = 0.75,
+                              strata = barrio) 
+vecino_split
+```
 
 
 
+```{r}
+# training data
+vecino_train <- vecino_split %>% training()
+
+# testing data
+vecino_test <- vecino_split %>% testing()
+
+# Número de filas 
+nrow(vecino_train)
+nrow(vecino_test)
+```
 
 
 
+A continuación ajustamos los modelos:
+
+1. Primero, utilizamos la fución `logistic_reg()`.
+2. Luego usamos la función `set_engine()` para indicar la familia del modelo. 
+3. Usamos la función `set_mode()`, para indicar el tipo de modelo a utilizar. En este caso queremos clasificar positivos y negativos, razón por la cual es un modelo de clasificación. 
+4. Espeicifamos el modelo con la función `fit()` 
+5. Finalmente, generamos una tabla de resumen usando la función `tidy()` de la librería `broom` (que viene incorporada con la biblioteca tidymodels). Los coeficientes informados están en términos de log odds.
 
 
-### Volver a ajustar modelo 
+### Volver a ajustar modelo
+
+```{r}
+nm3<- logistic_reg() %>%
+        set_engine("glm") %>%
+        set_mode("classification") %>%
+        fit(barrio~
+          ego_sexo
+        + ego_educ
+        + ego_edad
+        + expresivas
+        + instrument
+        + t01
+        + neigh_attach
+        + sexo_dist1 
+        + educ_dist1 
+        + ideol_dist1
+        + relig_dist1
+        + ego_educ*educ_dist1, data = vecino_train)
+
+tidy(nm3)    
+```
+
+
+### OR
+
+En el summery anterior la interpretación de los coeficientes en el término de probabilidades logarítmicas no tiene mucho sentido si el objetivo es la publicación o la divulgación. Para esto, es preferible usar OR. Las OR es el ratio de la probabilidad de que ocurra un evento a la de que el evento no ocurra. Cuando tomamos un ratio de dos de esas probabilidades, se llama Odds Ratio. 
+
+
+::: column-margin
+*Formula de OR*
+
+$$ ODDS = \frac{Evento \; ocurre}{Evento \; No \; ocurre} = \frac{Probabilidad}{1-Probabilidad} $$
+
+$$ OR = \frac{odds\;1}{odds\;2} $$
+
+
+$$ OR \neq Probabilidad $$
+
+:::
+
+Los OR se pueden calcular con el exponente de los coeficientes estimados en el modelo anterior. Con `R` estyo se puede hacer  con la función `tidy()`, especificando el argumento `exponentiate=TRUE`.
+
+```{r}
+tidy(nm3, exponentiate = TRUE)
+```
+
 
 ### Test Data Class Prediction
 
+```{r}
+# Class prediction
+pred_class <- predict(nm3,
+                      new_data = vecino_test,
+                      type = "class")
+
+pred_class[1:20,]
+```
+
+
 ### Test Data Class Probabilities
 
-### Preparación final de datos para evaluación 
+```{r}
+# Prediction Probabilities
+pred_proba <- predict(nm3,
+                      new_data = vecino_test,
+                      type = "prob")
 
+pred_proba[1:20,]
+```
+
+
+### Preparación final de datos para evaluación
+
+```{r}
+vecino_r <- vecino_test %>%
+  dplyr::select(barrio) %>%
+  bind_cols(pred_class, pred_proba)
+
+vecino_r[1:20, ]
+```
 
 
 ## Evaluación del modelo (Confusion Matrix, Accuracy, Sensitivity, etc.)
 
+```{r}
+conf_mat(vecino_r, truth = barrio,
+         estimate = .pred_class)
+```
+
+
+```{r}
+custom_metrics <- metric_set(accuracy, sens, precision, recall, f_meas, kap, mcc)
+custom_metrics(vecino_r, truth = barrio, estimate = .pred_class)
+```
+
+
+```{r}
+roc_auc(vecino_r, truth = barrio, .pred_0)
+```
 
 
 
-
+```{r}
+vecino_r %>%
+  roc_curve(truth = barrio, .pred_0) %>%
+  autoplot()
+```
 
 
 
