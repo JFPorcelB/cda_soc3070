@@ -1,5 +1,5 @@
 ---
-title: "Ejercicio 5"
+title: "Ejercicio 6"
 subtitle: "Ayudantía soc3070"
 author: "Cantillan, R. | Bucca, M."
 institute: "ISUC"
