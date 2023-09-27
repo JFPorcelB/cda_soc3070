@@ -49,7 +49,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | 6   | Septiembre  | R                                         | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/03_manipulacion/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/03_manipulacion/index.qmd) |
 | 13  | Septiembre  | Regresión lineal, LPM                     | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/04_ols_lpm/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/04_ols_lpm/index.qmd) |
 | 20  | Septiembre  | Regresión logística                       | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/05_regresion_logistica/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/05_regresion_logistica/index.qmd) |
-| 27  | Septiembre  | Regresión logística                       | [`[Presentación]`](https://github.com/mebucca/cda_soc3070/blob/master/ayudantia/06_regresion_logistica%20II/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/master/ayudantia/06_regresion_logistica%20II/index.qmd) |
+| 27  | Septiembre  | Regresión logística                       | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/ayudantia/06_regresion_logistica%20II/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/06_regresion_logistica%20II/index.qmd) |
 | 25  | Octubre     | Bootstrap y cross-validation              |            |
 | 8   | Noviembre   | Regresión logística multinomial           |            |
 | 22  | Noviembre   | Regresión logística ordenada y poisson    |            |
