@@ -90,6 +90,8 @@ div.csl-indent {
 <link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="index_files/libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -123,7 +125,7 @@ div.csl-indent {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">9/26/23</p>
+        <p class="date">9/27/23</p>
       </div>
     </div>
     
@@ -164,9 +166,10 @@ div.csl-indent {
   <li><a href="#train-y-test-data" id="toc-train-y-test-data" class="nav-link" data-scroll-target="#train-y-test-data"><span class="header-section-number">5</span> Train y Test data</a>
   <ul>
   <li><a href="#volver-a-ajustar-modelo" id="toc-volver-a-ajustar-modelo" class="nav-link" data-scroll-target="#volver-a-ajustar-modelo"><span class="header-section-number">5.1</span> Volver a ajustar modelo</a></li>
-  <li><a href="#test-data-class-prediction" id="toc-test-data-class-prediction" class="nav-link" data-scroll-target="#test-data-class-prediction"><span class="header-section-number">5.2</span> Test Data Class Prediction</a></li>
-  <li><a href="#test-data-class-probabilities" id="toc-test-data-class-probabilities" class="nav-link" data-scroll-target="#test-data-class-probabilities"><span class="header-section-number">5.3</span> Test Data Class Probabilities</a></li>
-  <li><a href="#preparación-final-de-datos-para-evaluación" id="toc-preparación-final-de-datos-para-evaluación" class="nav-link" data-scroll-target="#preparación-final-de-datos-para-evaluación"><span class="header-section-number">5.4</span> Preparación final de datos para evaluación</a></li>
+  <li><a href="#or" id="toc-or" class="nav-link" data-scroll-target="#or"><span class="header-section-number">5.2</span> OR</a></li>
+  <li><a href="#test-data-class-prediction" id="toc-test-data-class-prediction" class="nav-link" data-scroll-target="#test-data-class-prediction"><span class="header-section-number">5.3</span> Test Data Class Prediction</a></li>
+  <li><a href="#test-data-class-probabilities" id="toc-test-data-class-probabilities" class="nav-link" data-scroll-target="#test-data-class-probabilities"><span class="header-section-number">5.4</span> Test Data Class Probabilities</a></li>
+  <li><a href="#preparación-final-de-datos-para-evaluación" id="toc-preparación-final-de-datos-para-evaluación" class="nav-link" data-scroll-target="#preparación-final-de-datos-para-evaluación"><span class="header-section-number">5.5</span> Preparación final de datos para evaluación</a></li>
   </ul></li>
   <li><a href="#evaluación-del-modelo-confusion-matrix-accuracy-sensitivity-etc." id="toc-evaluación-del-modelo-confusion-matrix-accuracy-sensitivity-etc." class="nav-link" data-scroll-target="#evaluación-del-modelo-confusion-matrix-accuracy-sensitivity-etc."><span class="header-section-number">6</span> Evaluación del modelo (Confusion Matrix, Accuracy, Sensitivity, etc.)</a></li>
   </ul>
@@ -1432,23 +1435,307 @@ ego_educ4:educ_dist1 3.5892415 2.5767997 5.0103791</code></pre>
 </div>
 </section>
 </section>
-<section id="train-y-test-data" class="level2" data-number="5">
+<section id="train-y-test-data" class="level2 page-columns page-full" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="train-y-test-data"><span class="header-section-number">5</span> Train y Test data</h2>
+<p>En esta sección trabajaremos con la idea de predicción. Por lo general, para realizar la predicción de una clasificación los datos completos se divide en un 75% que usa como “data train” y un 25% que se usa como “test data”. El 75% de los datos de entrenamiento se utiliza para el entrenamiento del modelo, mientras que el 25% restante se utiliza para comprobar cómo se generalizó el modelo en un conjunto de datos de prueba o no vistos.</p>
+<p>Para dividir los datos vamos a utilizar la función <code>inicial_split()</code> de la librería <code>tidymodels</code>. En esta, se deben especificar el nombre del objeto de datos, la proporción y un argumento de estrato. Al proporcionar su variable dependiente en el atributo estratos se realiza un muestreo estratificado. El muestreo estratificado es útil si su variable dependiente tiene un desequilibrio de clases.</p>
+<p>El siguiente paso es llamar a las funciones de <code>entrenamiento()</code> y <code>prueba()</code> para guardar ambos conjuntos de datos (train y test).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># seed</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># delete na "barrio"</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>obs <span class="ot">&lt;-</span> obs <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>(barrio)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># data split </span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>vecino_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(obs,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>                              <span class="at">prop =</span> <span class="fl">0.75</span>,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>                              <span class="at">strata =</span> barrio) </span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>vecino_split</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;Training/Testing/Total&gt;
+&lt;6044/2015/8059&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># training data</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>vecino_train <span class="ot">&lt;-</span> vecino_split <span class="sc">%&gt;%</span> <span class="fu">training</span>()</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># testing data</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>vecino_test <span class="ot">&lt;-</span> vecino_split <span class="sc">%&gt;%</span> <span class="fu">testing</span>()</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de filas </span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(vecino_train)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(vecino_test)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6044
+[1] 2015</code></pre>
+</div>
+</div>
+<p>A continuación ajustamos los modelos:</p>
+<ol type="1">
+<li>Primero, utilizamos la fución <code>logistic_reg()</code>.</li>
+<li>Luego usamos la función <code>set_engine()</code> para indicar la familia del modelo.</li>
+<li>Usamos la función <code>set_mode()</code>, para indicar el tipo de modelo a utilizar. En este caso queremos clasificar positivos y negativos, razón por la cual es un modelo de clasificación.</li>
+<li>Espeicifamos el modelo con la función <code>fit()</code></li>
+<li>Finalmente, generamos una tabla de resumen usando la función <code>tidy()</code> de la librería <code>broom</code> (que viene incorporada con la biblioteca tidymodels). Los coeficientes informados están en términos de log odds.</li>
+</ol>
 <section id="volver-a-ajustar-modelo" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="volver-a-ajustar-modelo"><span class="header-section-number">5.1</span> Volver a ajustar modelo</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>nm3<span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">set_engine</span>(<span class="st">"glm"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">set_mode</span>(<span class="st">"classification"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">fit</span>(barrio<span class="sc">~</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>          ego_sexo</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ego_educ</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ego_edad</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> expresivas</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> instrument</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> t01</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> neigh_attach</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> sexo_dist1 </span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> educ_dist1 </span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ideol_dist1</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> relig_dist1</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ego_educ<span class="sc">*</span>educ_dist1, <span class="at">data =</span> vecino_train)</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(nm3)    </span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 17 × 5
+   term                 estimate std.error statistic  p.value
+   &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+ 1 (Intercept)           0.717     0.207        3.47 5.22e- 4
+ 2 ego_sexo2             0.103     0.0623       1.65 9.84e- 2
+ 3 ego_educ2            -0.674     0.136       -4.97 6.64e- 7
+ 4 ego_educ3            -1.28      0.176       -7.26 3.82e-13
+ 5 ego_educ4            -1.85      0.156      -11.9  1.97e-32
+ 6 ego_edad             -0.00756   0.00223     -3.39 7.07e- 4
+ 7 expresivas            0.0588    0.0392       1.50 1.34e- 1
+ 8 instrument           -0.0644    0.0395      -1.63 1.03e- 1
+ 9 t01                   0.0286    0.0271       1.06 2.91e- 1
+10 neigh_attach          0.0775    0.0350       2.21 2.70e- 2
+11 sexo_dist1            0.820     0.0627      13.1  3.58e-39
+12 educ_dist1           -0.594     0.144       -4.13 3.70e- 5
+13 ideol_dist1          -0.0765    0.0602      -1.27 2.04e- 1
+14 relig_dist1          -0.182     0.0621      -2.93 3.44e- 3
+15 ego_educ2:educ_dist1  0.459     0.171        2.69 7.16e- 3
+16 ego_educ3:educ_dist1  0.873     0.208        4.19 2.75e- 5
+17 ego_educ4:educ_dist1  1.42      0.197        7.17 7.31e-13</code></pre>
+</div>
+</div>
 </section>
-<section id="test-data-class-prediction" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="test-data-class-prediction"><span class="header-section-number">5.2</span> Test Data Class Prediction</h3>
+<section id="or" class="level3 page-columns page-full" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="or"><span class="header-section-number">5.2</span> OR</h3>
+<p>En el summery anterior la interpretación de los coeficientes en el término de probabilidades logarítmicas no tiene mucho sentido si el objetivo es la publicación o la divulgación. Para esto, es preferible usar OR. Las OR es el ratio de la probabilidad de que ocurra un evento a la de que el evento no ocurra. Cuando tomamos un ratio de dos de esas probabilidades, se llama Odds Ratio.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><em>Formula de OR</em></p>
+<p><span class="math display">\[ ODDS = \frac{Evento \; ocurre}{Evento \; No \; ocurre} = \frac{Probabilidad}{1-Probabilidad} \]</span></p>
+<p><span class="math display">\[ OR = \frac{odds\;1}{odds\;2} \]</span></p>
+<p><span class="math display">\[ OR \neq Probabilidad \]</span></p>
+</div></div><p>Los OR se pueden calcular con el exponente de los coeficientes estimados en el modelo anterior. Con <code>R</code> estyo se puede hacer con la función <code>tidy()</code>, especificando el argumento <code>exponentiate=TRUE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(nm3, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 17 × 5
+   term                 estimate std.error statistic  p.value
+   &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+ 1 (Intercept)             2.05    0.207        3.47 5.22e- 4
+ 2 ego_sexo2               1.11    0.0623       1.65 9.84e- 2
+ 3 ego_educ2               0.510   0.136       -4.97 6.64e- 7
+ 4 ego_educ3               0.279   0.176       -7.26 3.82e-13
+ 5 ego_educ4               0.157   0.156      -11.9  1.97e-32
+ 6 ego_edad                0.992   0.00223     -3.39 7.07e- 4
+ 7 expresivas              1.06    0.0392       1.50 1.34e- 1
+ 8 instrument              0.938   0.0395      -1.63 1.03e- 1
+ 9 t01                     1.03    0.0271       1.06 2.91e- 1
+10 neigh_attach            1.08    0.0350       2.21 2.70e- 2
+11 sexo_dist1              2.27    0.0627      13.1  3.58e-39
+12 educ_dist1              0.552   0.144       -4.13 3.70e- 5
+13 ideol_dist1             0.926   0.0602      -1.27 2.04e- 1
+14 relig_dist1             0.834   0.0621      -2.93 3.44e- 3
+15 ego_educ2:educ_dist1    1.58    0.171        2.69 7.16e- 3
+16 ego_educ3:educ_dist1    2.39    0.208        4.19 2.75e- 5
+17 ego_educ4:educ_dist1    4.12    0.197        7.17 7.31e-13</code></pre>
+</div>
+</div>
 </section>
-<section id="test-data-class-probabilities" class="level3" data-number="5.3">
-<h3 data-number="5.3" class="anchored" data-anchor-id="test-data-class-probabilities"><span class="header-section-number">5.3</span> Test Data Class Probabilities</h3>
+<section id="test-data-class-prediction" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="test-data-class-prediction"><span class="header-section-number">5.3</span> Test Data Class Prediction</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Class prediction</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>pred_class <span class="ot">&lt;-</span> <span class="fu">predict</span>(nm3,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">new_data =</span> vecino_test,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">type =</span> <span class="st">"class"</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>pred_class[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,]</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 1
+   .pred_class
+   &lt;fct&gt;      
+ 1 1          
+ 2 1          
+ 3 0          
+ 4 0          
+ 5 1          
+ 6 0          
+ 7 1          
+ 8 1          
+ 9 1          
+10 1          
+11 1          
+12 1          
+13 0          
+14 1          
+15 1          
+16 &lt;NA&gt;       
+17 1          
+18 1          
+19 1          
+20 1          </code></pre>
+</div>
+</div>
 </section>
-<section id="preparación-final-de-datos-para-evaluación" class="level3" data-number="5.4">
-<h3 data-number="5.4" class="anchored" data-anchor-id="preparación-final-de-datos-para-evaluación"><span class="header-section-number">5.4</span> Preparación final de datos para evaluación</h3>
+<section id="test-data-class-probabilities" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="test-data-class-probabilities"><span class="header-section-number">5.4</span> Test Data Class Probabilities</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prediction Probabilities</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>pred_proba <span class="ot">&lt;-</span> <span class="fu">predict</span>(nm3,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">new_data =</span> vecino_test,</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">type =</span> <span class="st">"prob"</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>pred_proba[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,]</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 2
+   .pred_0 .pred_1
+     &lt;dbl&gt;   &lt;dbl&gt;
+ 1   0.416   0.584
+ 2   0.333   0.667
+ 3   0.513   0.487
+ 4   0.617   0.383
+ 5   0.414   0.586
+ 6   0.763   0.237
+ 7   0.484   0.516
+ 8   0.437   0.563
+ 9   0.310   0.690
+10   0.247   0.753
+11   0.290   0.710
+12   0.462   0.538
+13   0.623   0.377
+14   0.276   0.724
+15   0.304   0.696
+16  NA      NA    
+17   0.281   0.719
+18   0.262   0.738
+19   0.446   0.554
+20   0.499   0.501</code></pre>
+</div>
+</div>
+</section>
+<section id="preparación-final-de-datos-para-evaluación" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="preparación-final-de-datos-para-evaluación"><span class="header-section-number">5.5</span> Preparación final de datos para evaluación</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>vecino_r <span class="ot">&lt;-</span> vecino_test <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(barrio) <span class="sc">%&gt;%</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(pred_class, pred_proba)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>vecino_r[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, ]</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 4
+   barrio .pred_class .pred_0 .pred_1
+   &lt;fct&gt;  &lt;fct&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+ 1 1      1             0.416   0.584
+ 2 1      1             0.333   0.667
+ 3 1      0             0.513   0.487
+ 4 1      0             0.617   0.383
+ 5 1      1             0.414   0.586
+ 6 0      0             0.763   0.237
+ 7 1      1             0.484   0.516
+ 8 1      1             0.437   0.563
+ 9 0      1             0.310   0.690
+10 1      1             0.247   0.753
+11 1      1             0.290   0.710
+12 0      1             0.462   0.538
+13 1      0             0.623   0.377
+14 1      1             0.276   0.724
+15 1      1             0.304   0.696
+16 1      &lt;NA&gt;         NA      NA    
+17 1      1             0.281   0.719
+18 1      1             0.262   0.738
+19 0      1             0.446   0.554
+20 1      1             0.499   0.501</code></pre>
+</div>
+</div>
 </section>
 </section>
-<section id="evaluación-del-modelo-confusion-matrix-accuracy-sensitivity-etc." class="level2 unnumbered" data-number="6">
-<h2 class="unnumbered anchored" data-number="6" data-anchor-id="evaluación-del-modelo-confusion-matrix-accuracy-sensitivity-etc."><span class="header-section-number">6</span> Evaluación del modelo (Confusion Matrix, Accuracy, Sensitivity, etc.)</h2>
+<section id="evaluación-del-modelo-confusion-matrix-accuracy-sensitivity-etc." class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="evaluación-del-modelo-confusion-matrix-accuracy-sensitivity-etc."><span class="header-section-number">6</span> Evaluación del modelo (Confusion Matrix, Accuracy, Sensitivity, etc.)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(vecino_r, <span class="at">truth =</span> barrio,</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> .pred_class)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Truth
+Prediction   0   1
+         0 442 266
+         1 352 630</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>custom_metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(accuracy, sens, precision, recall, f_meas, kap, mcc)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">custom_metrics</span>(vecino_r, <span class="at">truth =</span> barrio, <span class="at">estimate =</span> .pred_class)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 3
+  .metric   .estimator .estimate
+  &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy  binary         0.634
+2 sens      binary         0.557
+3 precision binary         0.624
+4 recall    binary         0.557
+5 f_meas    binary         0.589
+6 kap       binary         0.261
+7 mcc       binary         0.263</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">roc_auc</span>(vecino_r, <span class="at">truth =</span> barrio, .pred_0)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 roc_auc binary         0.669</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>vecino_r <span class="sc">%&gt;%</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_curve</span>(<span class="at">truth =</span> barrio, .pred_0) <span class="sc">%&gt;%</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 </section>
 
