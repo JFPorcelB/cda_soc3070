@@ -68,8 +68,8 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 |---------------|---------------------|------------------|-------------------------------------------|
 | Tarea corta 1 | 7 agosto            | 15 agosto        | [`[Soluciones TC1]`](homework/tc_1_answers.pdf) [`[Soluciones TC1.qmd]`](homework/tc_1_answers.qmd) |
 | Tarea corta 2 | 21 agosto           | 29 agosto        | [`[Soluciones TC2]`](homework/tc_2_answers.pdf) [`[Soluciones TC2.qmd]`](homework/tc_2_answers.qmd) |
-| Tarea corta 3 | 28 agosto           | 5 septiembre     | [`[Soluciones TC3]`](homework/tc_3_answers.pdf) [`[Soluciones TC3.qmd]`](homework/tc_3_answers.qmd)                                          |
-| Tarea corta 4 | 11 septiembre       | 20 septiembre    | [`[TC4]`](homework/tc_4.pdf) [`[TC4.qmd]`](homework/tc_4.qmd)                                          |
+| Tarea corta 3 | 28 agosto           | 5 septiembre     | [`[Soluciones TC3]`](homework/tc_3_answers.pdf) [`[Soluciones TC3.qmd]`](homework/tc_3_answers.qmd) |
+| Tarea corta 4 | 11 septiembre       | 20 septiembre    | [`[TC4]`](homework/tc_4.pdf) [`[TC4.qmd]`](homework/tc_4.qmd)                                       |
 | Trabajo 1     | 16 octubre          | 31 octubre       |                                           |
 | Tarea corta 5 | 30 octubre          | 7 noviembre      |                                           |
 | Trabajo 2     | 13 noviembre        | 28 noviembre     |                                           |
