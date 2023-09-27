@@ -90,6 +90,9 @@ div.csl-indent {
 <link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="index_files/libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 
+<script src="index_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="index_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
@@ -167,11 +170,15 @@ div.csl-indent {
   <ul>
   <li><a href="#volver-a-ajustar-modelo" id="toc-volver-a-ajustar-modelo" class="nav-link" data-scroll-target="#volver-a-ajustar-modelo"><span class="header-section-number">5.1</span> Volver a ajustar modelo</a></li>
   <li><a href="#or" id="toc-or" class="nav-link" data-scroll-target="#or"><span class="header-section-number">5.2</span> OR</a></li>
-  <li><a href="#test-data-class-prediction" id="toc-test-data-class-prediction" class="nav-link" data-scroll-target="#test-data-class-prediction"><span class="header-section-number">5.3</span> Test Data Class Prediction</a></li>
-  <li><a href="#test-data-class-probabilities" id="toc-test-data-class-probabilities" class="nav-link" data-scroll-target="#test-data-class-probabilities"><span class="header-section-number">5.4</span> Test Data Class Probabilities</a></li>
-  <li><a href="#preparación-final-de-datos-para-evaluación" id="toc-preparación-final-de-datos-para-evaluación" class="nav-link" data-scroll-target="#preparación-final-de-datos-para-evaluación"><span class="header-section-number">5.5</span> Preparación final de datos para evaluación</a></li>
+  <li><a href="#efectos-marginales" id="toc-efectos-marginales" class="nav-link" data-scroll-target="#efectos-marginales"><span class="header-section-number">5.3</span> Efectos marginales</a></li>
+  <li><a href="#test-data-class-prediction" id="toc-test-data-class-prediction" class="nav-link" data-scroll-target="#test-data-class-prediction"><span class="header-section-number">5.4</span> Test Data Class Prediction</a></li>
+  <li><a href="#test-data-class-probabilities" id="toc-test-data-class-probabilities" class="nav-link" data-scroll-target="#test-data-class-probabilities"><span class="header-section-number">5.5</span> Test Data Class Probabilities</a></li>
+  <li><a href="#preparación-final-de-datos-para-evaluación" id="toc-preparación-final-de-datos-para-evaluación" class="nav-link" data-scroll-target="#preparación-final-de-datos-para-evaluación"><span class="header-section-number">5.6</span> Preparación final de datos para evaluación</a></li>
   </ul></li>
-  <li><a href="#evaluación-del-modelo-confusion-matrix-accuracy-sensitivity-etc." id="toc-evaluación-del-modelo-confusion-matrix-accuracy-sensitivity-etc." class="nav-link" data-scroll-target="#evaluación-del-modelo-confusion-matrix-accuracy-sensitivity-etc."><span class="header-section-number">6</span> Evaluación del modelo (Confusion Matrix, Accuracy, Sensitivity, etc.)</a></li>
+  <li><a href="#evaluación-del-modelo-confusion-matrix-accuracy-sensitivity-etc." id="toc-evaluación-del-modelo-confusion-matrix-accuracy-sensitivity-etc." class="nav-link" data-scroll-target="#evaluación-del-modelo-confusion-matrix-accuracy-sensitivity-etc."><span class="header-section-number">6</span> Evaluación del modelo (Confusion Matrix, Accuracy, Sensitivity, etc.)</a>
+  <ul>
+  <li><a href="#otras-métricas" id="toc-otras-métricas" class="nav-link" data-scroll-target="#otras-métricas"><span class="header-section-number">6.1</span> Otras métricas</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -257,8 +264,9 @@ Tilly, Charles. 2009. <em>Durable Inequality</em>. Nachdr. <span>Berkeley</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>               car,</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>               lmtest,</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>               sandwich,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>               texreg)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>               texreg,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>               visreg)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="data-elsoc-2019-w4" class="level2" data-number="2">
@@ -853,11 +861,11 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> instrument</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> t01 </span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> neigh_attach</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> sexo_dist1 </span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> educ_dist1 </span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ideol_dist1</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> relig_dist1</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ego_educ<span class="sc">*</span>educ_dist1, <span class="at">data =</span> obs, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> <span class="fu">factor</span>(sexo_dist1) </span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> <span class="fu">factor</span>(educ_dist1) </span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> <span class="fu">factor</span>(ideol_dist1)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> <span class="fu">factor</span>(relig_dist1)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> ego_educ<span class="sc">*</span><span class="fu">factor</span>(educ_dist1), <span class="at">data =</span> obs, <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
 <span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span>
 <span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -865,33 +873,33 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <pre><code>
 Call:
 glm(formula = barrio ~ ego_sexo + ego_educ + ego_edad + expresivas + 
-    instrument + t01 + neigh_attach + sexo_dist1 + educ_dist1 + 
-    ideol_dist1 + relig_dist1 + ego_educ * educ_dist1, family = "binomial", 
-    data = obs)
+    instrument + t01 + neigh_attach + factor(sexo_dist1) + factor(educ_dist1) + 
+    factor(ideol_dist1) + factor(relig_dist1) + ego_educ * factor(educ_dist1), 
+    family = "binomial", data = obs)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
 -1.9620  -1.1346   0.7478   1.0962   1.9285  
 
 Coefficients:
-                      Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)           0.538449   0.176536   3.050 0.002288 ** 
-ego_sexo2             0.132749   0.053917   2.462 0.013813 *  
-ego_educ2            -0.573387   0.115031  -4.985 6.21e-07 ***
-ego_educ3            -1.112651   0.152159  -7.312 2.62e-13 ***
-ego_educ4            -1.753413   0.133491 -13.135  &lt; 2e-16 ***
-ego_edad             -0.006532   0.001919  -3.404 0.000663 ***
-expresivas            0.066937   0.033927   1.973 0.048497 *  
-instrument           -0.077809   0.033553  -2.319 0.020394 *  
-t01                   0.021177   0.023567   0.899 0.368865    
-neigh_attach          0.078013   0.030254   2.579 0.009920 ** 
-sexo_dist1            0.872426   0.054151  16.111  &lt; 2e-16 ***
-educ_dist1           -0.505575   0.122926  -4.113 3.91e-05 ***
-ideol_dist1          -0.087221   0.052035  -1.676 0.093697 .  
-relig_dist1          -0.126534   0.053886  -2.348 0.018865 *  
-ego_educ2:educ_dist1  0.389892   0.146255   2.666 0.007680 ** 
-ego_educ3:educ_dist1  0.723789   0.180128   4.018 5.86e-05 ***
-ego_educ4:educ_dist1  1.277941   0.169602   7.535 4.89e-14 ***
+                               Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)                    0.538449   0.176536   3.050 0.002288 ** 
+ego_sexo2                      0.132749   0.053917   2.462 0.013813 *  
+ego_educ2                     -0.573387   0.115031  -4.985 6.21e-07 ***
+ego_educ3                     -1.112651   0.152159  -7.312 2.62e-13 ***
+ego_educ4                     -1.753413   0.133491 -13.135  &lt; 2e-16 ***
+ego_edad                      -0.006532   0.001919  -3.404 0.000663 ***
+expresivas                     0.066937   0.033927   1.973 0.048497 *  
+instrument                    -0.077809   0.033553  -2.319 0.020394 *  
+t01                            0.021177   0.023567   0.899 0.368865    
+neigh_attach                   0.078013   0.030254   2.579 0.009920 ** 
+factor(sexo_dist1)1            0.872426   0.054151  16.111  &lt; 2e-16 ***
+factor(educ_dist1)1           -0.505575   0.122926  -4.113 3.91e-05 ***
+factor(ideol_dist1)1          -0.087221   0.052035  -1.676 0.093697 .  
+factor(relig_dist1)1          -0.126534   0.053886  -2.348 0.018865 *  
+ego_educ2:factor(educ_dist1)1  0.389892   0.146255   2.666 0.007680 ** 
+ego_educ3:factor(educ_dist1)1  0.723789   0.180128   4.018 5.86e-05 ***
+ego_educ4:factor(educ_dist1)1  1.277941   0.169602   7.535 4.89e-14 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -916,24 +924,24 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <pre><code>
 z test of coefficients:
 
-                       Estimate Std. Error  z value  Pr(&gt;|z|)    
-(Intercept)           0.5384486  0.1770258   3.0416 0.0023529 ** 
-ego_sexo2             0.1327495  0.0538507   2.4651 0.0136961 *  
-ego_educ2            -0.5733871  0.1147837  -4.9954 5.872e-07 ***
-ego_educ3            -1.1126509  0.1500356  -7.4159 1.208e-13 ***
-ego_educ4            -1.7534131  0.1330831 -13.1753 &lt; 2.2e-16 ***
-ego_edad             -0.0065320  0.0019524  -3.3457 0.0008208 ***
-expresivas            0.0669372  0.0339530   1.9715 0.0486707 *  
-instrument           -0.0778088  0.0332879  -2.3374 0.0194158 *  
-t01                   0.0211772  0.0235943   0.8976 0.3694229    
-neigh_attach          0.0780130  0.0301340   2.5889 0.0096292 ** 
-sexo_dist1            0.8724258  0.0543925  16.0395 &lt; 2.2e-16 ***
-educ_dist1           -0.5055749  0.1230718  -4.1080 3.992e-05 ***
-ideol_dist1          -0.0872214  0.0520273  -1.6765 0.0936490 .  
-relig_dist1          -0.1265343  0.0537898  -2.3524 0.0186535 *  
-ego_educ2:educ_dist1  0.3898921  0.1466048   2.6595 0.0078262 ** 
-ego_educ3:educ_dist1  0.7237894  0.1783624   4.0580 4.950e-05 ***
-ego_educ4:educ_dist1  1.2779409  0.1696569   7.5325 4.978e-14 ***
+                                Estimate Std. Error  z value  Pr(&gt;|z|)    
+(Intercept)                    0.5384486  0.1770258   3.0416 0.0023529 ** 
+ego_sexo2                      0.1327495  0.0538507   2.4651 0.0136961 *  
+ego_educ2                     -0.5733871  0.1147837  -4.9954 5.872e-07 ***
+ego_educ3                     -1.1126509  0.1500356  -7.4159 1.208e-13 ***
+ego_educ4                     -1.7534131  0.1330831 -13.1753 &lt; 2.2e-16 ***
+ego_edad                      -0.0065320  0.0019524  -3.3457 0.0008208 ***
+expresivas                     0.0669372  0.0339530   1.9715 0.0486707 *  
+instrument                    -0.0778088  0.0332879  -2.3374 0.0194158 *  
+t01                            0.0211772  0.0235943   0.8976 0.3694229    
+neigh_attach                   0.0780130  0.0301340   2.5889 0.0096292 ** 
+factor(sexo_dist1)1            0.8724258  0.0543925  16.0395 &lt; 2.2e-16 ***
+factor(educ_dist1)1           -0.5055749  0.1230718  -4.1080 3.992e-05 ***
+factor(ideol_dist1)1          -0.0872214  0.0520273  -1.6765 0.0936490 .  
+factor(relig_dist1)1          -0.1265343  0.0537898  -2.3524 0.0186535 *  
+ego_educ2:factor(educ_dist1)1  0.3898921  0.1466048   2.6595 0.0078262 ** 
+ego_educ3:factor(educ_dist1)1  0.7237894  0.1783624   4.0580 4.950e-05 ***
+ego_educ4:factor(educ_dist1)1  1.2779409  0.1696569   7.5325 4.978e-14 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -1106,7 +1114,6 @@ sexo_dist1
 .845<sup>***</sup> (.053)
 </td>
 <td>
-.872<sup>***</sup> (.054)
 </td>
 </tr>
 <tr>
@@ -1119,7 +1126,6 @@ educ_dist1
 .055 (.052)
 </td>
 <td>
--.506<sup>***</sup> (.123)
 </td>
 </tr>
 <tr>
@@ -1132,7 +1138,6 @@ ideol_dist1
 -.095 (.051)
 </td>
 <td>
--.087 (.052)
 </td>
 </tr>
 <tr>
@@ -1145,12 +1150,59 @@ relig_dist1
 -.133<sup>*</sup> (.053)
 </td>
 <td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+factor(sexo_dist1)1
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+.872<sup>***</sup> (.054)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+factor(educ_dist1)1
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+-.506<sup>***</sup> (.123)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+factor(ideol_dist1)1
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+-.087 (.052)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+factor(relig_dist1)1
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
 -.127<sup>*</sup> (.054)
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
-ego_educ2:educ_dist1
+ego_educ2:factor(educ_dist1)1
 </td>
 <td>
 </td>
@@ -1162,7 +1214,7 @@ ego_educ2:educ_dist1
 </tr>
 <tr>
 <td style="text-align:left">
-ego_educ3:educ_dist1
+ego_educ3:factor(educ_dist1)1
 </td>
 <td>
 </td>
@@ -1174,7 +1226,7 @@ ego_educ3:educ_dist1
 </tr>
 <tr>
 <td style="text-align:left">
-ego_educ4:educ_dist1
+ego_educ4:factor(educ_dist1)1
 </td>
 <td>
 </td>
@@ -1281,24 +1333,24 @@ Akaike Inf. Crit.
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">OR =</span> <span class="fu">coef</span>(m3), <span class="fu">confint</span>(m3)))</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                            OR     2.5 %    97.5 %
-(Intercept)          1.7133466 1.2133451 2.4243259
-ego_sexo2            1.1419639 1.0274562 1.2692867
-ego_educ2            0.5636132 0.4489600 0.7049220
-ego_educ3            0.3286865 0.2435236 0.4422683
-ego_educ4            0.1731819 0.1330320 0.2245384
-ego_edad             0.9934893 0.9897549 0.9972283
-expresivas           1.0692283 1.0004716 1.1427963
-instrument           0.9251413 0.8661787 0.9879864
-t01                  1.0214031 0.9752944 1.0696988
-neigh_attach         1.0811367 1.0188936 1.1472081
-sexo_dist1           2.3927081 2.1523999 2.6614421
-educ_dist1           0.6031587 0.4732586 0.7664181
-ideol_dist1          0.9164742 0.8276102 1.0148840
-relig_dist1          0.8811439 0.7928388 0.9793278
-ego_educ2:educ_dist1 1.4768214 1.1098353 1.9692900
-ego_educ3:educ_dist1 2.0622330 1.4501214 2.9385295
-ego_educ4:educ_dist1 3.5892415 2.5767997 5.0103791</code></pre>
+<pre><code>                                     OR     2.5 %    97.5 %
+(Intercept)                   1.7133466 1.2133451 2.4243259
+ego_sexo2                     1.1419639 1.0274562 1.2692867
+ego_educ2                     0.5636132 0.4489600 0.7049220
+ego_educ3                     0.3286865 0.2435236 0.4422683
+ego_educ4                     0.1731819 0.1330320 0.2245384
+ego_edad                      0.9934893 0.9897549 0.9972283
+expresivas                    1.0692283 1.0004716 1.1427963
+instrument                    0.9251413 0.8661787 0.9879864
+t01                           1.0214031 0.9752944 1.0696988
+neigh_attach                  1.0811367 1.0188936 1.1472081
+factor(sexo_dist1)1           2.3927081 2.1523999 2.6614421
+factor(educ_dist1)1           0.6031587 0.4732586 0.7664181
+factor(ideol_dist1)1          0.9164742 0.8276102 1.0148840
+factor(relig_dist1)1          0.8811439 0.7928388 0.9793278
+ego_educ2:factor(educ_dist1)1 1.4768214 1.1098353 1.9692900
+ego_educ3:factor(educ_dist1)1 2.0622330 1.4501214 2.9385295
+ego_educ4:factor(educ_dist1)1 3.5892415 2.5767997 5.0103791</code></pre>
 </div>
 </div>
 <p>Con la transformación exponencial (a OR) se puede decir, “con el incremento en una unidad de Edad del ego, se incrementan los odds (probabilidad) de que los vínculos de confidencia formados sean vecinales (versus la posibilidad de que no lo sean)</p>
@@ -1536,7 +1588,6 @@ ego_educ4:educ_dist1 3.5892415 2.5767997 5.0103791</code></pre>
 <p>En el summery anterior la interpretación de los coeficientes en el término de probabilidades logarítmicas no tiene mucho sentido si el objetivo es la publicación o la divulgación. Para esto, es preferible usar OR. Las OR es el ratio de la probabilidad de que ocurra un evento a la de que el evento no ocurra. Cuando tomamos un ratio de dos de esas probabilidades, se llama Odds Ratio.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p><em>Formula de OR</em></p>
 <p><span class="math display">\[ ODDS = \frac{Evento \; ocurre}{Evento \; No \; ocurre} = \frac{Probabilidad}{1-Probabilidad} \]</span></p>
 <p><span class="math display">\[ OR = \frac{odds\;1}{odds\;2} \]</span></p>
 <p><span class="math display">\[ OR \neq Probabilidad \]</span></p>
@@ -1569,17 +1620,156 @@ ego_educ4:educ_dist1 3.5892415 2.5767997 5.0103791</code></pre>
 </div>
 </div>
 </section>
-<section id="test-data-class-prediction" class="level3" data-number="5.3">
-<h3 data-number="5.3" class="anchored" data-anchor-id="test-data-class-prediction"><span class="header-section-number">5.3</span> Test Data Class Prediction</h3>
-<div class="cell">
+<section id="efectos-marginales" class="level3 page-columns page-full" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="efectos-marginales"><span class="header-section-number">5.3</span> Efectos marginales</h3>
+<p>El cáculo de otras cantidades de interés puedes ser revisadas en <span class="citation" data-cites="leeperInterpretingRegressionResults2017">Leeper (<a href="#ref-leeperInterpretingRegressionResults2017" role="doc-biblioref">2017</a>)</span>. Adcionalmente pueden visitar el siguiente <a href="https://www.andrewheiss.com/blog/2022/05/20/marginalia/">link</a>.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-leeperInterpretingRegressionResults2017" class="csl-entry" role="listitem">
+Leeper, Thomas J. 2017. <span>“Interpreting Regression Results Using Average Marginal Effects with <span>R</span>’s Margins.”</span> <em>Available at the Comprehensive R Archive Network (CRAN)</em>, 1–32.
+</div></div><div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Class prediction</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>pred_class <span class="ot">&lt;-</span> <span class="fu">predict</span>(nm3,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">new_data =</span> vecino_test,</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">type =</span> <span class="st">"class"</span>)</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>pred_class[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,]</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>me<span class="ot">&lt;-</span><span class="fu">summary</span>(<span class="fu">margins</span>(m3, <span class="at">variables =</span> <span class="fu">c</span>(<span class="st">"ego_educ"</span>)))</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(me)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 3
+Columns: 7
+$ factor &lt;chr&gt; "ego_educ2", "ego_educ3", "ego_educ4"
+$ AME    &lt;dbl&gt; -0.08207034, -0.16820280, -0.24649201
+$ SE     &lt;dbl&gt; 0.01635696, 0.02084875, 0.02005305
+$ z      &lt;dbl&gt; -5.017457, -8.067764, -12.291997
+$ p      &lt;dbl&gt; 5.236005e-07, 7.159725e-16, 1.000050e-34
+$ lower  &lt;dbl&gt; -0.1141294, -0.2090656, -0.2857953
+$ upper  &lt;dbl&gt; -0.05001128, -0.12734000, -0.20718875</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>me2 <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">margins</span>(m3, <span class="at">at =</span> <span class="fu">list</span>(<span class="at">educ_dist1 =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)), <span class="at">variables =</span> <span class="st">"ego_educ"</span>))</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>me2 <span class="sc">%&gt;%</span> <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"Efectos marginales"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_classic</span>(<span class="st">"hover"</span>, <span class="at">full_width =</span> T)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic lightable-hover table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Efectos marginales</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">factor</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">educ_dist1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">AME</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">SE</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">z</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">lower</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ego_educ2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-0.1253084</td>
+<td style="text-align: right;">0.0238337</td>
+<td style="text-align: right;">-5.257608</td>
+<td style="text-align: right;">0.0000001</td>
+<td style="text-align: right;">-0.1720217</td>
+<td style="text-align: right;">-0.0785952</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ego_educ2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-0.0428121</td>
+<td style="text-align: right;">0.0218639</td>
+<td style="text-align: right;">-1.958115</td>
+<td style="text-align: right;">0.0502166</td>
+<td style="text-align: right;">-0.0856647</td>
+<td style="text-align: right;">0.0000404</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ego_educ3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-0.2529777</td>
+<td style="text-align: right;">0.0334755</td>
+<td style="text-align: right;">-7.557100</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">-0.3185885</td>
+<td style="text-align: right;">-0.1873670</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ego_educ3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-0.0915583</td>
+<td style="text-align: right;">0.0243970</td>
+<td style="text-align: right;">-3.752857</td>
+<td style="text-align: right;">0.0001748</td>
+<td style="text-align: right;">-0.1393755</td>
+<td style="text-align: right;">-0.0437411</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ego_educ4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-0.3957861</td>
+<td style="text-align: right;">0.0269025</td>
+<td style="text-align: right;">-14.711895</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">-0.4485140</td>
+<td style="text-align: right;">-0.3430583</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ego_educ4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-0.1121769</td>
+<td style="text-align: right;">0.0274247</td>
+<td style="text-align: right;">-4.090356</td>
+<td style="text-align: right;">0.0000431</td>
+<td style="text-align: right;">-0.1659284</td>
+<td style="text-align: right;">-0.0584254</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>me2<span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span>factor, <span class="at">y=</span> AME)) <span class="sc">+</span> </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">group=</span><span class="st">"factor"</span>) <span class="sc">+</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper), <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">width=</span><span class="fl">0.2</span>)<span class="sc">+</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(.<span class="sc">~</span> educ_dist1,</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> <span class="fu">as_labeller</span>(<span class="fu">c</span>(<span class="st">"0"</span><span class="ot">=</span><span class="st">'No distancia'</span>,</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"1"</span><span class="ot">=</span><span class="st">'Distancia'</span>))) <span class="sc">+</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">"ego_educ2"</span> <span class="ot">=</span> <span class="st">"Media (ego)"</span>, </span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"ego_educ3"</span> <span class="ot">=</span> <span class="st">"Técnica (ego)"</span>, </span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"ego_educ4"</span> <span class="ot">=</span> <span class="st">"Superior (ego)"</span>))<span class="sc">+</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Average Marginal Effect (AME)"</span>)<span class="sc">+</span></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"right"</span>,</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">9</span>),</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>),</span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>),</span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>),</span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>,</span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">size =</span> <span class="dv">10</span>)) </span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="test-data-class-prediction" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="test-data-class-prediction"><span class="header-section-number">5.4</span> Test Data Class Prediction</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Class predicha</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>pred_class <span class="ot">&lt;-</span> <span class="fu">predict</span>(nm3,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">new_data =</span> vecino_test,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">type =</span> <span class="st">"class"</span>)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>pred_class[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,]</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20 × 1
    .pred_class
@@ -1607,17 +1797,17 @@ ego_educ4:educ_dist1 3.5892415 2.5767997 5.0103791</code></pre>
 </div>
 </div>
 </section>
-<section id="test-data-class-probabilities" class="level3" data-number="5.4">
-<h3 data-number="5.4" class="anchored" data-anchor-id="test-data-class-probabilities"><span class="header-section-number">5.4</span> Test Data Class Probabilities</h3>
+<section id="test-data-class-probabilities" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="test-data-class-probabilities"><span class="header-section-number">5.5</span> Test Data Class Probabilities</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prediction Probabilities</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>pred_proba <span class="ot">&lt;-</span> <span class="fu">predict</span>(nm3,</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">new_data =</span> vecino_test,</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">type =</span> <span class="st">"prob"</span>)</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>pred_proba[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,]</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Predicción de probabilidades</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>pred_proba <span class="ot">&lt;-</span> <span class="fu">predict</span>(nm3,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">new_data =</span> vecino_test,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">type =</span> <span class="st">"prob"</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>pred_proba[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,]</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20 × 2
    .pred_0 .pred_1
@@ -1645,16 +1835,16 @@ ego_educ4:educ_dist1 3.5892415 2.5767997 5.0103791</code></pre>
 </div>
 </div>
 </section>
-<section id="preparación-final-de-datos-para-evaluación" class="level3" data-number="5.5">
-<h3 data-number="5.5" class="anchored" data-anchor-id="preparación-final-de-datos-para-evaluación"><span class="header-section-number">5.5</span> Preparación final de datos para evaluación</h3>
+<section id="preparación-final-de-datos-para-evaluación" class="level3" data-number="5.6">
+<h3 data-number="5.6" class="anchored" data-anchor-id="preparación-final-de-datos-para-evaluación"><span class="header-section-number">5.6</span> Preparación final de datos para evaluación</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>vecino_r <span class="ot">&lt;-</span> vecino_test <span class="sc">%&gt;%</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(barrio) <span class="sc">%&gt;%</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(pred_class, pred_proba)</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>vecino_r[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, ]</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>vecino_r <span class="ot">&lt;-</span> vecino_test <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(barrio) <span class="sc">%&gt;%</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(pred_class, pred_proba)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>vecino_r[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, ]</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20 × 4
    barrio .pred_class .pred_0 .pred_1
@@ -1685,11 +1875,13 @@ ego_educ4:educ_dist1 3.5892415 2.5767997 5.0103791</code></pre>
 </section>
 <section id="evaluación-del-modelo-confusion-matrix-accuracy-sensitivity-etc." class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="evaluación-del-modelo-confusion-matrix-accuracy-sensitivity-etc."><span class="header-section-number">6</span> Evaluación del modelo (Confusion Matrix, Accuracy, Sensitivity, etc.)</h2>
+<p>Generamos una matriz de confusión utilizando la función <code>conf_mat()</code>. En esta función se proporciona el data.frame final, es decir, <code>vecinos_r</code>, la columna de <code>truth</code>, es decir, si el alter es veicno (o viven en el mismo barrio) y la clase predicha (.pred_class) en el atributo <code>estimate</code>.</p>
+<p>La matriz de confusión reveló que el conjunto de datos de prueba tiene 880 casos de muestra de observaciones positivas (1) y 788 casos de observaciones negativas (0). El modelo entrenado clasificó con precisión 571 clases positivas (1) y 454 negativas (0).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(vecino_r, <span class="at">truth =</span> barrio,</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> .pred_class)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(vecino_r, <span class="at">truth =</span> barrio,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> .pred_class)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          Truth
 Prediction   0   1
@@ -1697,11 +1889,17 @@ Prediction   0   1
          1 352 630</code></pre>
 </div>
 </div>
+<section id="otras-métricas" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="otras-métricas"><span class="header-section-number">6.1</span> Otras métricas</h3>
+<p>Ejemplo:</p>
+<p><strong>Precisión</strong> responde a la pregunta ¿Cuántos de todos los positivos se clasificaron correctamente como positivos?</p>
+<p><strong>F-measure</strong> es una media armónica ponderada de “precisión” y “recall” con la mejor puntuación de 1 y la peor puntuación de 0. La puntuación transmite el equilibrio entre precisión y recuperación. La puntuación F es de aproximadamente 0.59, lo que indica que el modelo entrenado tiene una potencia de clasificación del 59 %.</p>
+<p><strong>Matthews correlation coefficient (MCC)</strong> se utiliza como medida de la calidad de un clasificador binario. El valor oscila entre −1 y +1. MCC: -1 indica total desacuerdo, MCC: 0 indica que no hay acuerdo, MCC: +1 indica agregación total.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>custom_metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(accuracy, sens, precision, recall, f_meas, kap, mcc)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">custom_metrics</span>(vecino_r, <span class="at">truth =</span> barrio, <span class="at">estimate =</span> .pred_class)</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>custom_metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(accuracy, sens, precision, recall, f_meas, kap, mcc)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">custom_metrics</span>(vecino_r, <span class="at">truth =</span> barrio, <span class="at">estimate =</span> .pred_class)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7 × 3
   .metric   .estimator .estimate
@@ -1715,10 +1913,11 @@ Prediction   0   1
 7 mcc       binary         0.263</code></pre>
 </div>
 </div>
+<p>ROC-AUC es una medida de rendimiento para el problema de clasificación en varios umbrales. ROC_AUC indica la capacidad del modelo de distinguir entre clases. El modelo de regresión logística entrenado tiene un ROC-AUC de 0,7, lo que indica un <em>pobre</em> rendimiento predictivo general.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">roc_auc</span>(vecino_r, <span class="at">truth =</span> barrio, .pred_0)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">roc_auc</span>(vecino_r, <span class="at">truth =</span> barrio, .pred_0)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
@@ -1727,16 +1926,17 @@ Prediction   0   1
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>vecino_r <span class="sc">%&gt;%</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_curve</span>(<span class="at">truth =</span> barrio, .pred_0) <span class="sc">%&gt;%</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>vecino_r <span class="sc">%&gt;%</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_curve</span>(<span class="at">truth =</span> barrio, .pred_0) <span class="sc">%&gt;%</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
+</section>
 </section>
 
 </main>
