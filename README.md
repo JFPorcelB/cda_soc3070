@@ -47,10 +47,9 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | 23  | Agosto      | R                                         | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/01_prob/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/01_prob/index.qmd) | 
 | 30  | Agosto      | R                                         | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/02_prob/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/02_prob/index.qmd) |
 | 6   | Septiembre  | R                                         | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/03_manipulacion/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/03_manipulacion/index.qmd) |
-| 13  | Septiembre  | Regresión lineal, LPM                     | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/04_ols_lpm/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/04_ols_lpm/index.qmd)          |
+| 13  | Septiembre  | Regresión lineal, LPM                     | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/04_ols_lpm/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/04_ols_lpm/index.qmd) |
 | 20  | Septiembre  | Regresión logística                       | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/05_regresion_logistica/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/05_regresion_logistica/index.qmd) |
-| 20  | Septiembre  | Regresión logística                       |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/05_regresion_logistica/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/05_regresion_logistica/index.qmd) |
-| 27  | Septiembre  | Regresión logística                       |            |
+| 27  | Septiembre  | Regresión logística                       | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/06_regresion_logistica%20II/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/06_regresion_logistica%20II/index.qmd) |
 | 25  | Octubre     | Bootstrap y cross-validation              |            |
 | 8   | Noviembre   | Regresión logística multinomial           |            |
 | 22  | Noviembre   | Regresión logística ordenada y poisson    |            |
@@ -69,8 +68,8 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 |---------------|---------------------|------------------|-------------------------------------------|
 | Tarea corta 1 | 7 agosto            | 15 agosto        | [`[Soluciones TC1]`](homework/tc_1_answers.pdf) [`[Soluciones TC1.qmd]`](homework/tc_1_answers.qmd) |
 | Tarea corta 2 | 21 agosto           | 29 agosto        | [`[Soluciones TC2]`](homework/tc_2_answers.pdf) [`[Soluciones TC2.qmd]`](homework/tc_2_answers.qmd) |
-| Tarea corta 3 | 28 agosto           | 5 septiembre     | [`[Soluciones TC3]`](homework/tc_3_answers.pdf) [`[Soluciones TC3.qmd]`](homework/tc_3_answers.qmd)                                          |
-| Tarea corta 4 | 11 septiembre       | 20 septiembre    | [`[TC4]`](homework/tc_4.pdf) [`[TC4.qmd]`](homework/tc_4.qmd)                                          |
+| Tarea corta 3 | 28 agosto           | 5 septiembre     | [`[Soluciones TC3]`](homework/tc_3_answers.pdf) [`[Soluciones TC3.qmd]`](homework/tc_3_answers.qmd) |
+| Tarea corta 4 | 11 septiembre       | 20 septiembre    | [`[TC4]`](homework/tc_4.pdf) [`[TC4.qmd]`](homework/tc_4.qmd)                                       |
 | Trabajo 1     | 16 octubre          | 31 octubre       |                                           |
 | Tarea corta 5 | 30 octubre          | 7 noviembre      |                                           |
 | Trabajo 2     | 13 noviembre        | 28 noviembre     |                                           |
