@@ -1,12 +1,12 @@
 ---
 title: "Análisis de Datos Categóricos (SOC3070)"
-subtitle: "Clase #9"
-author: "<br> Mauricio Bucca<br> Profesor Asistente, Sociología UC"
-date: "[github.com/mebucca](https://github.com/mebucca)"
+subtitle: "Clase #8: Regresión Logística"
+author: "<br> Mauricio Bucca <br> [github.com/mebucca](https://github.com/mebucca) <br> mebucca@uc.cl"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: ["default","default-fonts","gentle-r.css"]
+    css: ["gentle-r.css","xaringan-themer.css"]
     df_print: default
     nature:
       ratio: 16:9
@@ -15,153 +15,21 @@ output:
       countIncrementalSlides: true
       slideNumberFormat: "%current%"
 editor_options: 
-  chunk_output_type: console
----
+  chunz_output_type: console
+---  
 class: inverse, center, middle
 
-#Modelos Lineales Generalizados (GLM)
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(tidyverse)
+library(xaringanthemer)
+style_duo_accent(primary_color ="#FF2400", secondary_color = "#FFD700",
+                 background_color = "#f8f7f3",
+                 header_font_google = google_font("Archivo"),
+                 text_font_google   = google_font("Inconsolata"), 
+                 link_color= "#A8C3E6"
 
----
-## Más allá del modelo de regresión lineal (LM) 
-
-LM es un marco muy útil y productivo, pero hay situaciones en las que no proporciona una descripción adecuada de los datos. En particular:
-
-<br>
-
---
-
-- Cuando $Y$ no se distribuye normalmente
-
---
-
-- Cuando el rango de $Y$ está restringido (por ejemplo, binario, recuento)
-
---
-
-- Cuando la variación de $Y$ no es independiente de la media de $Y$.
-
-<br>
---
-
-GLM ofrece un marco mucho más general y flexible que incorpora y amplía el LM para abordar estas cuestiones.
-
----
-## Estructura de los modelos lineales generalizados
-
-Un modelo lineal generalizado tiene cuatro componentes:
-
-.pull-left[
-
-- Un _componente aleatorio_
-
-- Un _componente sistemático_ 
-
-- Una _función de enlace_ (link).
-
-]
-
----
-### Componente aleatorio
-
-$$\newcommand{\vect}[1]{\boldsymbol{#1}}$$
-
-- El componente aleatorio de un GLM identifica la .bold[distribución de probabilidad de la variable dependiente].
-
---
-
-- Mientras que la LM asume que la variable dependiente sigue una distribución normal, GLM abarca un conjunto más amplio de distribuciones, .bold[tanto continuas como discretas], siempre y cuando pertenezcan a la clase más general de la [_familia exponencial de distribuciones_](https://en.wikipedia.org/wiki/Exponential_family).  
-
-
-![Some distributions of the exponential family and their relationship](expo_fam.png)
-
-
----
-## Componente Sistemático
-
-El componente sistemático de un GLM especifica las variables explicativas, es decir, las $x$'s en el lado derecho de la ecuación
-
-<br>
-
-$$\eta_{i} = \beta_{0} + \beta_{1} x_{i1} + \dots + \beta_{k} x_{ik}$$
-<br>
---
-
- - En terminología GLM $\eta$ se denomina _predictor lineal_.
- 
- - $\eta$ es lineal "en parámetros": no vamos a encontrar términos del tipo $\beta_{0}*\beta_{1}$ o $\beta_{1}^{\beta_{0}}$.
- 
-
----
-## Función de enlace (link)
-
-En el LM estándar, la media condicional del resultado $\mu_{i}$ está linealmente relacionada con los predictores del modelo.
-
-$$\underbrace{\mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k} )}_{\mu_{i}} = \underbrace{\beta_{0} + \beta_{1} x_{i1} + \dots + \beta_{k} x_{ik}}_{\eta_{i}}$$
-
---
-
-- GLM permiten una relación más general y flexible entre estos dos términos. 
-
---
-
-- En un GLM el componente sistemático $\eta_{i}$ debe estar relacionado linealmente (en parámetros) con una función $g(\cdot)$ de $\mu_{i}$. Dicha función se denomina *función de enlace*. Formalmente,
-
-$$g(\mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k})) =  g(\mu_{i}) = \eta_{i}$$
---
-
-Ejemplo, si $g(\cdot) = \ln(\cdot)$, entonces
-
-
-$$\ln \mathbb{E}(y_{i} \mid  x_{1}, \dots x_{k}) =  \ln \mu_{i} = \eta_{i}$$
-
-<br>
---
-
-- La _función de enlace_ cumple un objetivo importante: mantener $\mu_{i}$ dentro de su rango natural. 
-
-  - Ejemplo: si $y_{i}$ es estrictamente positivo (ingreso), $\eta_{i} \in (-\infty, \infty+)$ pero $\mu_{i} = e^{\eta_{i}} \in  (0, \infty+)$
-
-
----
-## Función de enlace (link)
-
-Más allá de este ejemplo, hay una variedad de posibles funciones de enlace:
-
-
-![Some commonly used link functions](link_fn.png)
-- $g(\cdot)$ debe ser "smooth" y monotónica
-
-
----
-## Definiendo un GLM
-
-La estructura básica de un GLM se especifica mediante la elección de dos componentes: (1) la distribución de la variable dependiente (componente sistemático) y (2) la función de enlace. 
-
-<br>
-\begin{align}
-  GLM:
-	\begin{cases}
-	&y_{i} \sim f(\mu_{i},\sigma_{i}) \\ \\
-	& g(\mu_{i}) = \eta_{i}
-	\end{cases}
-\end{align}
-
-<br>
---
-
-Cualquier combinación de estos componentes definirá un GLM diferente. Algunas de estas combinaciones son especialmente relevantes:
-
-
-| Distribution         | Canonical Link: $\eta = g(\mu)$ | Link name             | Model name           |
-| -----------------    | ------------------              | --------------------- | -------------------- |
-| Normal (Gaussian)    | $\eta = \mu$                    | identity              | Standard regression  |
-| Poisson              | $\eta = \log(\mu)$              | logarithm             | Poisson regression   |
-| Bernoulli / Binomial | $\eta = \log(\mu/(1-\mu))$      | logit                 | Logistic regression  |
-| Gamma                | $\eta = (1/\mu)$                | reciprocal            | Gamma regression     |
-
-
----
-class: inverse, center, middle
+)
+```
 
 #Regresión Logística
 

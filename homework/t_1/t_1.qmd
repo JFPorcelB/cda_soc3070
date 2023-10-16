@@ -63,53 +63,33 @@ data_paper %>% glimpse()
 
 1.  Usa un LPM para estimar el modelo implícito en la Figura S3 de la sección "Supplementary Materials" del artículo. Puedes encontrar mayores detalles sobre la especificación del modelo en la ecuación 4 y en la Tabla S3, columna 1. Escribe la escuación de regresión y presenta un `summary()` de los resultados.
 
-
-
 1.1 Interpreta el coeficiente asociado a `wt`.
 
-
-
 1.2 De acuerdo al modelo estimado en 1., ¿cuál es el efecto marginal de "hand strength" sobre la probabilidad esperada de ganar el juego?
-
-
 
 1.3 En base al modelo usado en 1., calcula las probabilidades esperadas de que un "player 1" que ganó el entrenamiento gane el juego si su "hand strength" es 50 y 60, respectivamente.
 Expresa formalmente las ecuaciones correspondiente a estas predicciones.
 
-
-
-1.4. Agrega una interacción entre `hs` y `wt` al modelo estimado en 1.
+1.4.
+Agrega una interacción entre `hs` y `wt` al modelo estimado en 1.
 Escribe la ecuación de regresión y presenta un `summary()` de los resultados.
 Interpreta el efecto de "hand strength" estimado en este modelo.
-
-
 
 1.5 En base a los resultados del modelo en 1.4.
 calcula las probabilidades esperadas de que un "player 1" que ganó el entrenamiento gane el juego si su "hand strength" es 60.
 Expresa formalmente la ecuación correspondiente a esta predicción.
 
-
-
 2.  Usa una regresión logística para estimar el modelo implícito en la Figura S3 de la sección "Supplementary Materials" del artículo. Puedes encontrar mayores detalles sobre la especificación del modelo en la ecuación 4 y en la Tabla S3, columna 1. Escribe la escuación de regresión y presenta un `summary()` de los resultados.
 
-
-
-
 2.1 Interpreta el coeficiente asociado a `wt`.
-
-
 
 2.2 Transforma e interpreta el coeficiente de interés de 2.1.
 en términos de odds-ratios.
 Presenta el desarrollo formal.
 
-
-
 2.3 De acuerdo al modelo estimado en 2, calcula las probabilidades esperadas de que un "player 1" que ganó el entrenamiento gane el juego si su "hand strength" es 50 y 60, respectivamente.
 Expresa formalmente las ecuaciones correspondiente a estas predicciones.
 Compara este resultado con el obtenido en 1.3.
-
-
 
 2.4.
 De acuerdo al modelo estimado en 2., ¿cual es el efecto marginal de "hand strength" sobre la probabilidad esperada de ganar el juego?
@@ -117,13 +97,11 @@ Calcula esta cantidad para un "Player 1" que ganó el entrenamiento si su "hand 
 Expresa formalmente las ecuaciones correspondientes a estas cantidades.
 Compara esta respuesta con la respuesta dada en 1.2.
 
-
 ## Bonus:
 
 El siguiente gráfico describe las probabilidad predichas por el LMP estimado en 1.
 y la regresión logística estimada en 2.
 de que un "player 1" que ganó la sesión de entrenamiento gane el juego, para diferentes valores de "hand strength".
-
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 lpm_1 <- lm(wg ~ factor(pid) + hs + factor(wt) , data=data_paper)
@@ -150,12 +128,7 @@ newy %>% ggplot(aes(x=hs, y=prob_lpm, colour="LPM")) +
 
 3.1 Inspecciona visualmente la figura y determina la "hand strength" aproximada en la cual encontramos el mayor *efecto* de "hand strength" sobre la probabilidad de que un "player 1" que ganó el entrenamiento gane el juego.
 
-
-
 3.2 ¿Cuál es el mayor efecto posible de "hand strength"?
-
-
 
 3.3 Verdadero o falso: "el efecto no lineal de `hs` en el modelo de regresión logística (linea azul) se debe a que la especificación del modelo permite tal no-linealidad (por ejemplo, usando un término cuadrático o cúbico)".
 Justifica tu respuesta.
-
