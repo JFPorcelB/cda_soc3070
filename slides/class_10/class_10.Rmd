@@ -1,12 +1,12 @@
 ---
 title: "Análisis de Datos Categóricos (SOC3070)"
 subtitle: "Clase #10"
-author: "<br> Mauricio Bucca<br> Profesor Asistente, Sociología UC"
-date: "[github.com/mebucca](https://github.com/mebucca)"
+author: "<br> Mauricio Bucca <br> [github.com/mebucca](https://github.com/mebucca) <br> mebucca@uc.cl"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: ["default","default-fonts","gentle-r.css"]
+    css: ["gentle-r.css","xaringan-themer.css"]
     df_print: default
     nature:
       ratio: 16:9
@@ -15,12 +15,25 @@ output:
       countIncrementalSlides: true
       slideNumberFormat: "%current%"
 editor_options: 
-  chunk_output_type: console
----
-
+  chunz_output_type: console
+  
+---  
 class: inverse, center, middle
 
-#Regresión Logística, interpretación
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(tidyverse)
+library(xaringanthemer)
+style_duo_accent(primary_color ="#001F3F", secondary_color = "#225522",
+                 background_color = "#f8f7f3",
+                 header_font_google = google_font("Archivo"),
+                 text_font_google   = google_font("Inconsolata"), 
+                 link_color= "#800000"
+
+)
+```
+
+#Regresión Logística
+##Interpretación
 
 ---
 ##Configuración
@@ -832,7 +845,7 @@ c("Promedio ym"=mean_ym, "Promedio male"=mean_male)
 --
 
 ```{r, warning=FALSE, message=FALSE}
-marginaleffects(logit_affairs_sex_ym2, newdata =  typical(male=mean_male, ym=mean_ym))
+marginaleffects(logit_affairs_sex_ym2, newdata =   expand.grid(male=mean_male, ym=mean_ym))
 ```
 
 ---
@@ -886,7 +899,7 @@ En `R`
 
 ```{r, warning=FALSE, message=FALSE}
 marginaleffects(logit_affairs_sex_ym, 
-                        newdata =  typical(sex = c("male", "female"),
+                        newdata =  expand.grid(sex = c("male", "female"),
                                   ym=c(4,7,15)
                                   )) %>% filter(term=="ym")
 ```
@@ -897,9 +910,9 @@ marginaleffects(logit_affairs_sex_ym,
 ---
 class: inverse, center, middle
 
-.huge[
-**Hasta la próxima clase. Gracias!**
-]
+
+##Hasta la próxima clase. Gracias!
+
 
 <br>
 Mauricio Bucca <br>
