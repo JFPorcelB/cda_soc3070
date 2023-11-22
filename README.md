@@ -32,9 +32,9 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | 23  | Octubre   | Regresión Logística: interpretación de efectos  |    [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_10/class_10#1) [`[Código]`](slides/class_10/class_10.Rmd)                                                                                                                                |
 | 30  | Octubre   | Regresión Logística: inferencia                 |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_11/class_11#1) [`[Código]`](slides/class_11/class_11.Rmd)                                                                                                                                            |
 | 6   | Noviembre | Regresión Logística: ajuste y predicción        |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_12/class_12#1) [`[Código]`](slides/class_12/class_12.Rmd)                                                                                                                                              |
-| 13  | Noviembre | Regresión Logística Multinomial                 |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_13/class_13#1) [`[Código]`](slides/class_13/class_13.Rmd)                                                                                                                                  |
-| 20  | Noviembre | Regresión Poisson                               |                                                                                                                                   |
-| 27  | Noviembre | Consideraciones Finales                         |                                                                                                                                   |
+| 20  | Noviembre | Regresión Logística Multinomial                 |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_13/class_13#1) [`[Código]`](slides/class_13/class_13.Rmd)                                                                                                                                  |
+|     |           | Regresión Logística Ordenada                    |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_14/class_14#1) [`[Código]`](slides/class_14/class_14.Rmd)                                                                                                                                  |
+| 28  | Noviembre | Regresión Poisson                               | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_15/class_15#1) [`[Código]`](slides/class_15/class_15.Rmd)                                                                                                                                  |
 
 
 ## Ayudantías
@@ -70,10 +70,10 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | Tarea corta 2 | 21 agosto           | 29 agosto        | [`[Soluciones TC2]`](homework/tc_2_answers.pdf) [`[Soluciones TC2.qmd]`](homework/tc_2_answers.qmd) |
 | Tarea corta 3 | 28 agosto           | 5 septiembre     | [`[Soluciones TC3]`](homework/tc_3_answers.pdf) [`[Soluciones TC3.qmd]`](homework/tc_3_answers.qmd) |
 | Tarea corta 4 | 11 septiembre       | 20 septiembre    | [`[Soluciones TC4]`](homework/tc_4_answers.pdf) [`[Soluciones TC4.qmd]`](homework/tc_4_answers.qmd) |
-| Trabajo 1     | 16 octubre          | 31 octubre       | [`[T1]`](homework/t_1/t_1.pdf) [`[T1.qmd]`](homework/t_1/t_1.qmd) [`[Paper]`](homework/t_1/paper.pdf)  [`[Material Suplementario]`](homework/t_1/sm.pdf)                                        |
-| Tarea corta 5 | 7 noviembre          | 14 noviembre      |  [`[TC5]`](https://mebucca.github.io/cda_soc3070/homework/tc_5#1)                                          |
-| Trabajo 2     | 13 noviembre        | 28 noviembre     |                                           |
-| Trabajo final | 20 noviembre        | 5 diciembre      |                                           |
+| Trabajo 1     | 16 octubre          | 31 octubre       | [`[Soluciones T1]`](homework/t_1_answers/t_1_answers.pdf) [`[Soluciones T1.qmd]`](homework/t_1_answers/t_1_answers.qmd) [`[Paper]`](homework/t_1/paper.pdf)  [`[Material Suplementario]`](homework/t_1/sm.pdf)                                        |
+| Tarea corta 5 | 7 noviembre          | 14 noviembre      |  [`[Soluciones TC5]`](https://mebucca.github.io/cda_soc3070/homework/tc_5_answers#1)  [`[Soluciones TC5.qmd]`](homework/t_5_answers/t_5_answers.qmd)                                                                   |
+| Trabajo 2     | 13 noviembre        | 28 noviembre     |   [`[T2]`](https://mebucca.github.io/cda_soc3070/homework/t_2/t_2#1) [`[Paper]`](homework/t_1/paper.pdf) [`[Supplementary Materials]`](homework/t_1/sm.pdf) [`[Database]`](homework/t_2/data_t_2.csv)                                        |
+| Trabajo final | 20 noviembre        | 5 diciembre      |    [`[TF]`](https://mebucca.github.io/cda_soc3070/homework/tf/tf#1) [`[Paper 2018]`](homework/tf/Silberzahn-etal-2018.pdf) [`[Paper 2021]`](homework/tf/Auspurg-Bruderl-2021.pdf) [`[Database]`](homework/tf/redcard_data.csv) [`[Ejemplo Elevator speech]`](https://mebucca.github.io/cda_soc3070/homework/tf/elevator_speech#1)                                         |
 
 
 
