@@ -60,10 +60,10 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 
 
-
 ## Horario de Consulta
 
-- Reuniones individuales de aproximadamente 15 minutos cada día Lunes entre 15:00 y 16:00pm. [`[Agendar]`](https://calendar.app.google/A9vxmbBz1LyDQPAK6)
+- Reuniones individuales de aproximadamente 15 minutos cada día Lunes entre 14:30 y 15:30pm. [`[Agendar]`](https://calendar.app.google/A9vxmbBz1LyDQPAK6)
+
 
 ## Evaluaciones
 
