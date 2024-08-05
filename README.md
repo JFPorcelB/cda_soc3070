@@ -21,8 +21,8 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 | Día   | Mes        | Contenido                                                 | Material                                                                                                                     |
 |-------|------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
-| 5     | Agosto     | Presentación del curso                                    | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_0/class_0#1) [`[Código]`](slides/class_0/class_0.Rmd)  |
-| 5     | Agosto     | Basics teoría de la Probabilidad                          | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_1/class_1#1) [`[Código]`](slides/class_1/class_1.Rmd)  |
+| 5     | Agosto     | Presentación del curso                                    | [`[Pres]`](https://mebucca.github.io/cda_soc3070/slides/class_0/class_0#1) [`[Code]`](slides/class_0/class_0.Rmd)  |
+| 5     | Agosto     | Basics teoría de la Probabilidad                          | [`[Pres]`](https://mebucca.github.io/cda_soc3070/slides/class_1/class_1#1) [`[Code]`](slides/class_1/class_1.Rmd)  |
 | 12    | Agosto     | Probabilidad Condicional y Teorema Bayes                  |                                                                                                                              |
 | 19    | Agosto     | Variables Aleatorias, Distribuciones Discretas            |                                                                                                                              |
 | 26    | Agosto     | Estimación via Maximum Likelihood (MLE)                   |                                                                                                                              |
@@ -47,7 +47,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 | Día | Mes | Contenido                                                       | Material                                                                                                                                                   |
 |-----|-----|-----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| día | mes | R base & quarto                                                 | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/ayudantia/01_prob/index) [`[Código]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/01_prob/index.qmd) |
+| día | mes | R base & quarto                                                 | [`[Pres]`](https://mebucca.github.io/cda_soc3070/ayudantia/01_prob/index) [`[Code]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/01_prob/index.qmd) |
 | día | mes | `dplyr` & `tidyr`                                               |                                                                                                                                                            |
 | día | mes | `ggplot()` & `stargazer()`                                      |                                                                                                                                                            |
 | día | mes | Regresión lineal, LPM - fit `lm()`                              |                                                                                                                                                            |

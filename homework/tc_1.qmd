@@ -25,47 +25,37 @@ library("tinytex")
 
 **Problema 3:** Si $2^y \times 2^{y-3} = 16$ encuentra ( y ).
 
-
 <br>
 
 **Problema 4:** Simplifica: $e^{a}\times e^{-a}$
-
 
 <br>
 
 **Problema 5:** Simplifica: $z = e^{\ln(w)}$
 
-
 <br>
 
 **Problema 6:** Simplifica: $\ln(d) - \ln(f)$
-
 
 <br>
 
 **Problema 7:** Resuelve por $y$: $e^{3y} = 10$
 
-
 <br>
 
 **Problema 8:** Simplifica: $\ln(p) + \ln(q) - \ln(r)$
-
 
 <br>
 
 **Problema 9:** Resuelve por $x$: $y = e^{3x+2}$
 
-
 <br>
 
 **Problema 10:** Determina la derivada de $y$ con respecto a $x$ (dy/dx) en la siguiente ecuación: $y = 4x^3 - 6x^2 + 5x - 8$
 
-
-
 <br>
 
 **Problema 11:** Encuentre la derivada de: $y = x^6 - 3x^4 + 2x^3 - x + 1$
-
 
 <br>
 
