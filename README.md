@@ -5,7 +5,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 ## Class of 2024
 
-![class](files/class.png)
+![class](files/class.jpeg)
 
 
 ### Nivelación Matemática
