@@ -23,7 +23,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 |-------|------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
 | 5     | Agosto     | Presentación del curso                                    | [`[Pres]`](https://mebucca.github.io/cda_soc3070/slides/class_0/class_0#1) [`[Code]`](slides/class_0/class_0.Rmd)  |
 | 5     | Agosto     | Basics teoría de la Probabilidad                          | [`[Pres]`](https://mebucca.github.io/cda_soc3070/slides/class_1/class_1#1) [`[Code]`](slides/class_1/class_1.Rmd)  |
-| 12    | Agosto     | Probabilidad Condicional y Teorema Bayes                  |                                                                                                                              |
+| 12    | Agosto     | Probabilidad Condicional y Teorema Bayes                  | [`[Pres]`](https://mebucca.github.io/cda_soc3070/slides/class_2/class_2#1) [`[Code]`](slides/class_2/class_2.Rmd)          |
 | 19    | Agosto     | Variables Aleatorias, Distribuciones Discretas            |                                                                                                                              |
 | 26    | Agosto     | Estimación via Maximum Likelihood (MLE)                   |                                                                                                                              |
 | 2     | Septiembre | Tablas de contingencia                                    |                                                                                                                              |
