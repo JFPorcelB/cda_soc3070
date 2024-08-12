@@ -1,0 +1,8 @@
+"0","tbl <-"
+"0","  nnet::multinom(lclass ~ mujer + edad + nivel_educ, trace=F, data=a_lca) %>%"
+"0","  tbl_regression(exponentiate = F) %>% multinom_pivot_wider()"
+"2","[36mℹ[39m Multinomial models have a different underlying structure than the models
+gtsummary was designed for. Other gtsummary functions designed to work with
+[32m[32mtbl_regression[32m[39m objects may yield unexpected results.
+"
+"0","tbl"
