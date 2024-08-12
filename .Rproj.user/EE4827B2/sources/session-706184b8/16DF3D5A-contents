@@ -1,0 +1,587 @@
+---
+title: "Ejercicio 1"
+subtitle: "Ayudantía soc3070"
+author: "Cantillan, R. | Bucca, M."
+institute: "ISUC"
+page-layout: article
+date: 2023-08-23
+date-format: short
+number-sections: true
+format:
+  html:
+    titlepage-logo: "images/uc-chile.png"
+    logo-align: left
+    logo-size: 1.5
+    theme: yeti
+    toc: true
+    toc_float: true
+    toc-depth: 5
+    toc-title: "En este ejercicio"
+editor: visual
+title-block-banner: true
+title-block-style: default
+title-block-categories: true
+freeze: true
+execute: 
+  echo: fenced
+  eval: true
+  output: true
+  warning: false
+reference-location: margin
+citation-location: margin
+#highlight-style: ayu-dark
+#code-block-bg: "#2E2E2E"
+#code-block-border-left: "#31BAE9"
+---
+
+Este ejercicio funcionará como un breve tutorial de R, Rstudio y quarto. Más abajo, encontrarán links útiles para explorar por su propia cuenta detalles que no cubriremos en este espacio. Adicionalmente, realizaremos algunos ejercicios de procesamiento y analisis descriptivo de datos. Este ejercisio esta diseñado para estudiantes del curso soc3070, que ya tienen algo de experiencia con R y/o desean realizar el cambio de stata o spss a R. Por múltiples razones, alentamos el uso del lenguaje R y la infinidad de librerías disponibles para el procesamiento de datos y el análisis estadístico, especialmente la familia de librerías Tidyverse.
+
+<img src="https://blog.revolutionanalytics.com/downloads/datasaurus.gif" width="80%"/>
+
+## R, Rstudio y Quarto.
+
+-   Trabajaremos con RScripts (archivos .R), en un arhivo Quarto (archivos .qmd). Pueden encontrar más información en este [link](https://quarto.org/)
+
+-   `Quarto` es una versión multilingüe de próxima generación de `RMarkdown`. Al igual que `RMarkdown`, Quarto usa `Knitr` para ejecutar código `R` y, por lo tanto, puede procesar la mayoría de los archivos `Rmd` existentes sin modificaciones.
+
+-   La mayoría del código utulizado en los ejemplos incluirá funciones de la familia de librerías `Tidyverse`. Más información [acá](https://www.tidyverse.org/)
+
+-   R y Rstudio lo puedes instalar siguiendo los instrucciones en este [link](https://mebucca.github.io/dar_soc4001/slides/class_1/class_1#1)
+
+### Material útil
+
+Algunos textos que pueden ser de utilidad.
+
+-   [R for data science](https://r4ds.had.co.nz/) por Hadley Wickham and Garrett Grolemund
+-   [Advanced R](https://adv-r.hadley.nz/) por Hadley Wickham
+-   [Introduction to Computational Social Science](https://bookdown.org/markhoff/css/)
+-   [Posit Cheatsheets](https://posit.co/resources/cheatsheets/)
+-   [RStudio Cheatsheet](https://rstudio.github.io/cheatsheets/html/rstudio-ide.html?_gl=1*15x77ld*_ga*NTIyNDkxMDU5LjE2OTI3OTcwOTY.*_ga_2C0WZ1JHG0*MTY5Mjc5NzA5NS4xLjAuMTY5Mjc5NzA5NS4wLjAuMA..)
+-   [Quarto Cheatsheet](https://rstudio.github.io/cheatsheets/html/quarto.html?_gl=1*195fqib*_ga*NTIyNDkxMDU5LjE2OTI3OTcwOTY.*_ga_2C0WZ1JHG0*MTY5Mjc5NzA5NS4xLjEuMTY5Mjc5ODEzNC4wLjAuMA..)
+
+### Crear documento `.qmd`
+
+<img src="images/screen1.png" width="70%"/>
+
+### Crear `chunck` de código
+
+::: callout-tip
+## Chunk
+
+Con la combinación de teclas `ctrl + alt + i` se inserta un chunck de cósigo. Pueden formatear en {} el tipo de lenguaje que usaran dentro de él. Una de las ventajas de trabajar con quarto o Rmarkdown es que podemos usar distintos lenguajes en un mismo documento.
+:::
+
+```{r}
+2+2
+```
+
+<img src="images/screen2.png" width="90%"/>
+
+## Tidyverse (sintaxis)
+
+### Tuberías y el operador %\>%
+
+El operador de tubería `%>%` fue introducido por el paquete `magrittr` y es adoptado por tidyverse (y otros famosos como igraph), que usaremos frecuentemente en este curso.
+
+La idea detrás de las tuberías es, en esencia, muy simple:
+
+-   `f(g(x))` se convierte en `x %>% g %>% f`
+-   Por ejemplo: `mean(table(x))` se convierte en `x %>% table %>% mean`
+
+Luego, `%>%` canaliza la salida de la función anterior (ej., tabla) a la entrada de la siguiente función (p. ej., media). Esto convierte el código de adentro hacia afuera en código de izquierda a derecha. Lo cual lo hace más legible para la mayoría de los occidentales. Adicionalmente se pueden concatenar varias funciones y líneas de código (estilo de codificación común).
+
+Debido a que de izquierda a derecha es la dirección a la que la mayoría de nosotros estamos acostumbrados a leer, las canalizaciones hacen que el código R sea menos engorroso y más legible. También puede ver canalizaciones que concatenan varias líneas de código. Eso es posible y un estilo de codificación común:
+
+En vez de:
+
+```{r}
+# x %>% table() %>% mean()
+```
+
+Puedes escribir
+
+```{r}
+# x %>%
+#   table() %>%
+#   mean()
+```
+
+El operador `%<>%` combina `%>%` (canalización) y `<-` (asignación): canaliza el objeto de la izquierda a las operaciones de la derecha y luego asigna el resultado final de las operaciones al objeto original. El siguiente código:
+
+```{r}
+# x <- x %>%
+#   table() %>%
+#   mean()
+```
+
+hace lo mismo que el siguiente código (más conciso):
+
+```{r}
+#x %<>%
+#  table() %>%
+#  mean()
+```
+
+### Subdividir datos (`data.frame`) en tidyverse
+
+Tidyverse incluye el paquete `dplyr` para la manipulación de marcos de datos. `dply` es una librería muy usada para la manipulación de todo tipo de datos (excepcionalmente para datos muy grandes conviene usar el formato `data.table`). Para obtener más información, consulte la hoja de trucos y las viñetas del paquete.
+
+-   `dplyr::filter()` se utiliza para crear subconjuntos de filas (casos) de un marco de datos en función de una o varias condiciones. Por ejemplo, queremos seleccionar individuos con determinados valores en una o más variables. Esto conserva la clase del marco de datos, similar a la indexación \[ \].
+
+-   `dplyr::select()` se usa para crear subconjuntos de columnas (variables) de un marco de datos. Puede utilizar nombres completos de variables o seleccionar variables de muchas otras formas (consulte los ejemplos en la página del manual de selección). Esto conserva la clase del marco de datos, similar a la indexación \[ \].
+
+-   `dplyr::pull()` se usa para extraer una columna como un vector. Esto no conserva la clase de marco de datos, similar a \[\[ \]\] o \$.
+
+## Ejercicio I: Probabilidades
+
+### Librerías
+
+```{r, message=F}
+#install_github("kosukeimai/qss-package", build_vignettes = TRUE)
+library(qss)
+library(tidyverse)
+library(httr)
+library(car)
+library(devtools)
+```
+
+En el siguiente ejercicio buscamos dar con la distribución de probabilidad de que al menos dos personas tengan el mismo cumpleaños.
+
+```{r}
+## Creamos la función de cumpleaños
+birthday <- function(k) {
+logdenom <- k * log(365) + lfactorial(365 - k)
+lognumer <- lfactorial(365)
+pr <- 1 - exp(lognumer - logdenom)
+pr
+}
+
+## Creamos data frame (tibble) con k casos y la probabilidad por k. 
+bday <- tibble(k = 1:50, pr = birthday(k))
+
+## plot 
+ggplot(bday, aes(x = k, y = pr)) +
+  geom_line() +
+  geom_point() +
+  scale_y_continuous(str_c("Probabilidad de que al menos dos",
+                           "personas tengan el mismo cumpleaños", sep = "\n"),
+                     limits = c(0, 1), breaks = seq(0, 1, by = 0.1)) +
+  labs(x = "Número de personas")
+
+```
+
+En el siguiente ejericicio queremos saber la fracción de ensayos (trials) donde al menos dos cumpleaños son iguales
+
+```{r}
+## setting seed para replicación 
+set.seed(4444)
+
+k <- 23 # Número de personas 
+sims <- 1000 # number of simulations
+event <- 0 # contador
+
+for (i in 1:sims) {
+days <- sample(1:365, k, replace = TRUE)
+days.unique <- unique(days) # cumpleaños únicos
+## Si hay duplicados, el número de cumpleaños únicos
+## puede ser menos que el número de cumpleaños, que es "k"
+if (length(days.unique) < k) {
+event <- event + 1
+}
+}
+## fracción de ensayos donde al menos dos cumpleaños son iguales
+answer <- event / sims
+answer
+```
+
+### Probabilidad condicional
+
+```{r}
+data(FLVoters, package = "qss")
+## how many observations?
+dim(FLVoters)
+glimpse(FLVoters)
+```
+
+```{r}
+## Remover observaciones con valores NA
+FLVoters <- FLVoters %>% drop_na() 
+dim(FLVoters)
+```
+
+#### Raza
+
+```{r}
+margin_race <- FLVoters %>%
+  count(race) %>%
+  mutate(prop = n / sum(n))
+
+tibble(margin_race)
+```
+
+#### Genero
+
+```{r}
+margin_gender <-FLVoters %>%
+  count(gender) %>%
+  mutate(prop = n / sum(n))
+
+tibble(margin_gender)
+```
+
+#### Raza entre mujeres
+
+```{r}
+margin_race_f <-FLVoters %>%
+  filter(gender == "f") %>%
+  count(race) %>%
+  mutate(prop = n / sum(n))
+
+margin_race_f
+```
+
+#### Raza entre hombres
+
+```{r}
+margin_race_m <- FLVoters %>%
+  filter(gender == "m") %>%
+  count(race) %>%
+  mutate(prop = n / sum(n))
+
+margin_race_m
+```
+
+#### probabilidad conjunta (joint probabilities)
+
+```{r}
+joint_p <-FLVoters %>%
+  count(gender, race) %>%
+  mutate(prop = n / sum(n))
+
+joint_p
+```
+
+#### Género como columna con la proporción como valores.
+
+```{r}
+joint_p_wider <- joint_p %>%
+  select(-n) %>%
+  pivot_wider(names_from = gender,values_from = prop) %>%
+mutate(total_prop = f + m)
+
+joint_p_wider
+```
+
+#### Raza como columnas, con la proporción como valor
+
+```{r}
+joint_p_wider <- joint_p %>%
+  select(-n) %>%
+  pivot_wider(names_from = race, values_from = prop) %>%
+mutate(total_prop = rowSums(across(where(is.numeric))))
+
+joint_p_wider
+```
+
+#### Plot ejemplo
+
+```{r}
+FLVoters %>%
+  count(gender, race) %>%
+  group_by(gender) %>%
+  mutate(prop = n / sum(n)) %>%
+  ggplot(aes(x = race, y = prop, fill = gender)) +
+  geom_bar(stat = "identity", position = "dodge", width = 0.7) +
+  labs(title = "Distribución de probabilidad de pertenecer a una raza por género",
+       x = "Raza", y = "Probabilidad") +
+  scale_fill_manual(values = c("m" = "grey", "f" = "#836fff")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+```
+
+## Ejercicio II (ELSOC)
+
+Usamos ELSOC (COES), su ola 4 del año 2019). Más información sobre esta encuesta [acá](https://dataverse.harvard.edu/dataverse/elsoc). Estos datos tienen una bateria de redes egocentradas, la cual usaremos para realizar operaciones de orden de mediana complejidad. En esta batería de preguntas, se le pide al entrevistado que indique hasta 5 de sus contactos que considere más cercanos y luego se le preguntan varias características de las personas mencionadas por el entrevistado. En la medida que los datos acerca de las personas conocidas por el entrevistado son dependientes de la mención del entrevistado, existe una extructura multinivel.
+
+::: callout-tip
+### Estructuras multinivel
+
+Las estructuras de datos multinivel son aquellas que contienen niveles de anidación adicional al individuo. Por ejemplo, los individuos pueden estar anidados en escuelas o bbien, como la figura de abajo lo ilustra, los individuos mencionados por los entrevistados (alter) están anidados en los entrevistados (egos), esto genera dependencia y en los análisis inferenciales debe modelarse.
+:::
+
+<img src="https://static.cambridge.org/binary/version/id/urn:cambridge.org:id:binary:20180219094108691-0656:9781316443255:13143fig8_3.png" width="100%"/>
+
+El objetivo es crear datos de red "egocentrada" con estructura `long`. Esto implica que tendremos que modificar la estructura original de los datos:
+
+-   En su formato original cada fila representa a un entrevistado, y la información acerca de sus contactos esta agregada hacia el lado, es decir, en formato `wide`.
+
+-   Una base en formato `long`, implica que pasaremos del formato "una fila" un individuo (con información hacia el lado o wide), a un formato `diádico` (en términos de redes).
+
+-   Esto es, en un formato `long`, los individuos tendrán tantas filas como contactos mencionó en la entrevista, es decir la información de su red cercana estará agregada hacia abajo.
+
+Una vez hecho esto, construiremos un plot que mostrara información sobre como se distribuyen proporcionalmente las diádas homofílicas en términos educacionales. Para más información acerca de la `homofilia` por favor revisen el siguiente [artículo](https://ndg.asc.upenn.edu/wp-content/uploads/2016/04/McPherson-2001-ARS.pdf).
+
+### datos
+
+Deben cargar un par de librerías antes de cargar los datos. Están marcadas con el \# en el siguiente chunck.
+
+```{r}
+# install.packages("devtools") 
+#library(devtools)
+##install.packages("httr")
+url <- "https://github.com/rcantillan/ricantillan.rbind.io/raw/main/dat/ELSOC/ELSOC_W04_v2.01_R.RData"
+response <- GET(url)
+local_path <- "ELSOC_W04_v2.01_R.RData"
+writeBin(response$content, local_path)
+load("ELSOC_W04_v2.01_R.RData") #reemplazar por ruta local de descarga
+```
+
+### Generador de nombres
+
+<img src="images/screen3.png" width="100%"/>
+
+### Estructura `Wide`
+
+<img src="images/screen4.png" width="100%"/>
+
+::: callout-tip
+### Glimpse
+
+Con la función `glimpse` podemos visualizar los datos de manera más acotada y en orden invertido. Es decir, las columnas indexadas con `$` aparecen como filas.
+:::
+
+```{r}
+egonet<-elsoc_2019 %>%
+  #glimpse() %>%
+  select(7:24)
+
+glimpse(egonet)
+```
+
+::: callout-tip
+### Kable
+
+De otro modo, la función `knitr`, del paquete `kable`, nos permite incrustar tablas de datos en formato tibble dentro del documento html.
+:::
+
+```{r}
+#| echo: false
+knitr::kable(head(elsoc_2019[,c(7:24)], 13))
+```
+
+### Rename
+
+Renombramos el identificador de la encuesta. Ahora se llamará `.egoID`. y renombramos la base de datos. Ahora se llamará `a`.
+
+```{r}
+a<-elsoc_2019 %>% dplyr::rename(.egoID = idencuesta)
+```
+
+### Creamos un subdata frame para los `alter` mencionados
+
+En los datos de la red egocentrada tenemos información sobre 1) el sexo, 2) edad, 3) educación, 4) religión, 5) ideología política, 6) si viven en el mismo barrio, y 7) tipo de relación entre el Ego y el Alter mencionado. En el siguiente chunck:
+
+-   Creamos un vector string con los caracteres que intentaremos capturar de los nombres de las columnas con la información de los confidentes (Aler): ej. sexo, edad, etc. El vector se llamará "columnas".
+
+-   Creamos un vector con un solo valor "5", el cual representa el valor máximo de conocidos que los entrevistados pueden mencionar.
+
+-   Luego creamos una lista vacia en donde alacenaremos la selección.
+
+-   Creamos un loop para seleccionar y renombrar las variables.
+
+-   agregamos las listas creadas con la función `bind_rows`.
+
+-   ordenamos de acuerdo con el id del entrevistado (.egoID) con la función `arrange`.
+
+```{r}
+columnas <- c("sexo", "edad", "educ", "relig", "ideol", "barrio", "relacion")
+num_alters <- 5
+
+alter_list <- list()
+
+for (i in 1:num_alters) {
+  alter_cols <- paste0("r13_", columnas, "_", sprintf("%02d", i))
+  alter <- a %>%
+    dplyr::select(.egoID, all_of(alter_cols)) %>%
+    rename_with(~ columnas, alter_cols) %>%
+    mutate(n = i)
+  
+  alter_list[[i]] <- alter
+}
+
+alteris <- bind_rows(alter_list)
+alteris<-arrange(alteris, .egoID)
+```
+
+::: callout-tip
+### Formato long
+
+Las estructuras de datos `long` son multinivel por que tienen al menos dos niveles: ej. Cuando hay variaas observaciones en el tiempo, tenemos a los mismos individuos observados dos o más veces. En efecto, las observaciones están anidadas en los individuos. En el ejemplo acá revisado, transformamos el formato original de datos ELSOC (estructura wide) a formato long, lo cual quiere decir que las observaciones anidadas en el Entrevistado (ego), estarán enlistadas hacia abajo y no hacia el lado (wide) como columnas adicionales. Abajo un ejemplo:
+:::
+
+```{r}
+#| echo: false
+knitr::kable(head(alteris, 50))
+```
+
+Como vemos, la bbdd anterior contiene la información de cada uno de los contactos mencionados por los entrevistados, por eso se reptien los identificadores `.egoID` hasta 5 veces. Dado el límite de menciones incluido por diseño. Puede ser pertinente borrar las filas que contienen NA en todas las filas de características.
+
+Otra aproximación -pero menos eficiente- es la siguiente:
+
+-   Crear 5 data frames, uno por confidente mencionado por el entrevistado. Cada uno de los sub data frames se llamará alter_1, alter_2, alter_3, alter_5.
+
+-   Luego se agregan hacia abajo con la función `rownbind`
+
+```{r}
+alter_1<-a %>%
+        dplyr::select(.egoID, 
+                      alter_sexo=r13_sexo_01, 
+                      alter_edad=r13_edad_01, 
+                      alter_rel=r13_relacion_01,
+                      alter_tiempo=r13_tiempo_01,
+                      alter_barrio=r13_barrio_01, 
+                      alter_educ=r13_educ_01, 
+                      alter_relig=r13_relig_01, 
+                      alter_ideol=r13_ideol_01)
+
+alter_2<-a %>%
+        dplyr::select(.egoID, 
+                      alter_sexo=r13_sexo_02, 
+                      alter_edad=r13_edad_02, 
+                      alter_rel=r13_relacion_02,
+                      alter_tiempo=r13_tiempo_02,
+                      alter_barrio=r13_barrio_02, 
+                      alter_educ=r13_educ_02, 
+                      alter_relig=r13_relig_02, 
+                      alter_ideol=r13_ideol_02)
+
+alter_3<-a %>%
+        dplyr::select(.egoID, 
+                      alter_sexo=r13_sexo_03, 
+                      alter_edad=r13_edad_03, 
+                      alter_rel=r13_relacion_03,
+                      alter_tiempo=r13_tiempo_03,
+                      alter_barrio=r13_barrio_03, 
+                      alter_educ=r13_educ_03, 
+                      alter_relig=r13_relig_03, 
+                      alter_ideol=r13_ideol_03)
+
+alter_4<- a %>%
+        dplyr::select(.egoID, 
+                      alter_sexo=r13_sexo_04, 
+                      alter_edad=r13_edad_04, 
+                      alter_rel=r13_relacion_04,
+                      alter_tiempo=r13_tiempo_04, 
+                      alter_barrio=r13_barrio_04, 
+                      alter_educ=r13_educ_04, 
+                      alter_relig=r13_relig_04, 
+                      alter_ideol=r13_ideol_04)
+
+alter_5<-a %>%
+        dplyr::select(.egoID, 
+                      alter_sexo=r13_sexo_05, 
+                      alter_edad=r13_edad_05, 
+                      alter_rel=r13_relacion_05,
+                      alter_tiempo=r13_tiempo_05, 
+                      alter_barrio=r13_barrio_05, 
+                      alter_educ=r13_educ_05, 
+                      alter_relig=r13_relig_05, 
+                      alter_ideol=r13_ideol_05)
+```
+
+### Crear vector alter id
+
+En el siguiente chunk creamos un vector identificador para cada uno de los alteris presentes en la data "alteris". Lo identificamos como objeto tibble. Además creamos un identificador único para cada uno de los confidentes.
+
+```{r}
+alteris<-rbind(alter_1,alter_2,alter_3,alter_4,alter_5)
+alteris<-arrange(alteris, .egoID)
+alteris   <- rowid_to_column(alteris, var = ".altID")
+alteris   <- as_tibble(alteris)
+#alteris$n <- NULL
+```
+
+```{r}
+as_tibble(alteris)
+```
+
+Como vemos el resultado es muy similar.
+
+### Recode
+
+A continuación, Recodificamos los valores de los atributos de los alteris.
+
+```{r}
+alteris$alter_educ <-factor(Recode(alteris$alter_educ ,"1=1;2:3=2;4=3;5=4;-999=NA"))
+alteris$alter_relig<-factor(Recode(alteris$alter_relig,"1=1;2=2;3=3;4=4;5=5;-999=NA"))
+alteris$alter_ideol<-factor(Recode(alteris$alter_ideol,"1=1;2=2;3=3;4=4;5=5;6=6;-999=NA"))
+alteris$alter_edad <-factor(Recode(alteris$alter_edad ,"0:18=1;19:29=2;30:40=3;41:51=4;52:62=5;63:100=6"))
+alteris$alter_sexo <-factor(Recode(alteris$alter_sexo ,"1=1;2=2"))
+#alteris<-na.omit(alteris)     
+```
+
+Creamos un subset con la data de ego equivalente a la data de los alteris. Las nombramos de la misma manera.
+
+```{r}
+egos <-a %>%
+       dplyr::select(.egoID, 
+                     ego_sexo=m0_sexo, 
+                     ego_edad=m0_edad, 
+                     ego_ideol=c15, 
+                     ego_educ=m01, 
+                     ego_relig=m38, 
+                     ego_ideol=c15)
+
+egos <- as_tibble(egos)
+```
+
+Recodificamos las variables de la data de ego siguiendo el patrón de la data de alteris.
+
+```{r}
+egos$ego_educ <-factor(Recode(egos$ego_educ,"1:3=1;4:5=2;6:7=3;8:10=4;-999:-888=NA"))
+egos$ego_relig<-factor(Recode(egos$ego_relig,"1=1;2=2;9=3;7:8=4;3:6=5;-999:-888=NA"))
+egos$ego_ideol<-factor(Recode(egos$ego_ideol,"9:10=1;6:8=2;5=3;2:4=4;0:1=5;11:12=6;-999:-888=NA"))
+egos$ego_edad <-factor(Recode(egos$ego_edad,"18=1;19:29=2;30:40=3;41:51=4;52:62=5;63:100=6"))
+egos$ego_sexo <-factor(Recode(egos$ego_sexo,"1=1;2=2"))
+```
+
+### join
+
+Con la función left_join agregamos la data de alteris y egos hacia el lado, en función del id de ego.
+
+```{r}
+obs<-left_join(alteris,egos, by=".egoID")
+obs[obs=="-999"] <- NA
+obs[obs=="-888"] <- NA
+```
+
+```{r}
+#| echo: false
+knitr::kable(head(obs, 50))
+```
+
+### Tabla para plot (con ggplot en formato long)
+
+El siguiente código crea una tabla long para ser ploteada como un heatmap en ggplot
+
+```{r}
+table<-as.data.frame(prop.table(table(obs$ego_educ,obs$alter_educ)))
+colnames(table)<-c("Ego_educ", "Alter_educ", "Prop")
+
+#filtramos
+table<-table%>%filter(Alter_educ!="-888") 
+```
+
+### Heatmap
+
+```{r}
+ggplot(table,aes(Ego_educ, Alter_educ))+
+  geom_tile(aes(fill=Prop))+
+  scale_fill_gradient(low="white", high="#301934") +
+  theme_grey()
+```
+
+## Bibliografía
+
+-   Imai, K. (2017). Quantitative social science: An introduction. Princeton University Press.

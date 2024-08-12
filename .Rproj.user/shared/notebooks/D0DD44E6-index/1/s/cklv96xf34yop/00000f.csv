@@ -1,0 +1,7 @@
+"0","alteris$educ <-factor(Recode(alteris$educ ,""1=1;2:3=2;4=3;5=4;-888=NA;-999=NA""))"
+"0","alteris$relig<-factor(Recode(alteris$relig,""1=1;2=2;3=3;4=4;5=5;-888=NA;-999=NA""))"
+"0","alteris$ideol<-factor(Recode(alteris$ideol,""1=1;2=2;3=3;4=4;5=5;6=6;-888=NA;-999=NA""))"
+"0","alteris$edad <-factor(Recode(alteris$edad ,""0:18=1;19:29=2;30:40=3;41:51=4;52:62=5;63:100=6;-888=NA;-999=NA""))"
+"0","alteris$sexo <-factor(Recode(alteris$sexo ,""1=1;2=2;-888=NA;-999=NA""))"
+"0","alteris$barrio<-factor(Recode(alteris$barrio ,""1=1;2=0;-888=NA;-999=NA""))"
+"0","#alteris<-na.omit(alteris)   "

@@ -1,0 +1,26 @@
+"0","columnas <- c(""sexo"", ""edad"", ""educ"", ""relig"", ""ideol"", ""barrio"", ""relacion"")"
+"0","num_alters <- 5"
+"0",""
+"0","alter_list <- list()"
+"0",""
+"0","for (i in 1:num_alters) {"
+"0","  alter_cols <- paste0(""r13_"", columnas, ""_"", sprintf(""%02d"", i))"
+"0","  alter <- elsoc_2017 %>%"
+"0","    dplyr::select(idencuesta, all_of(alter_cols)) %>%"
+"0","    rename_with(~ columnas, alter_cols) %>%"
+"0","    mutate(n = i)"
+"0","  "
+"0","  alter_list[[i]] <- alter"
+"0","}"
+"2","Warning: Using an external vector in selections was deprecated in tidyselect 1.1.0.
+Please use `all_of()` or `any_of()` instead.
+# Was:
+data %>% select(alter_cols)
+
+# Now:
+data %>% select(all_of(alter_cols))
+
+See <https://tidyselect.r-lib.org/reference/faq-external-vector.html>."
+"0","alteris <- bind_rows(alter_list)"
+"0","alteris<-arrange(alteris, idencuesta)"
+"0","kable(head(alteris, n=25))"
