@@ -4,8 +4,13 @@ subtitle: "Ayudantía soc3070"
 author: "Cantillan, R. | Bucca, M."
 institute: "ISUC"
 page-layout: article
+<<<<<<< HEAD
 date: now
 date-format: "D MMMM YYYY"
+=======
+date: 2023-08-23
+date-format: short
+>>>>>>> 0c0389ddcec2328a971296bf18c9faf1cc890540
 number-sections: true
 format:
   html:
@@ -21,7 +26,11 @@ editor: visual
 title-block-banner: true
 title-block-style: default
 title-block-categories: true
+<<<<<<< HEAD
 freeze: auto
+=======
+freeze: true
+>>>>>>> 0c0389ddcec2328a971296bf18c9faf1cc890540
 execute: 
   echo: fenced
   eval: true
@@ -29,6 +38,12 @@ execute:
   warning: false
 reference-location: margin
 citation-location: margin
+<<<<<<< HEAD
+=======
+#highlight-style: ayu-dark
+#code-block-bg: "#2E2E2E"
+#code-block-border-left: "#31BAE9"
+>>>>>>> 0c0389ddcec2328a971296bf18c9faf1cc890540
 ---
 
 Este ejercicio funcionará como un breve tutorial de R, Rstudio y quarto. Más abajo, encontrarán links útiles para explorar por su propia cuenta detalles que no cubriremos en este espacio. Adicionalmente, realizaremos algunos ejercicios de procesamiento y analisis descriptivo de datos. Este ejercisio esta diseñado para estudiantes del curso soc3070, que ya tienen algo de experiencia con R y/o desean realizar el cambio de stata o spss a R. Por múltiples razones, alentamos el uso del lenguaje R y la infinidad de librerías disponibles para el procesamiento de datos y el análisis estadístico, especialmente la familia de librerías Tidyverse.
@@ -37,16 +52,24 @@ Este ejercicio funcionará como un breve tutorial de R, Rstudio y quarto. Más a
 
 ## R, Rstudio y Quarto.
 
+<<<<<<< HEAD
 `R` es un lenguaje de programación y un entorno para análisis estadístico y gráfico. `RStudio` es un entorno de desarrollo integrado (IDE) diseñado específicamente para `R`, que facilita enormemente el trabajo con este lenguaje.
 
 `Quarto` es una evolución multilingüe de `RMarkdown`, diseñada para la próxima generación de publicación técnica y científica. `Quarto` permite combinar código, resultados y texto narrativo en un solo documento, lo que facilita la creación de informes, presentaciones y páginas web dinámicas e interactivas. Al igual que `RMarkdown`, Quarto usa `Knitr` para ejecutar código `R` y, por lo tanto, puede procesar la mayoría de los archivos `Rmd` existentes sin modificaciones.
 
 -   Trabajaremos con RScripts (archivos .R), en un arhivo Quarto (archivos .qmd). Pueden encontrar más información en este [link](https://quarto.org/)
 
+=======
+-   Trabajaremos con RScripts (archivos .R), en un arhivo Quarto (archivos .qmd). Pueden encontrar más información en este [link](https://quarto.org/)
+
+-   `Quarto` es una versión multilingüe de próxima generación de `RMarkdown`. Al igual que `RMarkdown`, Quarto usa `Knitr` para ejecutar código `R` y, por lo tanto, puede procesar la mayoría de los archivos `Rmd` existentes sin modificaciones.
+
+>>>>>>> 0c0389ddcec2328a971296bf18c9faf1cc890540
 -   La mayoría del código utulizado en los ejemplos incluirá funciones de la familia de librerías `Tidyverse`. Más información [acá](https://www.tidyverse.org/)
 
 -   R y Rstudio lo puedes instalar siguiendo los instrucciones en este [link](https://mebucca.github.io/dar_soc4001/slides/class_1/class_1#1)
 
+<<<<<<< HEAD
 
 Ventajas de `Quarto`:
 
@@ -62,6 +85,8 @@ Para comenzar con `Quarto`:
 - Escribe tu contenido combinando texto en `Markdown` y bloques de código `R`
 
 
+=======
+>>>>>>> 0c0389ddcec2328a971296bf18c9faf1cc890540
 ### Material útil
 
 Algunos textos que pueden ser de utilidad.
@@ -82,7 +107,11 @@ Algunos textos que pueden ser de utilidad.
 ::: callout-tip
 ## Chunk
 
+<<<<<<< HEAD
 Con la combinación de teclas `ctrl + alt + i` se inserta un chunck de código. Pueden formatear en {} el tipo de lenguaje que usaran dentro de él. Una de las ventajas de trabajar con quarto o Rmarkdown es que podemos usar distintos lenguajes en un mismo documento.
+=======
+Con la combinación de teclas `ctrl + alt + i` se inserta un chunck de cósigo. Pueden formatear en {} el tipo de lenguaje que usaran dentro de él. Una de las ventajas de trabajar con quarto o Rmarkdown es que podemos usar distintos lenguajes en un mismo documento.
+>>>>>>> 0c0389ddcec2328a971296bf18c9faf1cc890540
 :::
 
 ```{r}
@@ -91,6 +120,7 @@ Con la combinación de teclas `ctrl + alt + i` se inserta un chunck de código. 
 
 <img src="images/screen2.png" width="90%"/>
 
+<<<<<<< HEAD
 ## `Tidyverse` (sintaxis)
 
 Tidyverse es un conjunto coherente de paquetes de R diseñados para ciencia de datos. Estos paquetes comparten una filosofía de diseño y gramática común, lo que facilita su aprendizaje y uso conjunto. Tidyverse está diseñado para hacer que el análisis de datos sea más eficiente, coherente y fácil de comunicar.
@@ -447,6 +477,63 @@ print(edades)
 ```
 
 Estas funciones de `dplyr` son extremadamente versátiles y pueden combinarse de múltiples maneras para realizar operaciones complejas de manipulación de datos de manera eficiente y legible.
+=======
+## Tidyverse (sintaxis)
+
+### Tuberías y el operador %\>%
+
+El operador de tubería `%>%` fue introducido por el paquete `magrittr` y es adoptado por tidyverse (y otros famosos como igraph), que usaremos frecuentemente en este curso.
+
+La idea detrás de las tuberías es, en esencia, muy simple:
+
+-   `f(g(x))` se convierte en `x %>% g %>% f`
+-   Por ejemplo: `mean(table(x))` se convierte en `x %>% table %>% mean`
+
+Luego, `%>%` canaliza la salida de la función anterior (ej., tabla) a la entrada de la siguiente función (p. ej., media). Esto convierte el código de adentro hacia afuera en código de izquierda a derecha. Lo cual lo hace más legible para la mayoría de los occidentales. Adicionalmente se pueden concatenar varias funciones y líneas de código (estilo de codificación común).
+
+Debido a que de izquierda a derecha es la dirección a la que la mayoría de nosotros estamos acostumbrados a leer, las canalizaciones hacen que el código R sea menos engorroso y más legible. También puede ver canalizaciones que concatenan varias líneas de código. Eso es posible y un estilo de codificación común:
+
+En vez de:
+
+```{r}
+# x %>% table() %>% mean()
+```
+
+Puedes escribir
+
+```{r}
+# x %>%
+#   table() %>%
+#   mean()
+```
+
+El operador `%<>%` combina `%>%` (canalización) y `<-` (asignación): canaliza el objeto de la izquierda a las operaciones de la derecha y luego asigna el resultado final de las operaciones al objeto original. El siguiente código:
+
+```{r}
+# x <- x %>%
+#   table() %>%
+#   mean()
+```
+
+hace lo mismo que el siguiente código (más conciso):
+
+```{r}
+#x %<>%
+#  table() %>%
+#  mean()
+```
+
+### Subdividir datos (`data.frame`) en tidyverse
+
+Tidyverse incluye el paquete `dplyr` para la manipulación de marcos de datos. `dply` es una librería muy usada para la manipulación de todo tipo de datos (excepcionalmente para datos muy grandes conviene usar el formato `data.table`). Para obtener más información, consulte la hoja de trucos y las viñetas del paquete.
+
+-   `dplyr::filter()` se utiliza para crear subconjuntos de filas (casos) de un marco de datos en función de una o varias condiciones. Por ejemplo, queremos seleccionar individuos con determinados valores en una o más variables. Esto conserva la clase del marco de datos, similar a la indexación \[ \].
+
+-   `dplyr::select()` se usa para crear subconjuntos de columnas (variables) de un marco de datos. Puede utilizar nombres completos de variables o seleccionar variables de muchas otras formas (consulte los ejemplos en la página del manual de selección). Esto conserva la clase del marco de datos, similar a la indexación \[ \].
+
+-   `dplyr::pull()` se usa para extraer una columna como un vector. Esto no conserva la clase de marco de datos, similar a \[\[ \]\] o \$.
+
+>>>>>>> 0c0389ddcec2328a971296bf18c9faf1cc890540
 ## Ejercicio I: Probabilidades
 
 ### Librerías
@@ -458,7 +545,10 @@ library(tidyverse)
 library(httr)
 library(car)
 library(devtools)
+<<<<<<< HEAD
 library(scales)
+=======
+>>>>>>> 0c0389ddcec2328a971296bf18c9faf1cc890540
 ```
 
 En el siguiente ejercicio buscamos dar con la distribución de probabilidad de que al menos dos personas tengan el mismo cumpleaños.
@@ -535,6 +625,7 @@ margin_race <- FLVoters %>%
 tibble(margin_race)
 ```
 
+<<<<<<< HEAD
 ```{r}
 # Definimos la paleta de colores
 new_palette <- c("#a10684", "#572364", "#630b57", "#4c2882", "#6c4675", "#8A2BE2")
@@ -556,6 +647,8 @@ ggplot(margin_race, aes(x = race, y = prop, fill = race)) +
   theme(legend.position = "none")
 ```
 
+=======
+>>>>>>> 0c0389ddcec2328a971296bf18c9faf1cc890540
 #### Genero
 
 ```{r}
@@ -566,6 +659,7 @@ margin_gender <-FLVoters %>%
 tibble(margin_gender)
 ```
 
+<<<<<<< HEAD
 ```{r}
 # Plot para margin_gender
 ggplot(margin_gender, aes(x = gender, y = prop, fill = gender)) +
@@ -578,6 +672,8 @@ ggplot(margin_gender, aes(x = gender, y = prop, fill = gender)) +
   theme(legend.position = "none")
 ```
 
+=======
+>>>>>>> 0c0389ddcec2328a971296bf18c9faf1cc890540
 #### Raza entre mujeres
 
 ```{r}
@@ -589,6 +685,7 @@ margin_race_f <-FLVoters %>%
 margin_race_f
 ```
 
+<<<<<<< HEAD
 ```{r}
 # Plot para margin_race_f
 ggplot(margin_race_f, aes(x = race, y = prop, fill = race)) +
@@ -602,6 +699,8 @@ ggplot(margin_race_f, aes(x = race, y = prop, fill = race)) +
 
 ```
 
+=======
+>>>>>>> 0c0389ddcec2328a971296bf18c9faf1cc890540
 #### Raza entre hombres
 
 ```{r}
@@ -613,6 +712,7 @@ margin_race_m <- FLVoters %>%
 margin_race_m
 ```
 
+<<<<<<< HEAD
 ```{r}
 # Plot para margin_race_m
 ggplot(margin_race_m, aes(x = race, y = prop, fill = race)) +
@@ -625,6 +725,8 @@ ggplot(margin_race_m, aes(x = race, y = prop, fill = race)) +
   theme(legend.position = "none")
 ```
 
+=======
+>>>>>>> 0c0389ddcec2328a971296bf18c9faf1cc890540
 #### probabilidad conjunta (joint probabilities)
 
 ```{r}
@@ -635,6 +737,7 @@ joint_p <-FLVoters %>%
 joint_p
 ```
 
+<<<<<<< HEAD
 ```{r}
 # Reordenar los niveles de 'race' basado en la proporción total
 joint_p <- joint_p %>%
@@ -715,6 +818,8 @@ Cálculo de las proporciones:
 -   En el primer plot (FLVoters), las proporciones se calculan dentro de cada grupo de género. Es decir, para cada género, la suma de las proporciones de todas las razas es 1 (o 100%).
 -   En el segundo plot (joint_p), las proporciones parecen ser calculadas sobre el total de la población, no dentro de cada género. Esto significa que la suma de todas las proporciones (ambos géneros y todas las razas) sería 1 (o 100%).
 
+=======
+>>>>>>> 0c0389ddcec2328a971296bf18c9faf1cc890540
 #### Género como columna con la proporción como valores.
 
 ```{r}
@@ -726,6 +831,7 @@ mutate(total_prop = f + m)
 joint_p_wider
 ```
 
+<<<<<<< HEAD
 ```{r}
 # Plot para joint_p_wider (con género como columnas)
 joint_p_wider_gender <- joint_p %>%
@@ -746,6 +852,8 @@ ggplot(joint_p_wider_gender, aes(x = race)) +
 
 ```
 
+=======
+>>>>>>> 0c0389ddcec2328a971296bf18c9faf1cc890540
 #### Raza como columnas, con la proporción como valor
 
 ```{r}
@@ -757,8 +865,25 @@ mutate(total_prop = rowSums(across(where(is.numeric))))
 joint_p_wider
 ```
 
+<<<<<<< HEAD
 ```{r}
 theme(legend.title = element_blank())
+=======
+#### Plot ejemplo
+
+```{r}
+FLVoters %>%
+  count(gender, race) %>%
+  group_by(gender) %>%
+  mutate(prop = n / sum(n)) %>%
+  ggplot(aes(x = race, y = prop, fill = gender)) +
+  geom_bar(stat = "identity", position = "dodge", width = 0.7) +
+  labs(title = "Distribución de probabilidad de pertenecer a una raza por género",
+       x = "Raza", y = "Probabilidad") +
+  scale_fill_manual(values = c("m" = "grey", "f" = "#836fff")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+>>>>>>> 0c0389ddcec2328a971296bf18c9faf1cc890540
 
 ```
 
