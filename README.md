@@ -38,9 +38,6 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | 18    | Noviembre  | Modelos log-lineales para tablas de contingencia          |                                                                                                                              |
 | 25    | Noviembre  | Consideraciones Finales                                   |                                                                                                                              |
 
->>>>>>> gh-pages
-
-
 ## Ayudantías
 
 | Día | Mes | Contenido                                                       | Material                                                                                                                                                   |
@@ -55,8 +52,6 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | día | mes | Regresión logística multinomial - fit `multinomial()`           |                                                                                                                                                            |
 | día | mes | Regresión Poisson - fit `glm()`                                 |                                                                                                                                                            |
 | día | mes | Sobre trabajo final                                             |                                                                                                                                                            |
->>>>>>> gh-pages
-
 
 
 ## Horario de Consulta
