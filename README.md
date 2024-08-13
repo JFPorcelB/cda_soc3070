@@ -1,6 +1,6 @@
 # SOC3070 Análisis de Datos Categóricos
 
-Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categóricos, dictado el segundo semestre 2023 a estudiantes de postgrado del Departamento de Sociología de la Universidad Católica de Chile. Para mayores detalles ver el [`[programa]`](files/syllabus_soc3070.pdf) y [`[calendario]`](#Calendario) del curso.
+Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categóricos, dictado el segundo semestre 2024 a estudiantes de postgrado del Departamento de Sociología de la Universidad Católica de Chile. Para mayores detalles ver el [`[programa]`](files/syllabus_soc3070.pdf) y [`[calendario]`](#Calendario) del curso.
 
 
 ## Class of 2024
@@ -17,6 +17,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 ---
 
 ## Calendario
+
 
 | Día   | Mes        | Contenido                                                 | Material                                                                                                                     |
 |-------|------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
@@ -38,7 +39,11 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | 18    | Noviembre  | Modelos log-lineales para tablas de contingencia          |                                                                                                                              |
 | 25    | Noviembre  | Consideraciones Finales                                   |                                                                                                                              |
 
+
+
 ## Ayudantías
+
+
 
 | Día | Mes | Contenido                                                       | Material                                                                                                                                                   |
 |-----|-----|-----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -52,6 +57,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | día | mes | Regresión logística multinomial - fit `multinomial()`           |                                                                                                                                                            |
 | día | mes | Regresión Poisson - fit `glm()`                                 |                                                                                                                                                            |
 | día | mes | Sobre trabajo final                                             |                                                                                                                                                            |
+
 
 
 ## Horario de Consulta
@@ -79,10 +85,6 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 ### Para usuarios de `R`
 
   - En el repositorio de mi curso de *procesamiento avanzado de datos en `R`* puedes encontrar todo el material necesario para aprender `R` desde cero [`[aquí]`](https://mebucca.github.io/dar_soc4001/).
-<<<<<<< HEAD
-  - Acá pueden encontrar un template para escribir en `RMarkdown` ([`[PDF]`](files/template_rmarkdown.pdf) y [`[.Rmd]`](files/template_rmarkdown.Rmd) ). El uso de `RMarkdown` no es obligatorio, pero es altamente recomendado para escribir sus tareas y trabajos. Hoja de ayuda [`[aquí]`](https://rstudio-pubs-static.s3.amazonaws.com/330387_5a40ca72c3b14824acedceb7d34618d1.html).
-  - [`[StalkOverflow]`](https://stackoverflow.com/) tiene las respuestas a casi todas las preguntas.
- 
 
  ### Para usuarios de `Stata`
 
