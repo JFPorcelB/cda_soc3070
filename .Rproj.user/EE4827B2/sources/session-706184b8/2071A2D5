@@ -3,7 +3,7 @@
     "path": "~/Documents/doctorado-UC/cda_soc3070/ayudantia/01_prob/index.qmd",
     "project_path": "ayudantia/01_prob/index.qmd",
     "type": "quarto_markdown",
-    "hash": "0",
+    "hash": "1002912764",
     "contents": "",
     "dirty": false,
     "created": 1723496737857.0,
@@ -14,15 +14,15 @@
         "rmdVisualWrapConfigured": "true",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "80,8",
-        "scrollLine": "72"
+        "cursorPosition": "228,0",
+        "scrollLine": "207"
     },
     "folds": "",
-    "lastKnownWriteTime": 1723500513,
+    "lastKnownWriteTime": 1723513114,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1723500513460,
+    "last_content_update": 1723513114651,
     "read_only": false,
     "read_only_alternatives": []
 }

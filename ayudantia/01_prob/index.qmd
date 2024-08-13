@@ -93,7 +93,7 @@ Con la combinación de teclas `ctrl + alt + i` se inserta un chunck de código. 
 
 ## Introducción a R base: El corazón del análisis de datos
 
-R base es como el corazón palpitante de todo el ecosistema R. Imagina que estás construyendo una casa de datos: R base sería los cimientos, las paredes y el techo. Es la estructura fundamental sobre la que se construye todo lo demás.
+Imagina que estás construyendo una casa de datos: R base sería los cimientos, las paredes y el techo. Es la estructura fundamental sobre la que se construye todo lo demás.
 
 ### ¿Qué es R base?
 
@@ -106,7 +106,7 @@ R base fue creado por Ross Ihaka y Robert Gentleman en 1993. ¡Su nombre "R" vie
 
 ### Elementos fundamentales de R base
 
-#### 1. Tipos de datos básicos
+#### Tipos de datos básicos
 
 R base maneja varios tipos de datos fundamentales:
 
@@ -128,7 +128,7 @@ logico <- TRUE
 print(logico)
 ```
 
-#### 2. Estructuras de datos
+#### Estructuras de datos
 
 R base ofrece estructuras de datos versátiles:
 
@@ -154,7 +154,7 @@ df <- data.frame(
 print(df)
 ```
 
-#### 3. Operaciones básicas
+#### Operaciones básicas
 
 R base permite realizar operaciones matemáticas y lógicas:
 
@@ -170,7 +170,7 @@ mayor_que <- 10 > 5
 igual_a <- 7 == 7
 ```
 
-#### 4. Control de flujo
+#### Control de flujo
 
 R base incluye estructuras para controlar el flujo de ejecución:
 
@@ -196,7 +196,7 @@ while (contador <= 3) {
 }
 ```
 
-#### 5. Funciones
+#### Funciones
 
 Las funciones son bloques de código reutilizables:
 
@@ -211,7 +211,7 @@ mensaje <- saludar("María")
 print(mensaje)
 ```
 
-### R base vs. Tidyverse: Una analogía culinaria
+### R base vs. Tidyverse: Una analogía 
 
 Imagina que R base es como una cocina tradicional bien equipada. Tiene todos los utensilios básicos que necesitas para cocinar: ollas, sartenes, cuchillos, etc. Puedes preparar prácticamente cualquier plato con estas herramientas.
 
@@ -225,9 +225,6 @@ Ambos enfoques tienen su lugar:
 ## Consejo práctico
 Dominar R base te dará una base sólida para entender cómo funciona R en su núcleo. Esto te ayudará enormemente cuando uses paquetes más avanzados o cuando necesites depurar código complejo.
 :::
-
-En las siguientes secciones, exploraremos cómo Tidyverse construye sobre estos fundamentos para ofrecer un flujo de trabajo de análisis de datos aún más potente y eficiente.
-
 
 
 ## `Tidyverse` (sintaxis)
