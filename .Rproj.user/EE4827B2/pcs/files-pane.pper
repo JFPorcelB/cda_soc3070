@@ -2,8 +2,8 @@
     "sortOrder": [
         {
             "columnIndex": 2,
-            "ascending": false
+            "ascending": true
         }
     ],
-    "path": "~/Documents/doctorado-UC/cda_soc3070/ayudantia/01_prob"
+    "path": "~/Documents/doctorado-UC/cda_soc3070"
 }
