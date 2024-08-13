@@ -1,0 +1,4 @@
+"0",""
+"0","# Para guardar el gráfico, descomenta la siguiente línea:"
+"0","# ggsave(""tendencia_valores_mensuales.png"", width = 10, height = 8, dpi = 300)"
+"0",""

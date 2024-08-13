@@ -1,0 +1,31 @@
+"0","data_model_plot %>%
+  mutate(rr = round(exp(estimate), 2)) %>% # calcular riesgo relativo
+  ggplot(aes(y = term, x = estimate, pch = y.level, label = rr)) +
+  geom_point(aes(y = term, x=estimate), color= ""#FF6666"") +  
+  geom_errorbarh(aes(xmax = conf.high, xmin = conf.low, height = .12), color =""#FF6666"",size = 0.6) +  
+  geom_vline(xintercept =0, linetype = ""dashed"") +
+  scale_shape_manual(values = c(0,2,19)) +
+  geom_text(size = 3.5, nudge_x = 2,vjust = -0.25) + 
+  facet_grid(.~y.level) +
+  scale_x_continuous(limits=c(-5,5)) +
+  theme_gray()+
+  theme(legend.position = ""bottom"",
+        axis.ticks.y=element_blank(),
+        strip.text.x = element_text(size = 12), # size label facet_grid (grupos)
+        #legend.position = ""right"",
+        plot.title = element_text(hjust = 0.5, size = 15),
+        axis.title = element_text(size=10),
+        axis.text.x = element_text(size=11),
+        axis.text.y = element_text(size = 11),
+        legend.text = element_text(size = 10),
+        legend.title = element_text(face = ""bold"", size = 12)) +
+  #guides(pch=guide_legend(title=""Patrones"")) +
+  ylab("""") + 
+  xlab("""") + 
+  ggtitle(""Coeficientes de regresión"") +
+  scale_y_discrete(limits=rev) +
+  scale_y_discrete(limits = c(
+  ))
+"
+"2","[38;5;253mScale for [32my[38;5;253m is already present.
+Adding another scale for [32my[38;5;253m, which will replace the existing scale.[39m"

@@ -1,9 +1,16 @@
 # SOC3070 Análisis de Datos Categóricos
 
+<<<<<<< HEAD
 Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categóricos, dictado el segundo semestre 2023 a estudiantes de postgrado del Departamento de Sociología de la Universidad Católica de Chile. Para mayores detalles ver el [`[programa]`](files/syllabus_soc3070.pdf) y [`[calendario]`](#Calendario) del curso.
 
 
 ## Class of 2023
+=======
+Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categóricos, dictado el segundo semestre 2024 a estudiantes de postgrado del Departamento de Sociología de la Universidad Católica de Chile. Para mayores detalles ver el [`[programa]`](files/syllabus_soc3070.pdf) y [`[calendario]`](#Calendario) del curso.
+
+
+## Class of 2024
+>>>>>>> gh-pages
 
 ![class](files/class.jpeg)
 
@@ -18,6 +25,7 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 ## Calendario
 
+<<<<<<< HEAD
 | Día | Mes        | Contenido                                        | Material                                                                                                                      |
 |-----|------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | 7   | Agosto    | Presentación del curso                           | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_0/class_0#1) [`[Código]`](slides/class_0/class_0.Rmd)        |
@@ -35,10 +43,34 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | 20  | Noviembre | Regresión Logística Multinomial                 |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_13/class_13#1) [`[Código]`](slides/class_13/class_13.Rmd)                                                                                                                                  |
 |     |           | Regresión Logística Ordenada                    |  [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_14/class_14#1) [`[Código]`](slides/class_14/class_14.Rmd)                                                                                                                                  |
 | 28  | Noviembre | Regresión Poisson                               | [`[Presentación]`](https://mebucca.github.io/cda_soc3070/slides/class_15/class_15#1) [`[Código]`](slides/class_15/class_15.Rmd)                                                                                                                                  |
+=======
+
+| Día   | Mes        | Contenido                                                 | Material                                                                                                                     |
+|-------|------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| 5     | Agosto     | Presentación del curso                                    | [`[Pres]`](https://mebucca.github.io/cda_soc3070/slides/class_0/class_0#1) [`[Code]`](slides/class_0/class_0.Rmd)  |
+| 5     | Agosto     | Basics teoría de la Probabilidad                          | [`[Pres]`](https://mebucca.github.io/cda_soc3070/slides/class_1/class_1#1) [`[Code]`](slides/class_1/class_1.Rmd)  |
+| 12    | Agosto     | Probabilidad Condicional y Teorema Bayes                  | [`[Pres]`](https://mebucca.github.io/cda_soc3070/slides/class_2/class_2#1) [`[Code]`](slides/class_2/class_2.Rmd)  [`[Sim]`](https://mebucca.github.io/cda_soc3070/slides/class_2/nb_2#1)         |
+| 19    | Agosto     | Variables Aleatorias, Distribuciones Discretas            |                                                                                                                              |
+| 26    | Agosto     | Estimación via Maximum Likelihood (MLE)                   |                                                                                                                              |
+| 2     | Septiembre | Tablas de contingencia                                    |                                                                                                                              |
+| 9     | Septiembre | Modelo Lineal de Probabilidad (LPM)                       |                                                                                                                              |
+| 23    | Septiembre | Regresión Logística: estructura teórica y MLE             |                                                                                                                              |
+| 30    | Septiembre | Regresión Logística: interpretación de efectos            |                                                                                                                              |
+| 7     | Octubre    | Regresión Logística: inferencia                           |                                                                                                                              |
+| 14    | Octubre    | Regresión Logística: ajuste, predicción & cross-validation|                                                                                                                              |
+| 21    | Octubre    | Regresión Logística Multinomial: estructura teórica       |                                                                                                                              |
+| 28    | Octubre    | Regresión Logística Multinomial: interpretación e inferencia|                                                                                                                             |
+| 4     | Noviembre  | Regresión Poisson: estructura teórica                     |                                                                                                                              |
+| 11    | Noviembre  | Regresión Poisson: interpretación e inferencia            |                                                                                                                              |
+| 18    | Noviembre  | Modelos log-lineales para tablas de contingencia          |                                                                                                                              |
+| 25    | Noviembre  | Consideraciones Finales                                   |                                                                                                                              |
+
+>>>>>>> gh-pages
 
 
 ## Ayudantías
 
+<<<<<<< HEAD
 [Link](https://teams.microsoft.com/l/meetup-join/19%3ameeting_MjhlMzAyNzEtNjBiMS00ZWEyLThhMzgtYzQzZmRjNTZhMzQ5%40thread.v2/0?context=%7b%22Tid%22%3a%225ff5d9fa-f83f-4ac1-a4d2-eb48ea0a00d2%22%2c%22Oid%22%3a%22a6901aad-8777-4578-9043-5b080d1bcde8%22%7d) permanente de de las ayudantías. Recuerden que se realizaran en el primer modulo, es decir, todos los miércoles entre 12:20 y 13:30 hrs. 
 
 | Día | Mes         | Contenido                                 | Material |
@@ -55,11 +87,28 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 | 22  | Noviembre   | Regresión logística ordenada y poisson    |            |
 | 29  | Noviembre   | Sobre trabajo final                       |            |
 
+=======
+
+
+| Día | Mes | Contenido                                                       | Material                                                                                                                                                   |
+|-----|-----|-----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| día | mes | R base & quarto                                                 | [`[Pres]`](https://mebucca.github.io/cda_soc3070/ayudantia/01_prob/index) [`[Code]`](https://github.com/mebucca/cda_soc3070/blob/gh-pages/ayudantia/01_prob/index.qmd) |
+| día | mes | `dplyr` & `tidyr`                                               |                                                                                                                                                            |
+| día | mes | `ggplot()` & `stargazer()`                                      |                                                                                                                                                            |
+| día | mes | Regresión lineal, LPM - fit `lm()`                              |                                                                                                                                                            |
+| día | mes | Regresión logística - fit `glm()`                               |                                                                                                                                                            |
+| día | mes | Probabilidades predichas, efectos marginales & clasificación - `ggplot()` |                                                                                                                                                            |
+| día | mes | Bootstrap & cross-validation                                    |                                                                                                                                                            |
+| día | mes | Regresión logística multinomial - fit `multinomial()`           |                                                                                                                                                            |
+| día | mes | Regresión Poisson - fit `glm()`                                 |                                                                                                                                                            |
+| día | mes | Sobre trabajo final                                             |                                                                                                                                                            |
+>>>>>>> gh-pages
 
 
 
 ## Horario de Consulta
 
+<<<<<<< HEAD
 - Reuniones individuales de aproximadamente 15 minutos cada día Lunes entre 15:00 y 16:00pm. [`[Agendar]`](https://calendar.app.google/A9vxmbBz1LyDQPAK6)
 
 ## Evaluaciones
@@ -79,13 +128,37 @@ Este repositorio contiene el material del curso SOC3070 Análisis de Datos Categ
 
 
 ## Recursos computacion
+=======
+- Reuniones individuales de aproximadamente 15 minutos cada día Lunes entre 14:30 y 15:30pm. [`[Agendar]`](https://calendar.app.google/A9vxmbBz1LyDQPAK6)
+
+
+## Evaluaciones
+
+
+| Tarea           | Asignación       | Entrega         | Material                                                                                  |
+|-----------------|------------------|-----------------|-------------------------------------------------------------------------------------------|
+| Tarea corta 1   | 5 de Agosto      | 12 de Agosto    | [`[TC1]`](https://mebucca.github.io/cda_soc3070/homework/tc_1#1) [`[TC1.qmd]`](homework/tc_1.qmd)  |
+| Tarea corta 2   | 19 de Agosto     | 26 de Agosto    | [`[TC2]`](https://mebucca.github.io/cda_soc3070/homework/tc_2#1) [`[TC2.qmd]`](homework/tc_2.qmd)  |
+| Tarea corta 3   | 2 de Septiembre  | 9 de Septiembre |                                                                                           |
+| Trabajo 1       | 9 de Septiembre  | 30 de Septiembre|                                                                                           |
+| Tarea corta 4   | 14 de Octubre    | 21 de Octubre   |                                                                                           |
+| Trabajo 2       | 21 de Octubre    | 11 de Noviembre |                                                                                           |
+| Trabajo final   | 18 de Noviembre  | 9 de Diciembre  |                                                                                           |
+
+
+
+## Recursos computacionales
+>>>>>>> gh-pages
 
 ### Para usuarios de `R`
 
   - En el repositorio de mi curso de *procesamiento avanzado de datos en `R`* puedes encontrar todo el material necesario para aprender `R` desde cero [`[aquí]`](https://mebucca.github.io/dar_soc4001/).
+<<<<<<< HEAD
   - Acá pueden encontrar un template para escribir en `RMarkdown` ([`[PDF]`](files/template_rmarkdown.pdf) y [`[.Rmd]`](files/template_rmarkdown.Rmd) ). El uso de `RMarkdown` no es obligatorio, pero es altamente recomendado para escribir sus tareas y trabajos. Hoja de ayuda [`[aquí]`](https://rstudio-pubs-static.s3.amazonaws.com/330387_5a40ca72c3b14824acedceb7d34618d1.html).
   - [`[StalkOverflow]`](https://stackoverflow.com/) tiene las respuestas a casi todas las preguntas.
  
+=======
+>>>>>>> gh-pages
 
  ### Para usuarios de `Stata`
 

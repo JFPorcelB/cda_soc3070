@@ -1,0 +1,4 @@
+"0","obs<-left_join(egos,alteris, by=""idencuesta"")"
+"0","obs[obs==""-999""] <- NA"
+"0","obs[obs==""-888""] <- NA"
+"0",""

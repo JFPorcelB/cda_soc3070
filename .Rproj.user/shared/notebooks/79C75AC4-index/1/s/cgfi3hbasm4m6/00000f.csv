@@ -1,0 +1,7 @@
+"0","# Transformar datos con tidyr"
+"0","data_wide <- data_processed %>%"
+"0","  select(group, category, mean_value) %>%"
+"0","  pivot_wider(names_from = category, values_from = mean_value)"
+"0",""
+"0","# Mostrar los datos en formato ancho"
+"0","print(data_wide)"

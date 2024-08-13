@@ -1,0 +1,4 @@
+"0","# segmentamos"
+"0","set.seed(27)"
+"0","boots <- bootstraps(obs, times = 1000, apparent = TRUE)"
+"0","#boots"
